@@ -1,0 +1,33 @@
+.spoiler
+  border-left-color: var(--color-admonition-title--todo)
+  padding-bottom: 0
+  ::-webkit-details-marker
+    display: none
+
+.spoiler-title
+  background-color: var(--color-admonition-title-background--todo)
+  list-style: none
+  margin-bottom: 0
+  cursor: pointer
+  padding-left: 1rem
+  display: flex
+  align-items: center
+
+.spoiler-title::after
+  right: 0.5rem
+  width: 1rem
+  height: 1rem
+  justify-self: flex-end
+  display: flex
+  content: ""
+  mask-image: var(--icon-arrow-right)
+  -webkit-mask-image: var(--icon-arrow-right)
+  margin-left: auto
+  background-color: var(--color-sidebar-link-text)
+  transform: rotate(90deg)
+
+.spoiler-title::before
+  display: none
+
+.spoiler[open] .spoiler-title::after
+  transform: rotate(-90deg)

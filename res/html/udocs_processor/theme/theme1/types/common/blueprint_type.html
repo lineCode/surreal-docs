@@ -1,0 +1,12 @@
+<span class="api-blueprint-type"><!--
+--><span class="api-blueprint-type-type"><!--
+--><span class="api-blueprint-type-image-wrapper"><!--
+--><img class="api-blueprint-type-image"
+        src="{{ docurl('preview.type.image') }}"/></span><span>{{ links('preview.type.text') }}</span></span><!--
+-->{% if preview.type.is_ref and not preview.type.is_const %}<!--
+--><span class="api-blueprint-type-opt api-spaces"> (by ref)</span><!--
+-->{% else if preview.type.is_ref and preview.type.is_const %}<!--
+--><span class="api-blueprint-type-opt api-spaces"> (by const ref)</span><!--
+-->{% else if preview.type.is_const %}<!--
+--><span class="api-blueprint-type-opt api-spaces"> (const)</span>{% endif %}<!--
+--></span><!--

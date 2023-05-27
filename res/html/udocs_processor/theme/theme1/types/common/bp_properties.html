@@ -1,0 +1,119 @@
+{% if length(p.property_previews) > 0 %}
+<section id="properties">
+    <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h2>
+    <ul class="api-sub-index api-sub-index-blueprint">
+        {% set access="" %}
+        {% for preview in p.property_previews %}
+        <li>
+            {% if preview.access != access %}
+            <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+            {% set access=preview.access %}
+            {% endif %}
+            <ul class="api-options">
+                <li class="api-option"><span class="api-name">{{ preview.display_name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                -->{%- include "preview_since.html" %}<!--
+                -->{% if preview.is_read_only %}<li class="api-option">Read-only</li>{% endif %}<!--
+                -->{%- include "preview_replication.html" %}<!--
+                -->{% if preview.min != "" and preview.max == "" %}<li class="api-option">From {{ preview.min }}</li>{% endif%}
+                {% if preview.min == "" and preview.max != "" %}<li class="api-option">Up to {{ preview.max }}</li>{% endif%}
+                {% if preview.min != "" and preview.max != "" %}<!--
+                --><li class="api-option">From {{ preview.min }} to {{ preview.max }}</li>{% endif%}<!--
+                -->{% if preview.is_instance_editable and preview.is_archetype_editable %}<!--
+                --><span class="api-option">Instance and archetype editable</span><!--
+                -->{% else if preview.is_instance_editable %}<span class="api-option">Instance editable</span><!--
+                -->{% else if preview.is_archetype_editable %}<span class="api-option">Archetype editable</span>{% endif %}
+                {% if preview.is_exposed_on_spawn %}<li class="api-option">Exposed on spawn</li>{% endif%}
+                {% if preview.is_exposed_to_cinematic %}<li class="api-option">Exposed to cinematic</li>{% endif%}
+                {% if preview.is_config %}<li class="api-option">Config</li>{% endif%}
+            </ul>
+            <div class="api-blueprint-property">
+                <div class="api-preview-definition-bp">
+                    <span class="api-blueprint-parameter-type">{% include "blueprint_type.html" %}--></span>
+                    {% if preview.is_deprecated %}<!--
+                    --><del class="api-blueprint-deprecated">{% endif %}<!--
+                    --><span class="api-blueprint-parameter-name"><!--
+                    --><span class="api-name">{{ preview.display_name }}</span></span><!--
+                    -->{% if preview.default != "" %}<!--
+                       --><span class="api-blueprint-parameter-default api-spaces"><!--
+                        --> = <span class="api-name">{{ links('preview.default') }}</span><!--
+                    --></span>{% endif %}<!--
+                    -->{% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+            </div>
+            <div class="api-sub-index-description">
+                {% if preview.short_desc != "" %}
+                    {{ markdown('preview.short_desc') }}
+                {% endif %}
+                {% if preview.full_desc != "" %}
+                    {{ markdown('preview.full_desc') }}
+                {% endif %}
+                {% if preview.see != "" %}
+                <p class="api-blueprint-property-see">
+                    <span class="api-property-see-heading">See also:</span>
+                    {{ links('preview.see') }}
+                </p>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+{% if length(p.event_disp_previews) > 0 %}
+<section id="dispatchers">
+    <h2>Event dispatchers<a class="headerlink" href="#dispatchers" title="Permalink to this heading">#</a></h2>
+    <ul class="api-sub-index api-sub-index-blueprint">
+        {% set access="" %}
+        {% for preview in p.event_disp_previews %}
+        <li>
+            {% if preview.access != access %}
+            <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+            {% set access=preview.access %}
+            {% endif %}
+            <ul class="api-options">
+                <li class="api-option"><span class="api-name">{{ preview.display_name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                -->{%- include "preview_since.html" %}<!--
+                -->{% if preview.is_assignable and preview.is_callable %}<!--
+                --><span class="api-option">Can call{% if preview.is_auth_only %}
+                (authority only)<!--
+                -->{% endif %}
+                and bind to</span><!--
+                -->{% else if preview.is_assignable %}<span class="api-option">Can bind to</span><!--
+                -->{% else if preview.is_callable %}<span class="api-option">Can call{% if preview.is_auth_only %} <!--
+                -->(authority only){% endif %}</span>{% endif %}
+            </ul>
+            <div class="api-blueprint-property">
+                <div class="api-preview-definition-bp">
+                    <span class="api-blueprint-parameter-type">{% include "blueprint_type.html" %}--></span>
+                    {% if preview.is_deprecated %}<!--
+                    --><del class="api-blueprint-deprecated">{% endif %}<!--
+                    --><span class="api-blueprint-parameter-name"><!--
+                    --><span class="api-name">{{ preview.display_name }}</span></span><!--
+                    -->{% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+            </div>
+            <div class="api-sub-index-description"><!--
+                -->{% if preview.type.is_anon_delegate %}<!--
+                --><div class="api-delegate-image"><!--
+                --><img srcset="{{ docurl('preview.type.delegate_image') }} 2.7x"/></div><!--
+                -->{% endif %}
+                {% if preview.short_desc != "" %}
+                    {{ markdown('preview.short_desc') }}
+                {% endif %}
+                {% if preview.full_desc != "" %}
+                    {{ markdown('preview.full_desc') }}
+                {% endif %}
+                {% if preview.see != "" %}
+                <p class="api-blueprint-property-see">
+                    <span class="api-property-see-heading">See also:</span>
+                    {{ links('preview.see') }}
+                </p>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}

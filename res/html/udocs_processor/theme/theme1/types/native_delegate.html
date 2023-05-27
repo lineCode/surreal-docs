@@ -1,0 +1,86 @@
+<section id="{% if p.is_event %}event{% else %}delegate{% endif %}" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+        <p class="api-enity-type">
+        {% if p.is_event %}
+            {% if p.is_derived_event %}derived{% else %}native{% endif %}
+            event
+        {% else %}
+            {% if p.is_multicast %}
+            multicast{% endif %}
+            {% if p.is_dynamic %}
+            dynamic{% endif %}
+            delegate
+        {% endif %}
+        </p>
+    </div>
+    {% if p.namespace != "" %}
+    <p class="api-heading-namespace">
+        {{ p.namespace }}::&#8203;
+    </p>
+    {% endif %}
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}<!--
+        --><span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+        {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink"
+           href="#{% if p.is_event %}event{% else %}delegate{% endif %}"
+           title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options">
+        {% include "common/definition_include.html" %}
+    </ul>
+    <div class="api-native-definition">
+        {% include "common/definition_access.html" %}
+        {% include "common/definition_umacro.html" %}
+        <span class="api-keyword">
+            {{ p.delegate_macro }}<!--
+        --></span><!--
+        -->({% if p.is_event %}<!--
+        --><span class="api-name">{{ links('p.owning') }}</span>,
+        {% if p.is_derived_event %}<span class="api-name">{{ links('p.parent') }}</span>,&#32;{% endif %}<!--
+                --><span class="api-name">{{ p.name }}</span><!--
+            -->{% else %}
+        {% if p.has_ret_value %}<span class="api-name">{{ links('p.return') }}</span>,&#32;{% endif %}<!--
+        --><span class="api-name">{{ p.name }}</span><!--
+            -->{% endif %}
+            {% for param in p.params %}<!--
+        -->,&#32;<span class="api-name">{{ links('param.type') }}</span>{% if p.is_dynamic %},&#32;{% endif %}<!--
+        --><span class="api-name">{{ param.name }}</span><!--
+            -->{% endfor %})
+        {% include "common/definition_access_end.html" %}
+    </div>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% if length(p.params) > 0 %}
+    <section class="api-template-param-index" id="parameters">
+        <h2>Parameters<a class="headerlink" href="#parameters"
+                                  title="Permalink to this heading">#</a></h2>
+        <ul class="api-index">
+            {% for param in p.params %}
+            <li class="api-index-element">
+            <div class="api-native-parameter">
+                <span class="api-native-container"><!--
+                --><span class="api-native-parameter-type"><!--
+                --><span class="api-name">{{ links('param.type') }}</span></span>
+                    <span class="api-name api-native-parameter-name">{{ param.name }}</span></span><!--
+            --><div class="api-index-element-description">
+                {{ markdown('param.description') }}
+                </div>
+            </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if p.ret_value_desc != "" %}
+    <section class="api-template-param-index" id="return-value">
+        <h2>Return value<a class="headerlink" href="#return-value"
+                         title="Permalink to this heading">#</a></h2>
+        {{ markdown('p.ret_value_desc') }}
+    </section>
+    {% endif %}
+    {% include "common/see.html" %}
+</section>

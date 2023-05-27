@@ -1,0 +1,11 @@
+{% if p.is_uentity %}
+<div class="api-mc">
+  <div class="api-native-definition-column">
+    <span class="api-keyword api-definition-umacro">{{ p.ue_info.macro }}</span>(
+  </div>
+  <div class="api-native-definition-column">
+    {{ p.ue_info.normal -}}
+    {%- if p.ue_info.meta != "" %},<br/> meta = ({{ p.ue_info.meta }}){% endif -%})
+  </div>
+</div>
+{% endif %}

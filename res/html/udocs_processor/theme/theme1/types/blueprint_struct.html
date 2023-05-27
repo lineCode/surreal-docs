@@ -1,0 +1,25 @@
+<section id="struct" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+    <p class="api-enity-type"><!--
+    -->{% if p.is_native %}Native-defined {% endif %}blueprint struct</p>
+    {% include "common/native_counterpart.html" %}
+    </div>
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}
+    <span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+    {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink" href="#struct"
+        title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options"><!--
+        -->{% include "common/definition_path.html" %}
+        {% if p.is_blueprint_type %}<li class="api-definition-option">Blueprint type</li>{% endif %}<!--
+    --></ul>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% include "common/bp_properties.html" %}
+    {% include "common/see.html" %}
+</section>

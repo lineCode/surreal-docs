@@ -1,0 +1,13 @@
+{
+  "name": "surreal-docs",
+  "version": "0.0.0",
+  "description": "Surreal Docs",
+  "main": ".",
+  "keywords": [],
+  "author": "Medelfor, Limited",
+  "license": "Copyright © 2023, Medelfor, Limited. All rights reserved.",
+  "homepage": "https://medelfor.com",
+  "dependencies": {
+    "puppeteer": "^20.2.0"
+  }
+}

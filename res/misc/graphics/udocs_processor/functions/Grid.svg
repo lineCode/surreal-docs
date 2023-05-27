@@ -1,0 +1,21 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H160V160H0V0Z" fill="#262626"/>
+<path d="M40 0V160" stroke="#303030"/>
+<path d="M60 0V160" stroke="#303030"/>
+<path d="M80 0V160" stroke="#303030"/>
+<path d="M100 0V160" stroke="#303030"/>
+<path d="M120 0V160" stroke="#303030"/>
+<path d="M140 0V160" stroke="#303030"/>
+<path d="M20 0V160" stroke="#303030"/>
+<path d="M160 40L5.33462e-06 40" stroke="#303030"/>
+<path d="M160 60L5.33462e-06 60" stroke="#303030"/>
+<path d="M160 80L5.33462e-06 80" stroke="#303030"/>
+<path d="M160 100L5.33462e-06 100" stroke="#303030"/>
+<path d="M160 120L5.33462e-06 120" stroke="#303030"/>
+<path d="M160 140H5.33462e-06" stroke="#303030"/>
+<path d="M160 20L5.33462e-06 20" stroke="#303030"/>
+<mask id="path-16-inside-1_4_84" fill="white">
+<path d="M0 0H160V160H0V0Z"/>
+</mask>
+<path d="M0 0V-1H-1V0H0ZM0 1H160V-1H0V1ZM1 160V0H-1V160H1Z" fill="#161616" mask="url(#path-16-inside-1_4_84)"/>
+</svg>

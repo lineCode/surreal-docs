@@ -1,0 +1,16 @@
+{% if length(p.template) > 0 %}
+<div class="api-mc">
+  <div class="api-native-definition-column">
+    <span class="api-keyword">template</span>&lt;
+  </div>
+  <div class="api-native-definition-column">
+    {%- for param in p.template -%}<!--
+    --><span class="api-name">{{- links('param.type') -}}</span>&#32;<span class="api-param-name"><!--
+     --><span class="api-name">{{- param.name -}}</span></span><!--
+     -->{%- if param.default != "" -%}&#32;= <span class="api-name">{{ param.default }}</span>
+    {%- endif -%}
+    {%- if not loop.is_last -%},{%- endif -%}
+    {%- endfor -%}&gt;
+  </div>
+</div>
+{% endif %}

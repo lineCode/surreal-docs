@@ -1,0 +1,182 @@
+<section id="{% if p.is_internal %}method{% else %}function{% endif %}" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+        <p class="api-enity-type">Native {% if p.is_internal %}method{% else %}function{% endif %}</p>
+        {% include "common/bp_counterpart.html" %}
+    </div>
+    {% if p.namespace != "" %}
+    <p class="api-heading-namespace">
+        {{ p.namespace }}::&#8203;
+    </p>
+    {% endif %}
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}<!--
+        --><span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+        {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink"
+           href="#{% if p.is_internal %}method{% else %}function{% endif %}"
+           title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options">
+        {% include "common/definition_include.html" %}<!-- probably should be in one row with include
+        -->{% if p.has_super %}<!--
+        --><li class="api-definition-option api-function-override"><!--
+            -->{% if p.is_implementation %}Implements{% else %}Overrides{% endif %}
+            {{ p.super_class }}::&#8203;{{ links('p.super') }}
+        </li>
+        {% endif %}
+    </ul>
+    <div class="api-native-definition">
+        {% include "common/definition_access.html" %}
+        {% include "common/definition_umacro.html" %}
+        {% include "common/definition_template.html" %}
+        <span class="api-keyword">
+            {% if p.is_explicit %}&#32;explicit{% endif %}
+            {% if p.is_static %}&#32;static{% endif %}
+            {% if p.is_inline %}&#32;inline{% endif %}
+            {% if p.is_virtual %}&#32;virtual{% endif %}
+        </span>
+        {% include "common/definition_api.html" %}
+        <span class="api-preview-nk api-name">{{ links('p.return') }}</span>
+        <span class="api-name">{{- p.name -}}</span>({%- if length('p.params') > 0 -%}
+        <div class="api-mc">
+            <div class="api-tab4"></div>
+            <div>
+        {%- endif -%}
+                {%- for param in p.params -%}
+                  {%- if param.is_uentity -%}
+                    <span class="api-keyword">UPARAM</span>({{ param.ue_info.normal -}}
+                    {%- if param.ue_info.meta != "" -%}
+                    {% if param.ue_info.normal != "" -%}
+                    ,{% endif %} meta = ({{- param.ue_info.meta }}){% endif -%})
+                {%- endif -%}{{- links('param.type') -}}&#32;<span class="api-name">{{- param.name -}}</span><!--
+                  -->{%- if param.default != "" -%}
+                <span class="api-native-default api-spaces"> = <!--
+                --><span class="api-name">{{-  links('param.default') -}}</span></span>{%- endif -%}
+                  {%- if not loop.is_last -%},{% endif -%}<br>
+                {%- endfor -%}{% if length('p.params') == 0 %}){% endif %}
+        {%- if length('p.params') > 0 -%}
+            </div>
+        </div>)
+        {% endif %}
+        <span class="api-keyword">
+            {% if p.is_final %}&#32;final{% endif %}
+            {% if p.is_const %}&#32;const{% endif %}
+            {% if p.is_override %}&#32;override{% endif %}
+            {% if p.is_pure_virtual %}&#32;= 0{% endif %}
+        </span>
+        {% if p.definition == "default" %}&#32;=
+        <span class="api-keyword">default</span>{% endif %}
+        {% if p.definition == "delete" %}&#32;=
+        <span class="api-keyword">delete</span>{% endif %}
+        {% include "common/definition_access_end.html" %}
+        {% if p.has_impl %}
+        <br/>
+        {% if p.is_internal %}{% if p.impl.access != p.access %}<span class="api-keyword">{{ p.impl.access }}</span>:{% endif %}
+        <div class="api-mc"><div class="api-native-definition-column api-tab1"></div>
+            <div class="api-native-definition-column"> {% endif %}
+        <span class="api-keyword">
+            {% if p.impl.is_explicit %}&#32;explicit{% endif %}
+            {% if p.impl.is_inline %}&#32;inline{% endif %}
+            {% if p.impl.is_virtual %}&#32;virtual{% endif %}
+        </span>
+        <span class="api-preview-nk api-name">{{ links('p.impl.return') }}</span>
+                <span class="api-name">{{- p.impl.name -}}</span>({%- if length('p.params') > 0 -%}
+        <div class="api-mc">
+            <div class="api-tab4"></div>
+            <div>
+        {%- endif -%}
+                {%- for param in p.params -%}
+                  {%- if param.is_uentity -%}
+                    <span class="api-keyword">UPARAM</span>({{ param.ue_info.normal -}}
+                    {%- if param.ue_info.meta != "" -%}
+                    {% if param.ue_info.normal != "" -%}
+                    ,{% endif %} meta = ({{- param.ue_info.meta }}){% endif -%})
+                {%- endif -%}{{- links('param.type') -}}&#32;<span class="api-name">{{- param.name -}}</span><!--
+                  -->{%- if param.default != "" -%}
+                <span class="api-native-default api-spaces"> = <!--
+                --><span class="api-name">{{-  links('param.default') -}}</span></span>{%- endif -%}
+                  {%- if not loop.is_last -%},{% endif -%}<br>
+                {%- endfor -%}{% if length('p.params') == 0 %}){% endif %}
+        {%- if length('p.params') > 0 -%}
+            </div>
+        </div>)
+        {% endif %}
+        <span class="api-keyword">
+            {% if p.impl.is_final %}&#32;final{% endif %}
+            {% if p.impl.is_const %}&#32;const{% endif %}
+            {% if p.impl.is_override %}&#32;override{% endif %}
+            {% if p.impl.is_pure_virtual %}&#32;= 0{% endif %}
+        </span>
+        {% if p.definition == "default" %}&#32;=
+        <span class="api-keyword">default</span>{% endif %}
+        {% if p.definition == "delete" %}&#32;=
+        <span class="api-keyword">delete</span>{% endif %}
+        {% if p.impl.is_internal %}</div></div>{% endif %}
+        {% endif %}
+        <div class="api-mc"><div class="api-native-definition-column api-tab1"></div>
+            <div class="api-native-definition-column">
+        {% if p.validation != "" %}
+        <span class="api-native-definition-comment">
+            <br/>// You also may be interested in {{ links('p.validation') }}
+        </span>
+        {% endif %}
+        {% if p.main != "" %}
+        <span class="api-native-definition-comment">
+            <br/>// You also may be interested in {{ links('p.main') }}
+        </span>
+        {% endif %}
+        </div></div>
+    </div>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% include "common/template_parameters.html" %}
+    {% if length(p.params) > 0 %}
+    <section class="api-template-param-index" id="parameters">
+        <h2>Parameters<a class="headerlink" href="#parameters"
+                                  title="Permalink to this heading">#</a></h2>
+        <ul class="api-index">
+        {% for param in p.params %}
+            <li class="api-index-element">
+                <div class="api-native-parameter">
+                    <span class="api-native-container"><!--
+                    --><span class="api-native-parameter-type">
+                    {% if param.is_uentity %}
+                        UPARAM(<!--
+                            -->{{ param.ue_info.normal -}}
+                        {%- if param.ue_info.meta != "" -%}
+                        {% if param.ue_info.normal != "" -%}
+                        ,{% endif %} meta = (<!--
+                            -->{{- param.ue_info.meta }}){% endif -%})
+                    {% endif %}<!--
+                    --><span class="api-name">{{ links('param.type') }}</span></span>
+                    <span class="api-name api-native-parameter-name">{{ param.name }}</span>
+                        <span class="api-native-parameter-default api-spaces">{% if param.default != "" %}<!--
+                       --> = <span class="api-name">{{ links('param.default') }}</span><!--
+                    --></span>{% endif %}</span>
+
+                    <div class="api-index-element-description">
+                    {{ markdown('param.description') }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if p.ret_value_desc != "" %}
+    <section class="api-template-param-index" id="return-value">
+        <h2>Return value<a class="headerlink" href="#return-value"
+                         title="Permalink to this heading">#</a></h2>
+        <span class="api-native-container"><!--
+        --><span class="api-native-parameter-type"><!--
+        --><span class="api-name">{{ links('p.return') }}</span></span></span>
+        <div class="api-index-element-description">
+        {{ markdown('p.ret_value_desc') }}
+        </div>
+    </section>
+    {% endif %}
+    {% include "common/see.html" %}
+</section>

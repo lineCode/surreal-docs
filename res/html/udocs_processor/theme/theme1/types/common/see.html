@@ -1,0 +1,11 @@
+{% if length(p.see) > 0 %}
+<section class="see-also" id="see-also">
+    <h2>See also<a class="headerlink" href="#see-also"
+              title="Permalink to this heading">#</a></h2>
+    <ul class="see-also-list">
+        {% for see in p.see %}
+        <li>{{ links('see') }}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}

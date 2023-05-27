@@ -1,0 +1,21 @@
+{
+  "required_version": "0.0.0",
+  "extraction" : {
+    "filters": {
+      "content": {
+        "include": [],
+        "exclude": []
+      },
+      "native_modules": {
+        "include": [],
+        "exclude": []
+      }
+    },
+    "output": {
+      "dir": "",
+      "do_clean": false
+    },
+    "format": "json",
+    "rest_port": 35578
+  }
+}

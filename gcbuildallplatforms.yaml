@@ -1,0 +1,112 @@
+#
+#  Copyright © 2022, Medelfor, Limited. All rights reserved.
+#  For any additional information refer to https://medelfor.com
+#
+
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    secretEnv: ['BMS_BUILDBOT_SSH_KEY']
+    entrypoint: 'bash'
+    args: ['scripts/cicd/git/fetch_bms.sh', 'develop']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    dir: 'scripts/cicd/buildmasterset'
+    entrypoint: 'bash'
+    args: ['general/start_artifactory.sh', 'https://artifactory.dev.internal.medelfor.com']
+
+  # linux build
+#  - name: 'gcr.io/avtomatikka/buildtoolset-docker:latest'
+#    secretEnv: ['BUILDBOT_PAT', 'AWS_EC2_INSTANCE_SSH_KEY', 'GCLOUD_KEY', 'ARTIFACTORY_PASSWORD']
+#    dir: 'scripts/cicd/buildmasterset'
+#    args: ['bash', 'aws/local/kickoff_build.sh', '/workspace/build_request_linux.json', '${_DO_REBUILD}',
+#           '${_VERSION}', '', '', '', '${BRANCH_NAME}',
+#           '/build_workspace', 'medelfor-buildbot', 'dev.buildbot@medelfor.com',
+#           'https://artifactory.dev.internal.medelfor.com/artifactory/api/conan/medelfor-central',
+#           '$$STAGES_RESULTS_DIR', 'artifacts.medelfor.com', '${BUILD_ID}', '${COMMIT_SHA}',
+#           'win64-build-machine-artifpush@avtomatikka.iam.gserviceaccount.com', '${PROJECT_ID}',
+#           'buildbot', '', 'udocs-processor:${_GS_SAVE_SEPARATE_VERSION}', 'linux', 'false', 'udocs-processor']
+#
+#  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+#    dir: 'scripts/cicd/buildmasterset'
+#    args: ['python3', 'aws/local/check_result.py', 'response.json', 'lint']
+#
+#  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+#    dir: 'scripts/cicd/buildmasterset'
+#    args: ['python3', 'aws/local/check_result.py', 'response.json', 'build']
+#
+#  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+#    dir: 'scripts/cicd/buildmasterset'
+#    args: ['python3', 'aws/local/check_result.py', 'response.json', 'tests']
+#
+#  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+#    dir: 'scripts/cicd/buildmasterset'
+#    args: ['python3', 'aws/local/check_result.py', 'response.json',
+#           'push_artifactory_udocs-processor_release']
+#
+#  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+#    dir: 'scripts/cicd/buildmasterset'
+#    args: ['python3', 'aws/local/check_result.py', 'response.json',
+#           'push_artifactory_udocs-processor_debug']
+#
+#  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+#    dir: 'scripts/cicd/buildmasterset'
+#    args: ['python3', 'aws/local/check_result.py', 'response.json',
+#           'push_bucket_udocs-processor-static']
+
+# win build
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    secretEnv: ['BUILDBOT_PAT', 'AWS_EC2_INSTANCE_SSH_KEY', 'GCLOUD_KEY', 'ARTIFACTORY_PASSWORD']
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['bash', 'aws/local/kickoff_build.sh', '/workspace/build_request_win64.json', '${_DO_REBUILD}',
+           '${_VERSION}', '', 'build-machine-1', '', '${BRANCH_NAME}',
+           'C:\\workspace', 'medelfor-buildbot', 'dev.buildbot@medelfor.com',
+           'https://artifactory.dev.internal.medelfor.com/artifactory/api/conan/medelfor-central',
+           '$$STAGES_RESULTS_DIR', 'artifacts.medelfor.com', '${BUILD_ID}', '${COMMIT_SHA}',
+           'win64-build-machine-artifpush@avtomatikka.iam.gserviceaccount.com', '${PROJECT_ID}',
+           'buildbot', '', 'udocs-processor:${_GS_SAVE_SEPARATE_VERSION}', 'win64', 'true']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'aws/local/check_result.py', 'response.json', 'lint']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'aws/local/check_result.py', 'response.json', 'build']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'aws/local/check_result.py', 'response.json', 'tests']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'aws/local/check_result.py', 'response.json', 'push_artifactory_udocs-processor_release']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'aws/local/check_result.py', 'response.json', 'push_artifactory_udocs-processor_debug']
+
+  # the motivation behind the decision to put shutdown to the end is the following:
+  # if any of `check`-stages fail then no shutdown is going to happen, henceforth no start is needed
+  # when new build will be run. This leads to faster iterations on fixing build errors that happened
+  # (since shutdown wasn't executed)
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    dir: 'scripts/cicd/buildmasterset'
+    entrypoint: 'bash'
+    args: ['general/shutdown_artifactory.sh']
+
+timeout: 3600s
+options:
+  env: ['STAGES_RESULTS_DIR=stages_results']
+availableSecrets:
+  secretManager:
+    - versionName: projects/avtomatikka/secrets/buildmasterset-buildbot-github-key/versions/latest
+      env: 'BMS_BUILDBOT_SSH_KEY'
+    - versionName: projects/avtomatikka/secrets/win64-build-machine-key/versions/latest
+      env: 'AWS_EC2_INSTANCE_SSH_KEY'
+    - versionName: projects/avtomatikka/secrets/artifacts-bucket-pusher/versions/latest
+      env: 'GCLOUD_KEY'
+    - versionName: projects/avtomatikka/secrets/artifactory-password/versions/latest
+      env: 'ARTIFACTORY_PASSWORD'
+    - versionName: projects/avtomatikka/secrets/buildbot-personal-access-token/versions/latest
+      env: 'BUILDBOT_PAT'

@@ -1,0 +1,371 @@
+<section id="{{ p.class_type }}" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+        <p class="api-enity-type">Native {{ p.class_type }}</p>
+        {% include "common/bp_counterpart.html" %}
+    </div>
+    {% if p.namespace != "" %}
+    <p class="api-heading-namespace">
+        {{ p.namespace }}::&#8203;
+    </p>
+    {% endif %}
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}
+        <span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+        {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink" href="#{{ p.class_type }}"
+           title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options">
+        {% include "common/definition_include.html" %}
+    </ul>
+    <div class="api-native-definition">
+        {% include "common/definition_access.html" %}
+        {% include "common/definition_umacro.html" %}
+        {% if p.class_type == "interface" %}
+        <div>
+            <span class="api-keyword">
+                class
+            </span>
+            {% include "common/definition_api.html" %}
+            {{ p.uname }}
+            {% if p.uis_final %}
+            <span class="api-keyword">final</span>
+            {% endif %}
+            {% if length(p.uparents) > 0 %}
+                :
+                {% for parent in p.uparents %}
+                    {% if parent.is_virtual %}<span class="api-keyword">virtual</span>{% endif %}
+                    {% if parent.access != "" %}
+                        <span class="api-keyword">{{ parent.access }}&nbsp;</span><!--
+                    -->{% endif %}<!--
+                    -->{{ links('parent.parent') -}}
+                    {%- if not loop.is_last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br/>
+        {% endif %}
+        {% include "common/definition_template.html" %}
+        <span class="api-keyword">
+            {% if p.class_type == "struct" %}struct{% else %}class{% endif %}
+        </span>
+        {% include "common/definition_api.html" %}<!--
+        --><span class="api-name">{{ p.name }}</span><!--
+        -->{% if p.is_final %}
+        <span class="api-keyword">final</span>
+        {% endif %}
+        {% if length(p.parents) > 0 %}
+            :
+            {% for parent in p.parents %}
+                {% if parent.is_virtual %}<span class="api-keyword">virtual</span>{% endif %}
+                {% if parent.access != "" %}
+                    <span class="api-keyword">{{ parent.access }}&nbsp;</span><!--
+                    -->{% endif %}<!--
+                -->{{ links('parent.parent') -}}
+                {%- if not loop.is_last %}, {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% include "common/definition_access_end.html" %}
+    </div>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% include "common/template_parameters.html" %}
+    {% if length(p.class_previews) > 0 %}
+    <section id="classes">
+        <h2>Internal classes<a class="headerlink" href="#classes" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% set access="" %}
+            {% for preview in p.class_previews %}
+            <li>
+                {% if preview.access != access %}
+                <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+                {% set access=preview.access %}
+                {% endif %}
+                <ul class="api-options">
+                    <li class="api-option"><span class="api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                    -->{% include "common/preview_since.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% include "common/preview_template.html" %}
+                    <a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                        --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.struct_previews) > 0 %}
+    <section id="structs">
+        <h2>Internal structs<a class="headerlink" href="#structs" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% set access="" %}
+            {% for preview in p.struct_previews %}
+            <li>
+                {% if preview.access != access %}
+                <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+                {% set access=preview.access %}
+                {% endif %}
+                <ul class="api-options">
+                    <li class="api-option"><span class="api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                    -->{% include "common/preview_since.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% include "common/preview_template.html" %}
+                    <a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                        --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.enum_previews) > 0 %}
+    <section id="enums">
+        <h2>Internal enums<a class="headerlink" href="#enums" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% set access="" %}
+            {% for preview in p.enum_previews %}
+            <li>
+                {% if preview.access != access %}
+                <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+                {% set access=preview.access %}
+                {% endif %}
+                <ul class="api-options">
+                    <li class="api-option"><span class="api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                    -->{% include "common/preview_since.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    <a class="api-index-link api-index-link-native" href="{{ docurl('preview.docpath') }}"><!--
+                        --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.delegate_previews) > 0 %}
+    <section id="delegates">
+        <h2>Internal delegates<a class="headerlink" href="#delegates" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% set access="" %}
+            {% for preview in p.delegate_previews %}
+            <li>
+                {% if preview.access != access %}
+                <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+                {% set access=preview.access %}
+                {% endif %}
+                <ul class="api-options">
+                    <li class="api-option"><span class="api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                    -->{% include "common/preview_since.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% if preview.is_uentity %}
+                    <p class="api-umacro">
+                        UDELEGATE(<span class="api-preview-nk">{{- preview.ue_info.normal -}}</span>{%- if preview.ue_info.meta != "" -%}
+                        {%- if preview.ue_info.normal != "" -%},{%- endif -%} meta =
+                        (<span class="api-preview-nk">{{- preview.ue_info.meta -}}){%- endif -%}</span>)
+                    </p>
+                    {% endif %}
+                    <a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                        --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.function_previews) > 0 %}
+    <section id="methods">
+        <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% set access="" %}
+            {% for preview in p.function_previews %}
+            <li>
+                {% if preview.access != access %}
+                <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+                {% set access=preview.access %}
+                {% endif %}
+                <ul class="api-options">
+                    <li class="api-option"><span class="api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                    -->{%- include "common/preview_since.html" %}<!--
+                    -->{% if preview.has_super %}<li class="api-option"><!--
+                    -->{% if preview.is_implementation %}Implements{% else %}Overrides{% endif %}
+                        {{ preview.super_class }}::&#8203;{{ links('preview.super') }}<!--
+                    --></li><!--
+                    -->{% endif %}<!--
+                    -->{% include "common/preview_bp_counterpart.html" %}
+                </ul>
+                <div class="api-native-function">
+                    <div class="api-preview-definition">
+                        {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                        {% if preview.is_uentity %}
+                        <p class="api-umacro">
+                            UFUNCTION(&#8203;<span class="api-preview-nk">{{- preview.ue_info.normal -}}</span
+                        >{%- if preview.ue_info.meta != "" -%}
+                            {%- if preview.ue_info.normal != "" -%},{%- endif -%} meta =
+                            (<span class="api-preview-nk">{{- preview.ue_info.meta -}}){%- endif -%}</span>)
+                        </p>
+                        {% endif %}
+                        {% include "common/preview_template.html" %}<!--
+                        --><span class="api-native-pre-func">{% if preview.is_explicit %}&#32;explicit{% endif %}
+                        {% if preview.is_static %}&#32;static{% endif %}
+                        {% if preview.is_inline %}&#32;inline{% endif %}
+                        {% if preview.is_virtual %}&#32;virtual{% endif %}
+                        {% if preview.api != "" %}&#32;{{ preview.api }}{% endif %}
+                        <span class="api-preview-nk api-name">{{ links('preview.return') }}</span></span>
+                        <div class="api-mc">
+                            <div class="api-tab2"></div>
+                            <div>
+                        <a class="api-index-link api-index-link-native"
+                                       href="{{ docurl('preview.docpath') }}"><span class="api-name"><!--
+                            -->{{- preview.name -}}</span></a>(&#8203;{%- if length('preview.params') > 0 -%}
+                        <div class="api-mc">
+                            <div class="api-tab4"></div>
+                            <div>
+                        {%- endif -%}<!--
+                                --><span class="api-params">{%- for param in preview.params -%}<span class="api-preview-nk"><span class="api-name">{{- links('param.type') -}}</span><!--
+                                -->&#32;<span class="api-name">{{- param.name -}}</span><!--
+                                --></span><span class="api-name">{%- if param.default != "" -%}</span><!--
+                                -->&#32; = <span class="api-name">{{- links('param.default') -}}</span><!--
+                                  -->{%- endif -%}
+                                  {%- if not loop.is_last -%},<br>{% endif -%}
+                                {%- endfor -%}</span>{% if length('preview.params') > 0 %}</div></div>{% endif %})
+                                {% if preview.is_final %}&#32;final{% endif %}
+                                {% if preview.is_const %}&#32;const{% endif %}
+                                {% if preview.is_override %}&#32;override{% endif %}
+                                {% if preview.is_pure_virtual %}&#32;= 0{% endif %}
+                                {% if preview.definition == "default" %}&#32;= default{% endif %}
+                                {% if preview.definition == "delete" %}&#32;= delete{% endif %}
+                            </div>
+                        </div>
+                        {% if preview.is_deprecated %}</del>{% endif %}
+                    </div>
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.variable_previews) > 0 %}
+    <section id="fields">
+        <h2>Fields<a class="headerlink" href="#fields"
+                     title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% set access="" %}
+            {% for preview in p.variable_previews %}
+            <li>
+                {% if preview.access != access %}
+                <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+                {% set access=preview.access %}
+                {% endif %}
+                {% if preview.is_deprecated %}
+                <div class="admonition attention api-property-deprecated">
+                    <p class="admonition-title">
+                        <span class="api-native-property-deprecated"><!--
+                        --><span class="api-name">{{ preview.name }}</span></span> is deprecated
+                        {% if preview.deprecation_version != "" %}
+                        since version {{ preview.deprecation_version }}
+                        {% endif %}
+                    </p>
+                    {% if preview.deprecation_message != "" %}
+                    {{ markdown('preview.deprecation_message') }}
+                    {% endif %}
+                </div>
+                {% endif %}
+                <ul class="api-options"><!--
+                    --><li class="api-option"><span class="api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                    -->{% include "common/preview_since.html" %}<!--
+                    -->{% include "common/preview_replication.html" %}<!--
+                --></ul>
+                <div class="api-native-property">
+                    <div class="api-preview-definition">
+                        {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                            {% if preview.is_uentity %}
+                            <p class="api-umacro">
+                                UPROPERTY(<span class="api-preview-nk">{{- links('preview.ue_info.normal') -}}</span
+                            >{%- if preview.ue_info.meta != "" -%}
+                                {%- if preview.ue_info.normal != "" -%},{%- endif -%} meta =
+                                (<span class="api-preview-nk">{{- links('preview.ue_info.meta') -}}){%- endif -%}</span>)
+                            </p>
+                            {% endif %}<!--
+                            --><span><!--
+                            -->{% if preview.is_static %}&#32;static{% endif %}
+                            {% if preview.is_const %}&#32;const{% endif %}
+                            {% if preview.is_volatile %}&#32;volatile{% endif %}
+                            {% if preview.is_mutable %}&#32;mutable{% endif %}</span><!--
+                            --><span class="api-preview-nk api-name">
+                                {% if preview.api != "" %}&#32;{{ preview.api }}{% endif %}
+                                {{ links('preview.var_type') }}
+                                <span class="api-name">{{ preview.name }}</span>
+                            {% if preview.initializer != "" %}<span class="api-native-default">{{  links('preview.initializer') }}</span>{% endif %}<!--
+                            --></span>
+                        {% if preview.is_deprecated %}</del>{% endif %}
+                    </div>
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.short_desc != "" %}
+                    {{ markdown('preview.short_desc') }}
+                    {% endif %}
+                    {% if preview.full_desc != "" %}
+                    {{ markdown('preview.full_desc') }}
+                    {% endif %}
+                    {% if preview.see != "" %}
+                    <p class="api-native-property-see">
+                        <span class="api-property-see-heading">See also:</span>
+                        {{ links('preview.see') }}
+                    </p>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% include "common/see.html" %}
+</section>

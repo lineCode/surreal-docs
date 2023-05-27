@@ -1,0 +1,31 @@
+#
+# Copyright © 2022, Medelfor, Limited. All rights reserved.
+# For any additional information refer to https://medelfor.com
+#
+
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    secretEnv: ['BMS_BUILDBOT_SSH_KEY']
+    entrypoint: 'bash'
+    args: ['scripts/cicd/git/fetch_bms.sh', 'develop']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'deploy/fill_static.py', '../../../deploy_request.json', 'static',
+           '${_STATIC_ARTIFACT}', '${_ENVIRONMENT}']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'deploy/master.py', '../../../deploy_request.json', '${_ENVIRONMENT}']
+
+timeout: 2400s
+substitutions:
+  _ENVIRONMENT: dev
+  # project/branch/version:artifact
+  _STATIC_ARTIFACT: udocs-processor/develop/latest:udocs-processor:linux
+options:
+  dynamic_substitutions: true
+availableSecrets:
+  secretManager:
+    - versionName: projects/avtomatikka/secrets/buildmasterset-buildbot-github-key/versions/latest
+      env: 'BMS_BUILDBOT_SSH_KEY'

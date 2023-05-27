@@ -1,0 +1,21 @@
+<li class="toctree-l{{ level }} {% if has_children %}has-children{% endif %}
+{% if is_current %} current{% endif %}
+{% if is_current_page %} current-page{% endif %}">
+  <a class="reference
+  {% if is_current_page %} current{% endif %}
+  {% if is_pinned %} pinned{% endif %}
+  {% if is_internal('url') %}internal"{% else %}external" target="_blank"{% endif %}
+  {% if is_empty %}href="#" {% else %}href="{{ uniurl('url') }}"{% endif %}>{{ title }}</a>
+  {% if has_children %}
+  <input class="toctree-checkbox" id="toctree-checkbox-{{ id }}"
+         name="toctree-checkbox-{{ id }}" role="switch" type="checkbox"
+         {% if is_current %} checked{% endif %}/>
+  <label for="toctree-checkbox-{{ id }}">
+    <div class="visually-hidden">Toggle child pages in navigation</div>
+    <i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label>
+  <ul>
+    {{ body }}
+  </ul>
+  {% endif %}
+</li>
+

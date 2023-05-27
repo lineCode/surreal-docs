@@ -1,0 +1,54 @@
+<section id="delegate" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+    <p class="api-enity-type"><!--
+    -->{% if p.is_native %}Native-defined {% endif %}blueprint
+        {% if p.is_multicast %}multicast {% endif %}delegate</p>
+    {% include "common/native_counterpart.html" %}
+    </div>
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}
+    <span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+    {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink" href="#delegate"
+        title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options"><!--
+      -->{% include "common/definition_path.html" %}<!--
+    --></ul>
+    {% if p.image != "" %}
+    <div class="api-blueprint-function-image-wrapper">
+        <img alt="{{ p.title }}" srcset="{{ docurl('p.image') }} 2.4x"
+             class="api-blueprint-function-image"/>
+    </div>
+    {% endif %}
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% set ret_desc="" %}
+    {% if length(p.params) > 0 %}
+    <section class="api-template-param-index" id="parameters">
+        <h2>Out parameters<a class="headerlink" href="#parameters"
+                                  title="Permalink to this heading">#</a></h2>
+        <ul class="api-index">
+        {% for preview in p.params %}
+            <li class="api-index-element">
+                <div class="api-blueprint-parameter">
+                <span class="api-blueprint-definition"><!--
+                    --><div class="api-blueprint-parameter-type"><!--
+                    -->{% include "common/blueprint_type.html" %}--></div>
+                    <span class="api-blueprint-parameter-name"><!--
+                    --><span class="api-name">{{ preview.name }}</span></span><!--
+                    --></span>
+                    <div class="api-index-element-description">
+                        {{ markdown('preview.description') }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% include "common/see.html" %}
+</section>

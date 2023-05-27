@@ -1,0 +1,22 @@
+{
+  "snapshots": {
+    "artifacts": []
+  },
+  "static": {
+    "artifacts": [
+      {
+        "name": "static",
+        "artifact_name": "static",
+        "src": "",
+        "dest": "",
+        "platform": "web"
+      }
+    ]
+  },
+  "cloud_run": {
+    "containers": []
+  },
+  "project": {
+    "name": "udocs-processor"
+  }
+}

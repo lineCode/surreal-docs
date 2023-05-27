@@ -1,0 +1,98 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.type-main, .type-second {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.type-main {
+    position: absolute;
+}
+
+.type-second {
+
+}
+
+.type-wrapper {
+
+}
+
+.type-wrapper-event-dispatcher .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/EventDispatcherType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-delegate .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/DelegateType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-plain .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/PlainType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-interface .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/InterfaceType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-actor .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/ActorType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-array .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/ArrayType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-mapkey .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/MapKeyType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-mapvalue .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/MapValueType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-map .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/MapKeyType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-map .type-main {
+    background: url("../../../misc/graphics/udocs_processor/types/MapValueType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-set .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/SetType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-actor .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/ActorType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-component .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/ComponentType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-object .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/ObjectType.svg") no-repeat;
+    background-size: contain;
+}
+
+.type-wrapper-widget .type-second {
+    background: url("../../../misc/graphics/udocs_processor/types/WidgetType.svg") no-repeat;
+    background-size: contain;
+}

@@ -1,0 +1,379 @@
+﻿Surreal Docs EULA
+
+
+Version on 22 May 2023
+
+
+This Surreal Docs End User License Agreement (the “Agreement”) applies to your use of Surreal Docs, Medelfor’s tool for generation of documentation.
+
+
+This Agreement together with all referenced documents is an open license as governed by article 45 of Republic of Belarus’ Law On Copyright and Related Rights dated May 17, 2011 No. 262-З
+
+
+This Agreement is an unilateral treaty and can be ended by Medelfor anytime without your consent. In case you want to accept this Agreement Medelfor is not obliged to provide you with a signed physical copy of this Agreement and you are not obliged to provide Medelfor with one.
+
+
+This Agreement is a legal document detailing your rights and obligations related to using Medelfor’s proprietary computer software program known as Surreal Cloud Pro and any updates or upgrades to the program made available by Medelfor (the “Licensed Technology”). By downloading the Licensed Technology, using the Licensed Technology or accepting this Agreement via ticking the checkbox on a checkout page in the Medelfor’s Store (available by the address store.medelfor.com), you are agreeing to be bound by the terms of this Agreement, and this Agreement will be effective upon the first of those events to occur. If you do not or cannot agree to the terms of this Agreement, do not use the Licensed Technology. When we say, “you,” “your” or “yourself”, we mean you as an individual or the legal entity exercising rights under this Agreement through you. When we say “Medelfor”, “we” or “us,” we are referring to the Medelfor entity responsible for providing the Licensed Technology in your region detailed in Section 9.
+
+
+PLEASE READ THIS AGREEMENT CAREFULLY. IT CONTAINS A CLASS-ACTION WAIVER PROVISION. IF YOU ACCEPT THIS AGREEMENT, YOU AND MEDELFOR AGREE TO RESOLVE DISPUTES ONLY IN YOUR INDIVIDUAL CAPACITIES AND NOT AS PART OF A CLASS ACTION (SEE SECTION 15). YOU HAVE A TIME-LIMITED RIGHT TO OPT OUT OF THIS WAIVER. BY AGREEING TO THE TERMS OF THIS AGREEMENT, YOU ARE ALSO AGREEING TO CONTRACTUAL TERMS THAT WILL LIMIT SOME OF YOUR LEGAL RIGHTS, INCLUDING A DISCLAIMER OF WARRANTY, AN EXCLUSION OF CERTAIN KINDS OF DAMAGES, AND A LIMITATION OF LIABILITY.
+
+
+
+
+Table of Contents
+
+
+The Licensed Technology
+1. What Technology Medelfor Is Licensing to You
+2. How You Can Use the Licensed Technology
+3. How You Can Share Products You’ve Made with the Licensed Technology
+4. How You Can Share the Licensed Technology When It Isn’t Part of a Product
+5. Other Restrictions on Your Use of the Licensed Technology
+6. Who Owns What
+
+
+Our Relationship
+7. The Agreement Between You and Medelfor
+8. Who are You?
+9. Who is Medelfor?
+10. Privacy
+
+
+Other Rights and Obligations
+11. Disclaimers
+12. Limitation of Liability
+13. Indemnification
+14. Governing Law and Jurisdiction
+15. No Class Actions
+16. Miscellaneous
+
+
+Payments and refunds
+17. Price
+18. Trial period and licensing period
+19. RESERVED
+20. Other usage restrictions
+21. Refunds
+
+
+The Licensed Technology
+
+
+1. What Technology Medelfor Is Licensing to You
+The Licensed Technology licensed to you under this Agreement includes all Surreal Docs code and related content that is copied to your computer when you install Surreal Docs. This includes Surreal Docs Core Source Code, Examples and any Documentation related to Surreal Docs.
+
+
+“Surreal Docs Core Source Code” means the Source Code (as defined below) and object code of Surreal Docs Core (a.k.a. “udocs-processor”) and the plugin integrating Surreal Docs and Unreal Engine[1] Source Code (a.k.a “unrealistic-docs-ue”), including any future versions made available to you by us under this Agreement and any object code compiled from that Source Code.
+
+
+“Source Code” means the human readable form of a software program, including all modules it contains, plus any associated interface definition files, scripts used to control compilation, and installation of an executable.
+
+
+“Examples” means the code, artwork, or other content made available by us in the samples folder in the install directory.
+
+
+“Documentation” means the code, artwork, or other content made available by us in the docs folder in the install directory.
+
+
+The Licensed Technology includes any modified version of any of the foregoing that you make under the License.
+
+
+2. How You Can Use the Licensed Technology
+Medelfor grants you a non-exclusive, non-transferable, non-sublicensable license to privately use, reproduce, display, perform, and modify the Licensed Technology in accordance with the terms of this Agreement (the “License”). This means that as long as you are not violating this Agreement or applicable law, you can privately use the Licensed Technology however you want. If you want to share the Licensed Technology or anything you make with it, Sections 3 and 4 below address when and how you can do that.
+
+
+3. How You Can Share Products You’ve Made with the Licensed Technology
+If you develop products, services, or any other projects that (i) are made using any Licensed Technology or (ii) combine any Licensed Technology with any other software or content (collectively “Products”), you may only Distribute those Products as expressly permitted in this Section 3. Any Product that you Distribute that incorporates Licensed Technology must incorporate the Licensed Technology only in object code. You are not allowed to sell, resell, rent, lease or in any other way make profit from products combined with the Licensed Technology. You are required to open the source code of the Product. Any Product that you Distribute that incorporates Licensed Technology must be distributed under the terms of this Agreement. You are required to attribute to Medelfor, by providing the following visible line in the credits of the Product or elsewhere applicable:
+“This product uses Surreal Docs - a development of Medelfor. Surreal Docs © 2022-2023 - Medelfor, Limited. All rights reserved.”
+
+
+This Agreement does not govern in any way the product or source code for which the documentation was generated, with the only exception when the product is bundled with the Licensed Technology. In other words the source code (or Input as described below) is outside of scope of this Agreement.
+
+
+“Distribute” means, with respect to a Product, to provide or otherwise make a copy of the Product available publicly or to any other person or entity or make the Product’s functionality available on a network.
+
+
+Documentation generated by the Licensed Technology (“Generated Documentation”) is not considered a product made with the Licensed Technology and hereby may be freely sold, resold, rented, leased or distributed in any other way, paid or unpaid, by you to any third party. All copyright rights regarding Content of the Generated Documentation belong to you or its respective owners.
+
+
+You are not allowed to build any documentation storages analogous to e.g. Surreal Cloud that are intended specifically to store documentation produced by Surreal Docs in any format developed specifically for Surreal Docs, e.g. in format of internal JSON definitions that Surreal Docs uses. However you may freely store HTML pages and images produced by Surreal Docs anywhere you please.
+
+
+“Content of the Generated Documentation” means any text or images or code in the “Generated Documentation” that was produced by the Licensed Technology from your Input, with exception of HTML/CSS/JS code that was a part of Licensed Technology already, e.g. the documentation themes or templates.
+
+
+“Input” means source code and/or Unreal Engine project that was specified by you for the Licensed Technology to produce the Generated Documentation from.
+
+
+4. How You Can Share the Licensed Technology When It Isn’t Part of a Product
+You may only Distribute Licensed Technology (including as modified by you) outside of a Product as expressly permitted by this Section 4.
+
+
+5. Other Restrictions on Your Use of the Licensed Technology
+a. Non-Compatible Licenses
+You may not, and may not permit others to, combine, Distribute, or otherwise use the Licensed Technology with any code or other content which is covered by a license that would directly or indirectly require that all or part of the Licensed Technology be governed under any terms other than those of this Agreement (those licenses, the “Non-Compatible Licenses”). This means, for example, that you may not combine the Licensed Technology with code or content that is licensed under any of the following licenses: GNU General Public License (GPL), Lesser GPL (LGPL) (unless you are merely dynamically linking a shared library), or Creative Commons Attribution-ShareAlike License.
+
+
+b. General Restrictions
+You must ensure that your activities with the Licensed Technology do not:
+● violate any applicable law or regulation;
+● result in the Licensed Technology being rented or leased;
+● misappropriate any of our other products or services;
+● support a claim by you or any third party that the Licensed Technology infringes a patent;
+● result in a sale or grant of a security interest in any Licensed Technology; or
+● result in a Distribution of a Product or the Licensed Technology in any manner other than as permitted by Sections 3 and 4.
+
+
+c. Distribution of the Licensed Technology modified by you that harm our business
+
+
+Medelfor keeps the right to request a takedown of any modified version of the Licensed Technology that may harm or does harm our business, including but not limited to sales volume or appeal of the Licensed Technology to potential customers.
+
+
+6. Who Owns What
+As between you and us, you own all rights, other than rights in the Licensed Technology, in the Products you develop under this Agreement or in the Generated Documentation, and we own all title, ownership rights, and intellectual property rights in the Licensed Technology.
+
+
+All rights granted to you under this Agreement are granted by the License only and not by sale, and all of those rights are limited by and subject to the terms of this Agreement. No license or other right in any Medelfor technology or intellectual property rights other than the Licensed Technology is granted under this Agreement, and no license or other rights will be created under this Agreement by implication, estoppel, or otherwise. Any attempted sublicense that is not consistent with the terms of this Agreement will be null and void.
+
+
+a. Proprietary Notices and Attribution
+
+
+No other license or right is granted under this Agreement in the trademarks, service marks, trade names, and logos associated with Medelfor, Medelfor’s games and other intellectual property, including Surreal Docs (the “Medelfor Trademarks”). All use of the Medelfor Trademarks will insure to the sole benefit of Medelfor. You agree not to engage in any activity that could tarnish, dilute, or affect the validity or enforceability of the Medelfor Trademarks or cause consumer confusion or diminish any goodwill relating to any Medelfor Trademarks.
+
+
+b. Third Party Software
+The Licensed Technology incorporates and is bundled with code developed by third parties (the “Third Party Software”) that may be subject to additional or alternative license terms. If Third Party Software is incorporated in the Licensed Technology and is subject to additional license terms, those terms or other attribution requirements can be found in the installation directory for each Surreal Docs version under the /thirdparty/licenses/ sub-folder. Third Party Software that is only bundled with the Licensed Technology as independent, standalone software can be found in the installation directory for each Surreal Docs version under the /bin/thirdparty/ sub-folder. This Third Party Software is not itself Licensed Technology and is instead licensed to you directly by its authors under the license terms provided in the /thirdparty/licenses/ sub-folder.
+
+
+By entering into this Agreement and using Third Party Software, you are accepting the terms of those additional or alternative licenses. In the case of additional license terms, the additional license terms will take precedence over any inconsistencies with the terms of this License with regard to the Third Party Software licensed under those additional license terms. You agree that the owners of the Third Party Software are intended third party beneficiaries to this Agreement in relation to your uses of Third Party Software.
+
+
+c. Feedback and Contributions
+You grant Medelfor a right to freely use and disclose any feedback or suggestions that you provide to us regarding the Licensed Technology (the “Feedback”). You acknowledge that we may use any Feedback, including any ideas contained in Feedback, for any purpose, commercial or otherwise, without acknowledgment or compensation to you, including to develop, copy, publish, modify, or improve the Licensed Technology in our sole discretion. You understand that we may treat Feedback as non-confidential.
+
+
+You grant Medelfor a non-exclusive, fully-paid, irrevocable, transferable, sublicensable license to reproduce, distribute, publicly perform, publicly display, make, use, have made, sell, offer to sell, import, modify and make derivative works based on, and otherwise exploit any Contributions for all current and future methods and forms of exploitation in any country. “Contributions” means any information or content, including software or code, that (a) you make available to Medelfor via submissions to forums, wiki, Medelfor’s GitHub, or other source code repository under our control and that are based upon or incorporate the Licensed Technology or (b) that you provide to Medelfor and explicitly designate in writing as a Contribution.
+
+
+You represent and warrant that you have sufficient rights in any Feedback or Contribution that you provide to Medelfor to grant Medelfor and other affected parties the rights described above. This includes but is not limited to intellectual property rights and other proprietary or personal rights. If any rights to be licensed under this Section 6(c) may not be licensed under applicable law (such as moral and other personal rights), you hereby waive and agree not to assert any of those rights.
+
+
+Our Relationship
+
+
+7. The Agreement Between You and Medelfor
+a. Amendments
+If we make changes to this Agreement, you are required to accept the amended Agreement to continue to use the Licensed Technology. We do not guarantee to notify you about changes made to the agreement, however we will send you an email to an email address provided by you (if any) if this Agreement changes. We cannot and we do not guarantee that you will see that email.
+If this Agreement changes all previous published versions of the Licensed Technology immediately become governed by the new, amended agreement.
+
+
+c. Notice
+Where this Agreement calls for notice from us, including written notice, we may provide notice to you through the Medelfor services or by any email address that you’ve provided to us. Our notices, when provided to you through the Medelfor services, will be effective when you access the Medelfor services, and when sent to you by email, will be effective when they are sent.
+
+
+8. Who are You?
+a. You
+If you use the Licensed Technology on behalf of another person or entity, (i) all references to “you” throughout this Agreement will include, and this Agreement will be binding on, that person or entity, (ii) you represent that you are authorized to accept this Agreement on that person’s or entity’s behalf, and (iii) in the event you violate this Agreement, that person or entity agrees to be responsible to us.
+
+
+b. Eligibility for This Agreement
+If you are under the age of legal majority where you live or otherwise require the consent of a parent or legal guardian to enter into this Agreement under applicable law, you may use the Licensed Technology only under the supervision of a parent or legal guardian who also agrees to be bound by this Agreement.
+
+
+You are not eligible to enter into this Agreement and may not download or use the Licensed Technology if you are, or are acting on behalf of any person or entity that is prohibited to use the Licensed Technology under the Governing Law, whether via the Governing Law import/export restrictions or otherwise.
+
+
+c. Medelfor Account
+In order to access and download the Licensed Technology, you must first set up an account with us which will be governed by Medelfor’s Terms and Conditions (medelfor.com/terms-and-conditions).
+
+
+The License (as defined in Section 2) permits use of the Licensed Technology only by individuals who have accessed it by using a valid user account (“Users”). If you are an individual, you are the User. If you are a legal entity, the individual employees or agents exercising your rights under this Agreement are Users. When exercising a legal entity’s rights under this Agreement, Users are not required to accept this Agreement as individuals. The User may store the Licensed Technology on any of the User’s computers, but the Licensed Technology cannot be shared with others except as part of a permitted Distribution of Licensed Technology as described in Sections 3 and 4.
+
+
+d. Use by Educational Institutions and Students
+No exceptions to this Agreement are provided if you are an educational institution, including but not limited to a school, a library, a college or a university. No exceptions to this Agreement are provided if you are a student of an educational institution, including but not limited to a school, a library, a college or a university. 
+
+
+9. Who is Medelfor?
+The Medelfor entering into this Agreement with you is Medelfor, Limited (ООО “Медэльфор”), registered by the following address: 220040, Republic of Belarus, Minsk, 3rd lane of Mozhaisky, 11, room 109. Our UNP is 193659445.
+
+
+10. Privacy
+Your privacy is important to us. Please review our Privacy Policy (medelfor.com/privacy-policy). It describes how we collect, use, and share information when you use the Medelfor services that link to this Privacy Policy.
+
+
+We do not send the Input (including but not limited to the Source Code of your project) you provide to the Licensed Technology to anyone including ourselves. We do not send the Generated Documentation to anyone including ourselves (except if you use Surreal Cloud and requested the deployment of Generated Documentation).
+
+
+We do collect and do not share with any 3rd parties the anonymized telemetry data, including but not limited to the ID of the machine the Licensed Technology is running on, version of the Licensed Technology used, errors happened during the usage, etc.
+
+
+You can opt-out of providing this data to us by providing --no-tele flag when running the Licensed Technology. More info on usage of that flag can be found in the official documentation available by the address docs.medelfor.com
+
+
+Other Rights and Obligations
+
+
+11. Disclaimers
+Nothing in this Agreement will prejudice any statutory rights that you have that may not be waived. Some countries, states, provinces or other jurisdictions do not allow the exclusion of certain warranties or the limitation of liability as stated in this and the next sections, so the below terms may not fully apply to you. In those jurisdictions, the exclusions and limitations below apply only to the extent permitted by the applicable laws of such jurisdictions.
+
+
+THE LICENSED TECHNOLOGY, INCLUDING ALL INFORMATION, CONTENT, MATERIALS, CODE, AND SOFTWARE, ARE PROVIDED BY MEDELFOR ON AN “AS IS” AND “AS AVAILABLE” BASIS. MEDELFOR AND ITS AFFILIATES, LICENSORS AND SERVICE PROVIDERS (THE “MEDELFOR PARTIES”) MAKE NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, REGARDING THE LICENSED TECHNOLOGY. YOUR USE OF THE LICENSED TECHNOLOGY IS AT YOUR SOLE RISK. TO THE FULL EXTENT PERMISSIBLE BY APPLICABLE LAW, THE MEDELFOR PARTIES DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING IMPLIED OR STATUTORY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NONINFRINGEMENT. THE MEDELFOR PARTIES DO NOT WARRANT THAT THE LICENSED TECHNOLOGY IS FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. THE PARTIES ACKNOWLEDGE AND AGREE THAT THE FOREGOING WARRANTY DISCLAIMERS WERE AN ESSENTIAL ELEMENT IN SETTING CONSIDERATION UNDER THIS AGREEMENT.
+
+
+12. Limitation of Liability
+TO THE FULL EXTENT PERMITTED BY APPLICABLE LAW, THE MEDELFOR PARTIES, WILL NOT BE LIABLE FOR ANY LOSS OF PROFITS OR ANY INDIRECT, INCIDENTAL, PUNITIVE, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT. FURTHER, TO THE FULL EXTENT PERMITTED BY APPLICABLE LAW, THE MEDELFOR PARTIES’ AGGREGATE LIABILITY ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT WILL NOT EXCEED THE GREATER OF $1 AND THE TOTAL AMOUNTS YOU HAVE PAID (IF ANY) TO MEDELFOR UNDER THIS AGREEMENT DURING THE TWO (2) MONTHS IMMEDIATELY PRECEDING THE EVENTS GIVING RISE TO SUCH LIABILITY. SEEKING DAMAGES AS LIMITED BY THIS SECTION 12 SHALL BE YOUR SOLE AND EXCLUSIVE REMEDY FOR ANY ACT OR OMISSION OF THE MEDELFOR PARTIES. THE PARTIES ACKNOWLEDGE AND AGREE THAT THESE LIMITATIONS OF LIABILITY AND EXCLUSIONS OF POTENTIAL DAMAGES WERE AN ESSENTIAL ELEMENT IN SETTING CONSIDERATION UNDER THIS AGREEMENT.
+
+
+13. Indemnification
+This section only applies to the extent allowed by the applicable laws of your jurisdiction. If the applicable laws of your jurisdiction do not allow you to enter into the indemnification obligation below, then you assume, to the extent permitted by the applicable laws of your jurisdiction, all liabilities, damages, judgements, awards, losses, costs, expenses, and fees (including reasonable attorney and expert witness fees) that are the stated subject matter of the indemnification obligation below.
+
+
+You agree to indemnify and hold harmless the Medelfor Parties from and against all liabilities, damages, judgments, awards, losses, costs, expenses, and fees (including reasonable attorney and expert witness fees) arising out of or in connection with any third-party claims, demands, or actions (i) that, if true, would involve a breach by you of this Agreement (including, without limitation, any distribution or sublicensing of the Licensed Technology in violation of this Agreement), or (ii) related to your Products or Generated Documentation or your exercise of the License (except to the extent the third party is alleging your authorized use of unmodified Licensed Technology originally provided to you by Medelfor under this Agreement infringes any patent, trademark, or copyright).
+
+
+14. Governing Law and Jurisdiction
+Any dispute or claim by you arising out of or related to this Agreement will be governed by law of the Republic of Belarus, exclusive of its choice of law rules. You and Medelfor agree to submit to the exclusive jurisdiction of any court located in Minsk, Belarus. You and Medelfor agree to waive any jurisdictional, venue, or inconvenient forum objections to such courts (without affecting either party’s rights to remove a case to federal court if permissible), as well as any right to a jury trial. Any law or regulation which provides that the language of a contract will be construed against the drafter will not apply to this Agreement. This paragraph will be interpreted as broadly as applicable law permits.
+
+
+15. No Class Actions
+To the maximum extent permitted by applicable law, you and Medelfor agree to only bring disputes arising out of or related to this Agreement in an individual capacity and will not:
+● seek to bring, join, or participate in any class or representative action, collective or class-wide arbitration, or any other action where another individual or entity acts in a representative capacity (e.g., private attorney general actions); or
+● consolidate or combine individual proceedings or permit another to do so without the express consent of all parties to this Agreement.
+
+
+You have the right to opt-out of this class action waiver within 30 days of the date on which you first accepted this Agreement unless a longer period is required by applicable law. To exercise this right, you must send written notice of your decision to the following address: Medelfor, Limited, Legal Department ATTN: CLASS ACTION OPT-OUT, 220040, Republic of Belarus, Minsk, 3rd lane of Mozhaisky, 11, room 109. Your notice must include your name, mailing address, and account name, and state or country that you wish opt-out of this class action waiver. To be effective, this notice must be received by Medelfor and postmarked or deposited within 30 days of the date on which you first accepted this Agreement. You are responsible for ensuring that Medelfor receives your opt-out notice, so you may wish to send it by a means that provides for a delivery receipt.
+
+
+16. Miscellaneous
+a. Support
+Medelfor does not have any support obligations with respect to the Licensed Technology under this Agreement. Without limiting the foregoing, Medelfor does not have any obligation to make new versions of the Licensed Technology available, or to continue to make available for access or download any versions of the Licensed Technology.
+
+
+You understand and agree that the Licensed Technology may not be used, accessed, downloaded, or otherwise exported, reexported, or transferred in violation of applicable export control, economic sanctions, and import laws and regulations.
+
+
+c. No Assignment
+You may not assign your rights or obligations under this Agreement, including any rights to use the Licensed Technology. Any attempted assignment in violation of the foregoing will be void. We may assign this Agreement, in whole or in part, with or without notice to you.
+
+
+d. Relationship of the Parties
+The relationship between you and Medelfor will be that of independent signatories, and nothing in this Agreement will be construed to constitute either party an agent of the other party. Without limiting the foregoing, neither party will have authority to act for or to bind the other party in any way, including to make representations or warranties or to execute agreements on behalf of the other party. This Agreement will not be construed to create an association, joint venture, or partnership between the parties or to impose any partnership obligation or liability upon any party.
+
+
+e. Language
+To the fullest extent permitted by applicable law, the controlling language for this Agreement is English. It is the express wish of the parties that this Agreement and all related documents have been drawn up in English. Any translation has been provided for your convenience.
+
+
+f. No Waiver; Severability
+Any act by Medelfor to exercise, or failure or delay in exercise of, any of its rights under this Agreement, at law or in equity will not be deemed a waiver of those or any other rights or remedies available in contract, at law or in equity. Unless otherwise stated in this Agreement, if any term of this Agreement is held by a court or tribunal of competent jurisdiction to be unenforceable, the term will be enforced to the maximum extent permissible and the remaining terms of this Agreement will remain in full force and effect. You agree that this Agreement does not confer any rights or remedies on any person other than the parties to this Agreement, except as expressly stated. Medelfor’s obligations are subject to existing laws and legal process, and Medelfor may comply with law enforcement or regulatory requests or requirements despite any contrary term in this Agreement.
+
+
+h. Entire Agreement
+This Agreement and any document or information referred to in this Agreement constitute the entire agreement between you and Medelfor relating to the subject matter covered by this Agreement. All other communications, proposals, and representations with respect to the subject matter covered by this Agreement are excluded.
+
+
+Payments and refunds
+
+
+17. Price
+The price we charge to license the Licensed Technology to you (the Price), is as stated on our Store’s original website available by the address store.medelfor.com (the Store) on the moment of you accepting the terms of this Agreement.
+
+
+Note that the Price shown in the Store can be different depending on the location of the website viewer. Given this it is prohibited to use Virtual Private Networks or any other kind of impersonalization software or hardware to make the Store display the prices for a region different from the one you or the legal entity you represent are located in.
+
+
+The Price from the website must be selected with regard whether you are a legal entity or an individual and whether you need to lift the restrictions described in the sections 20.a or 20.b
+
+
+The Price is active until the end of current licensing period (as defined below). With the next licensing period the Price may change.
+
+
+18. Trial period and licensing period
+If you have never acquired access to the Licensed Technology under terms of this Agreement then you are eligible for the Trial Period of <> days. The Trial Period starts immediately after you activate it in the Store. You are required to connect a payment method (the Payment Method) in order for the Trial Period to start. During the Trial Period no money will be debited using the connected payment method. You can cancel the Trial Period anytime. In such case you still will be granted access to the Licensed Technology under terms of this Agreement until the end of the trial period.
+
+
+In case the trial period was not canceled, after the end of it the Price will be debited from the Payment Method. In case of the successful charge your access to the Licensed Technology under terms of this Agreement will be prolonged by one Licensing Period (as defined below).
+
+
+“Licensing Period” means the atomic period you can be granted access to the Licensed Technology under terms of this Agreement. Available Licensing Periods under terms of this Agreement are one month (the Monthly Licensing Period) and one year (the Annual Licensing Period).
+
+
+Licensing Period starts at the next day after the last day of trial period or at the next day after the last day of the previous Licensing Period or at the day you acquire access to the Licensed Technology under terms of this Agreement via the Store. In any of these cases the Licensing Period will start only if the according payment was received by us (except for the case when the Price is free).
+
+
+The duration of Licensing Period is calculated as follows
+* The duration of Monthly Licensing Period is equal to the duration of the month the Licensing Period started in;
+* The duration of Annual Licensing Period is equal to 365 (three hundred sixty five) days. Additional day is added to the Annual Licensing Period in the following cases:
+   * The month Licensing Period started in is not February or January and the next year after the year it started in is the leap year;
+   * The month Licensing Period started in February or January and the year it started in is the leap year.
+
+
+If during the checkout process you selected the “Automatically renew my subscription” checkbox, then on the first day after the first or another Licensing Period ends, the Price will be debited using the Payment Method and, if successful, the second Licensing Period will start automatically.
+
+
+Please note that if "Automatically renew my subscription" is not selected, then the first payment after the Trial Period ends will happen anyway (in case the Trial Period wasn't canceled).
+
+
+Note that durations of the Trial Period and the Licensing Period do not regard the exact time of the day one of the periods was started. For instance if the Trial Period was activated at 11:59 AM, then in one minute the first day of the Trial Period will be counted as passed.
+
+
+The Licensing Period can be canceled anytime with no fees. In such case your access to the Licensed Technology will still be valid through the initially planned end date for this Licensing Period.
+
+
+In case the Licensing Period has ended but no required payment was received to start the new period, your access will be suspended but you will be given several extra days to make the payment and reactivate the access. In case such payment will not be received we will have to terminate the access.
+
+
+19. RESERVED
+
+
+20. Other usage restrictions
+a. The crypto-projects restrictions
+
+
+These restrictions (section 20.a) do not apply while you have one of the following products acquired in the Store with the valid through date for this product(s) being in the future:
+* “Surreal Docs Crypto” (SKUs: SURDOCS.C-30, SURDOCS.C-365) if you do not represent a legal entity;
+* “Surreal Docs Crypto” (SKUs: ENT.SURDOCS.C-30, ENT.SURDOCS.C-365) or “Surreal Docs Crypto XL” (SKUs: ENT.SURDOCS.C.XL-30, ENT.SURDOCS.C.XL-365) if you do represent a legal entity.
+
+
+You can not use the Licensed Technology with any project that makes use (as defined below) of cryptocurrencies, non-fungible tokens (NFTs) or blockchain in any form (the “Blockchain-technologies”).
+
+
+“Makes use” means the actions including, but not limited to provision of any Blockchain-technologies-related services, integration of payments in cryptocurrencies, NFTs or any other blockchain-powered payment means, processing of blockchain, or making profit from Blockchain-technologies in any other way direct or indirect.
+
+
+b. The restrictions of usage by companies with the last year revenue bigger than US $100,000
+
+
+These restrictions (section 20.b) do not apply while you have one of the following products acquired in the Store with the valid through date for this product(s) being in the future: “Surreal Docs XL” (SKUs: ENT.SURDOCS.XL-30, ENT.SURDOCS.XL-365) or “Surreal Docs Crypto XL” (SKUs: ENT.SURDOCS.C.XL-30, ENT.SURDOCS.C.XL-365).
+
+
+You can not use the Licensed Technology if the Last Year (as defined below) revenue of the legal entity exercising rights under this Agreement through you, is more than US $100,000 (one hundred thousand United States Dollars) including any payment in any currency made to the legal entity. In case of payments being made in different currencies the revenue amount is the sum of all payments converted to the US dollars using the exchange rate on the day of the payment, set by the bank the receiving account of the legal entity is opened in.
+
+
+“The Last Year” means the period of 365 (three hundred sixty five) days counting from  the day three hundred sixty five days before you accept the terms of this Agreement to the day you accept the terms of this Agreement. 
+
+
+In case, when during the licensing period granted by this Agreement, the Last Year (as defined above) revenue exceeded US $100,000 (as defined above), then this Agreement will be considered terminated immediately after the current Licensing Period ends.
+
+
+21. Refunds
+In case a payment was made under this Agreement’s terms, you can request a refund from Medelfor.
+
+
+If more than 14 days has passed from the moment you made payment under terms of this Agreement, then no refund will be issued. In case less than 14 days has passed from the aforementioned moment, we will review your refund request but we keep the right to deny the request with no explanation of the reasons. However we will do our best to please any of our customers.
+
+
+In case the refund was issued, the funds will be returned to the credit or debit card the payment was made from. In case a direct account money transfer was used to pay, the funds will be returned to the account from which the payment was made.
+
+
+In case the refund was issued we do not guarantee the whole amount will be returned. Moreover, any additional expenses related to processing of refund can and will be subtracted from the refunded amount to your expense (including but not limited to losses instigated by differences in the currencies exchange rates on the day of payment and the day of refund).
+
+
+We can not control or even state the period of time necessary for the funds to be returned to the sender.
+
+
+[1] Unreal, Unreal Engine are trademarks or registered trademarks of Epic Games, Inc.

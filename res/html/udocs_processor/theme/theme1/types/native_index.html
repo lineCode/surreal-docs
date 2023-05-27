@@ -1,0 +1,17 @@
+<section id="cpp-api-reference">
+    <h1><span class="api-name heading-title">{{ p.title }}</span><!--
+        --><a class="headerlink" href="#cpp-api-reference" title="Permalink to this heading">#</a>
+    </h1>
+    {% for module in p.modules %}
+        <section id="api-module-{{ module.name }}" class="api-module-preview">
+            <h2>
+                {% if module.is_deprecated %}<del class="api-entity-deprecated">{% endif %}
+                <a class="headinglink" href="{{ docurl('module.docpath') }}"><span class="api-name">{{ module.name }}</span></a>
+                {% if module.since != "" %}<span class="api-index-since">since {{ module.since }}</span>{% endif %}
+                <a class="headerlink" href="#api-module-{{ module.name }}" title="Permalink to this module">#</a>
+                {% if module.is_deprecated %}</del>{% endif %}
+            </h2>
+            {{ markdown('module.description') }}
+        </section>
+    {% endfor %}
+</section>

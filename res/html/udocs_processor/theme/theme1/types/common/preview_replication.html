@@ -1,0 +1,34 @@
+{% if preview.replication_mode != "none" %}<li class="api-option"><!--
+-->{% if preview.replication_condition == "never" %}Never r{% else %}R{% endif %}<!--
+-->eplicated
+    {% if preview.replication_mode == "rep_notify" %} with rep. notify{% endif %}<!--
+-->{% if preview.replication_condition != "none" %}<!--
+-->{% if preview.replication_condition == "initial_only" %}
+    to initial only<!--
+-->{% else if preview.replication_condition == "owner_only" %}
+    to owner only<!--
+-->{% else if preview.replication_condition == "skip_owner" %}
+    skipping owner<!--
+-->{% else if preview.replication_condition == "simulated_only" %}
+    to simulated only<!--
+-->{% else if preview.replication_condition == "autonomous_only" %}
+    to autonomous only<!--
+-->{% else if preview.replication_condition == "simulated_or_physics" %}
+    to simulated or physics<!--
+-->{% else if preview.replication_condition == "initial_or_owner" %}
+    to initial or owner<!--
+-->{% else if preview.replication_condition == "custom" %}
+    customly<!--
+-->{% else if preview.replication_condition == "replay_or_owner" %}
+    to owner or for replay<!--
+-->{% else if preview.replication_condition == "replay_only" %}
+    for replay only<!--
+-->{% else if preview.replication_condition == "simulated_only_no_replay" %}
+    to simnulated only with no replay<!--
+-->{% else if preview.replication_condition == "simulated_or_physics_no_replay" %}
+    to simnulated or physics with no replay<!--
+-->{% else if preview.replication_condition == "skip_replay" %}
+    skipping replay<!--
+-->{% endif %}<!--
+-->{% endif %}</li><!--
+-->{% endif %}

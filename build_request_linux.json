@@ -1,0 +1,89 @@
+{
+  "project" : {
+    "repo" : "medelfor/surreal-docs",
+    "branch" : "",
+    "build_entrypoint" : "scripts/cicd/builder/build.sh",
+    "artifacts" : [
+      {
+        "stage_name": "udocs-processor_release",
+        "path": "build_release",
+        "name" : "udocs-processor",
+        "upload_to_gs" : false,
+        "upload_to_artifactory" : true,
+        "gs_save_separate_version" : false,
+        "template" : ""
+      },
+      {
+        "stage_name": "udocs-processor_debug",
+        "path": "build_debug",
+        "name" : "udocs-processor",
+        "upload_to_gs" : false,
+        "upload_to_artifactory" : true,
+        "gs_save_separate_version" : false,
+        "template" : ""
+      },
+      {
+        "stage_name": "udocs-processor-static",
+        "path": "build_release/dist_static",
+        "name" : "udocs-processor",
+        "upload_to_gs" : true,
+        "upload_to_artifactory" : false,
+        "gs_save_separate_version" : false,
+        "template" : ""
+      }
+    ],
+    "additional_ssh_keys" : [],
+    "templates" : [],
+    "name" : "udocs-processor",
+    "test_executable" : "scripts/tests/run_tests.sh",
+    "version_file" : "module_processor/include/udocs-processor/version.h",
+    "version_module" : "MODULE_PROCESSOR_INCLUDE_UDOCS_PROCESSOR",
+    "version_template" : "version_template.h",
+    "conan_profile_release" : "conanprofiles/udocs-processor-release-linux",
+    "conan_profile_debug" : "conanprofiles/udocs-processor-debug-linux",
+    "to_lint" : [
+      "module_processor",
+      "module_base",
+      "module_serializer",
+      "module_util",
+      "module_cli",
+      "module_telemetry",
+      "exec",
+      "module_report",
+      "tests"
+    ],
+    "to_not_lint": [
+      "module_telemetry/generated",
+      "module_cli/generated",
+      "module_cli/include/udocs-processor/cli/thirdparty",
+    ],
+    "lint_profile" : "default"
+  },
+  "integration" : {
+    "gcloud_key" : "",
+    "gcloud_account_email" : "",
+    "gcp_project_id" : "",
+    "artifactory_username" : "",
+    "artifactory_password" : "",
+    "artifactory_url" : "",
+    "buildbot" : {
+      "ssh_key" : "",
+      "pat": "",
+      "username" : "",
+      "email" : ""
+    },
+    "artifacts_bucket" : ""
+  },
+  "build_machine" : {
+    "workspace_dir" : ""
+  },
+  "build" : {
+    "build_id" : "",
+    "commit_sha" : ""
+  },
+  "options" : {
+    "do_rebuild" : false,
+    "version" : "",
+    "environment" : ""
+  }
+}

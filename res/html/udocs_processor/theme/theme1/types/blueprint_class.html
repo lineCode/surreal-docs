@@ -1,0 +1,100 @@
+<section id="{% if p.is_interface %}interface{% else %}{{ p.class_type }}{% endif %}" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+    <p class="api-enity-type"><!--
+    -->{% if p.is_native %}Native-defined {% endif %}blueprint <!--
+    -->{% if p.is_interface %}interface{% else %}{{ p.class_type }}{% endif %}</p>
+    {% include "common/native_counterpart.html" %}
+    </div>
+    {% if p.namespace != "" %}
+    <p class="api-heading-namespace">
+        {{ p.namespace }}
+    </p>
+    {% endif %}
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}
+    <span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+    {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink"
+        href="#{% if p.is_interface %}interface{% else %}{{ p.class_type }}{% endif %}"
+        title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options"><!--
+     -->{% include "common/definition_path.html" %}
+     {% if length('p.parents') > 0 %}<!--
+        --><span class="api-definition-option">Inherits
+        {% for parent in p.parents %}{{ links('parent.parent') }}{% endfor %}</span><!--
+     -->{% endif %}
+    {% if length('p.interfaces') > 0 %}
+        {% if length('p.interfaces') > 1 %}{% set one = false %}{% else %}{% set one = true %}{% endif %}<!--
+    --><span class="api-definition-option">Implements{% if not one %}:{% endif %}
+
+        {% for interface in p.interfaces %}{% if not loop.is_first %},&#32;{% endif %}<!--
+        -->{{ links('interface.parent') }}<!--
+        -->{% endfor %}</span><!--
+ -->{% endif %}
+     {% if p.is_blueprint_type %}<li class="api-definition-option">Blueprint type</li>{% endif %}
+     {% if p.is_blueprintable %}<li class="api-definition-option">Blueprintable</li>{% endif %}
+     {% if p.is_abstract %}<li class="api-definition-option">Abstract</li>{% endif %}<!--
+    --></ul>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% if length(p.function_previews) > 0 %}
+    <section id="functions">
+        <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-blueprint">
+            {% set access="" %}
+            {% for preview in p.function_previews %}
+            <li class="api-blueprint-function-preview">
+                {% if preview.access != access %}
+                <div class="api-access">{{ preview.access }}<div class="api-line"></div></div>
+                {% set access=preview.access %}
+                {% endif %}
+                <ul class="api-options">
+                    <li class="api-option">{% if preview.is_deprecated %}<del class="api-blueprint-deprecated">{% endif %}<!--
+                    --><a class="api-index-link api-index-link-blueprint"
+                          href="{{ docurl('preview.docpath') }}"><!--
+                      --><span class="api-name">{{ preview.display_name }}<!--
+                    --><span class="api-end-select">&</span></span></a><!--
+                      -->{% if preview.is_deprecated %}</del>{% endif %}</li><!--                    -->{%- include "common/preview_since.html" %}<!--
+                    -->{% if preview.rpc != "not_replicated" %}<li class="api-definition-option"><!--
+                    -->{% if preview.is_reliable %}Reliable{% else %}Unreliable{% endif %}<!--
+                    -->{% if preview.rpc == "net_multicast" %}
+                    multicast RPC<!--
+                    -->{% else if preview.rpc == "server" %}
+                    server RPC{% else %}
+                    client RPC{% endif %}<!--
+                    --></li>{% endif %}
+                    {% if preview.is_call_in_editor %}<li class="api-option">Call in editor</li>{% endif%}
+                    {% if preview.is_static %}<li class="api-option">Static</li>{% endif %}<!--
+                    -->{% if preview.has_super %}<li class="api-option"><!--
+                    -->{% if preview.is_int_implementation %}Implements{% else %}Overrides{% endif %}
+                        {{ links('preview.super') }} from {{ links('preview.super_class') }}<!--
+                    --></li><!--
+                    -->{% endif %}<!--
+                    -->{% include "common/preview_native_counterpart.html" %}
+                </ul>
+                <div class="api-blueprint-function"><!--
+                    --><a class="api-index-link api-index-link-blueprint
+                        {% if preview.is_deprecated %}api-blueprint-deprecation-image-filter{% endif %}"
+                          href="{{ docurl('preview.docpath') }}"><!--
+                    --><div class="api-blueprint-function-signature"><!--
+                    --><img alt="{{ preview.display_name }}" srcset="{{ docurl('preview.image') }} 2.7x"
+                             class="api-blueprint-function-signature-image"/><!--
+                    --></div></a>
+                </div>
+                <div class="api-sub-index-description">
+                {% if preview.description != "" -%}
+                    {{- markdown('preview.description') -}}
+                {%- endif -%}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% include "common/bp_properties.html" %}
+    {% include "common/see.html" %}
+</section>

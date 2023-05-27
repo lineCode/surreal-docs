@@ -1,0 +1,87 @@
+.available-version
+  text-decoration: none
+  color: #2d2f31
+
+.version-expander
+  display: flex
+  justify-content: center
+  margin-left: 0.15em
+  .icon
+    transform: rotate(90deg)
+
+.version-picker
+  display: flex
+  height: 2em
+  align-self: center
+  align-items: center
+  border-left: 1px solid var(--color-version-separator)
+  margin-left: 0.9em
+  padding-left: 0.7em
+
+.version-picker-text
+  border-bottom: 1px solid #ffffff00
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 0.7rem
+  line-height: 0.7rem
+  position: relative
+  top: 0.1em
+
+.version-tag
+  position: relative
+  top: 0.1em
+  display: flex
+  background: var(--color-version-tag)
+  padding: 0.2em 0.4em
+  height: 1em
+  align-self: center
+  align-items: center
+  justify-content: center
+  border-radius: 0.2em
+  margin-left: 0.5em
+  text-transform: lowercase
+  font-size: 0.7rem
+
+.version-picker.hoverable:hover
+  cursor: pointer
+
+.version-picker:hover .version-picker-text.hoverable
+  border-bottom: 1px solid var(--color-big-header-text)
+
+.available-versions
+  padding: 0
+  display: none
+  z-index: 111111
+  flex-direction: column
+  border: 1px solid var(--color-version-separator)
+  border-bottom: 0
+
+.available-versions[data-show]
+  display: flex
+
+.available-version
+  flex-grow: 1
+  font-size: 0.8rem
+  list-style: none
+  border-bottom: 1px solid var(--color-version-separator)
+  color: var(--color-big-header-text)
+  font-weight: 100
+  background: var(--color-big-header-background)
+  display: flex
+  align-items: center
+  justify-content: center
+
+.available-version:hover
+  cursor: pointer
+  text-decoration: underline
+
+.available-version a
+  text-decoration: none
+  color: inherit
+  flex: 1
+  padding: 0.5em 2.1em
+  text-align: center
+
+.current-available-version
+  font-weight: 500

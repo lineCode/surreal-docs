@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="{{ resource("styles/udocs_processor/Function.css") }}">
+    <link rel="stylesheet" href="{{ resource("styles/udocs_processor/TypeColors.css") }}">
+    <link rel="stylesheet" href="{{ resource("styles/udocs_processor/DataInputs.css") }}">
+</head>
+<body {% if is_bp_delegate %} class="no-background" {% endif %}>
+<div class="function {% if is_compact %} function-compact{% endif %}
+    {% if is_delegate %} function-delegate{% endif %}
+    {% if is_event %} function-event{% endif %}
+    {% if is_ctor %} function-ctor{% endif %}
+    {% if is_function %} function-function{% endif %}
+    {% if is_pure %} function-pure{% endif %}">
+    <div class="header">
+        <div class="data">
+            <div class="column">
+                <div class="icon-column"></div>
+            </div>
+            <div class="text-column column">
+                <div class="title">
+                    {% if not is_delegate %}{{ name }}{% else %}Event Signature{% endif %}</div>
+                <div class="rows">
+                    {% if not is_function_library and not is_delegate %}
+                        <div class="row">Target is {{ class }}</div>
+                    {% endif %}
+                    {% if rpc != "none" %}
+                    <div class="row">
+                        {% if is_reliable %}
+                        RELIABLE
+                        {% endif %}
+                        Replicated To
+                        {% if rpc == "client" %}Owning Client (if server){% endif %}
+                        {% if rpc == "server" %}Server (if owning client){% endif %}
+                        {% if rpc == "multicast" %}All (if server){% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="delegate-column column">
+                <img src="{{ resource("misc/graphics/udocs_processor/functions/Delegate.svg") }}">
+            </div>
+        </div>
+        <div class="white-grad overlay"></div>
+        <div class="black-grad overlay"></div>
+        <div class="background-grad overlay"></div>
+        <img src="{{ resource("misc/graphics/udocs_processor/functions/CosmeticIcon.svg") }}" class="function-class
+            {% if is_cosmetic %} cosmetic-active{% endif %}">
+        <img src="{{ resource("misc/graphics/udocs_processor/functions/AuthorityOnlyIcon.svg") }}" class="function-class
+            {% if is_authority_only %} authority-only-active{% endif %}">
+    </div>
+    <div class="compact-node-title">
+        <span class="compact-node-title-text">{{ compact_title }}</span>
+    </div>
+    <div class="compact-node-title-text compact-node-title-text-stretcher">
+        {{ compact_title }}
+    </div>
+    <div class="pins">
+        <div class="exec exec-pair">
+            <div class="exec-pin exec-left">
+                <img src="{{ resource("misc/graphics/udocs_processor/functions/ExecPin.svg") }}">
+            </div>
+            <div class="exec-pin exec-right">
+                <img src="{{ resource("misc/graphics/udocs_processor/functions/ExecPin.svg") }}">
+            </div>
+        </div>
+        <div class="data-pins">
+            <div class="input-pins">
+                {% if not is_delegate %}
+                    {% for param in params %}
+                    <div class="input pin-wrapper param-{{ param.type.structure }}
+                            {% if param.type.is_ref %} param-ref{% endif %}">
+                        <div class="pin">
+                            <div class="type-main-additional type-{{ param.type.main }}"></div>
+                            <div class="type-main type-{{ param.type.secondary }}"></div>
+                            <div class="type-second type-{{ param.type.main }}"></div>
+                        </div>
+                        <div style="">
+                            <div class="pin-line">
+                                <span class="pin-text">{{ param.name }}</span>
+                                <span class="checkbox">
+                                    <img src="{{ resource("misc/graphics/udocs_processor/functions/Checkbox.svg") }}">
+                                    <img src="{{ resource("misc/graphics/udocs_processor/functions/CheckedCheckbox.svg") }}"
+                                         class="checked-checkbox{% if param.value.is_checked %}
+                                        checked-checkbox-active{% endif %}">
+                                </span>
+                                <div class="textfield">{{ param.value.text }}</div>
+                            </div>
+                            <div class="classfield">{{ param.value.text }}</div>
+                            <div class="enumfield">{{ param.value.text }}</div>
+                            <div class="xyz">
+                                <span class="xyz-letter">X</span>
+                                <span class="textfield">{{ param.value.vector.x }}</span>
+                                <span class="xyz-letter">Y</span>
+                                <span class="textfield">{{ param.value.vector.y }}</span>
+                                <span class="xyz-letter">Z</span>
+                                <span class="textfield">{{ param.value.vector.z }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="output-pins">
+            {% if is_delegate %}
+                {% for out_param in params %}
+                <!--content of for of this branch must be equal to that of else branch-->
+                <div class="output pin-wrapper">
+                    <div style="">
+                        <div class="pin-line">
+                            <span class="pin-text">{{ out_param.name }}</span>
+                        </div>
+                    </div>
+                    <div class="pin param-{{ out_param.type.structure }}">
+                        <div class="type-main-additional"></div>
+                        <div class="type-main type-{{ out_param.type.secondary }}"></div>
+                        <div class="type-second type-{{ out_param.type.main }}"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                {% for out_param in out_params %}
+                    <div class="output pin-wrapper">
+                        <div style="">
+                            <div class="pin-line">
+                                <span class="pin-text">{{ out_param.name }}</span>
+                            </div>
+                        </div>
+                        <div class="pin param-{{ out_param.type.structure }}">
+                            <div class="type-main-additional"></div>
+                            <div class="type-main type-{{ out_param.type.secondary }}"></div>
+                            <div class="type-second type-{{ out_param.type.main }}"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="trial{% if is_trial %} trial-active{% endif %}"></div>
+</body>
+</html>

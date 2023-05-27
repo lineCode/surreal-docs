@@ -1,0 +1,96 @@
+.type-bool {
+    filter: brightness(0) saturate(100%) invert(7%) sepia(84%) saturate(6296%)
+        hue-rotate(359deg) brightness(103%) contrast(107%);
+}
+
+.type-byte {
+    filter: brightness(0) saturate(100%) invert(33%) sepia(36%) saturate(993%)
+        hue-rotate(126deg) brightness(96%) contrast(102%);
+}
+
+.type-integer {
+    filter: brightness(0) saturate(100%) invert(66%) sepia(61%) saturate(547%)
+        hue-rotate(111deg) brightness(99%) contrast(90%);
+}
+
+.type-integer64 {
+    filter: brightness(0) saturate(100%) invert(91%) sepia(20%) saturate(517%)
+        hue-rotate(63deg) brightness(92%) contrast(93%);
+}
+
+.type-float, .type-double {
+    filter: brightness(0) saturate(100%) invert(63%) sepia(37%) saturate(4672%)
+        hue-rotate(66deg) brightness(106%) contrast(104%);
+}
+
+.type-name {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(92%) saturate(4168%)
+        hue-rotate(225deg) brightness(103%) contrast(112%);
+}
+
+.type-string {
+    filter: brightness(0) saturate(100%) invert(17%) sepia(62%) saturate(4846%)
+        hue-rotate(306deg) brightness(123%) contrast(126%);
+}
+
+.type-text {
+    filter: brightness(0) saturate(100%) invert(62%) sepia(65%) saturate(487%)
+        hue-rotate(294deg) brightness(93%) contrast(94%);
+}
+
+.type-vector {
+    filter: brightness(0) saturate(100%) invert(71%) sepia(86%) saturate(473%)
+        hue-rotate(342deg) brightness(107%) contrast(103%);
+}
+
+.type-rotator {
+    filter: brightness(0) saturate(100%) invert(83%) sepia(33%) saturate(6887%)
+        hue-rotate(197deg) brightness(109%) contrast(102%);
+}
+
+.type-transform {
+    filter: brightness(0) saturate(100%) invert(45%) sepia(42%) saturate(3691%)
+        hue-rotate(5deg) brightness(108%) contrast(103%);
+}
+
+.type-struct {
+    filter: brightness(0) saturate(100%) invert(23%) sepia(97%) saturate(1951%)
+        hue-rotate(202deg) brightness(91%) contrast(108%);
+}
+
+.type-interface {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(1539%)
+        hue-rotate(21deg) brightness(102%) contrast(106%);
+}
+
+.type-object {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(68%) saturate(2760%)
+        hue-rotate(164deg) brightness(94%) contrast(106%);
+}
+
+.type-soft-object {
+    filter: brightness(0) saturate(100%) invert(83%) sepia(16%) saturate(1010%)
+        hue-rotate(149deg) brightness(108%) contrast(104%);
+}
+
+.type-class {
+    filter: brightness(0) saturate(100%) invert(15%) sepia(66%) saturate(4310%)
+        hue-rotate(265deg) brightness(86%) contrast(131%);
+}
+
+.type-soft-class {
+    filter: brightness(0) saturate(100%) invert(75%) sepia(53%) saturate(925%)
+        hue-rotate(243deg) brightness(107%) contrast(104%);
+}
+
+.type-enum {
+    filter: brightness(0) saturate(100%) invert(28%) sepia(66%) saturate(1488%)
+        hue-rotate(145deg) brightness(90%) contrast(101%);
+}
+
+.type-default {}
+
+.type-event-dispatcher {
+    filter: brightness(0) saturate(100%) invert(46%) sepia(8%) saturate(858%)
+        hue-rotate(357deg) brightness(91%) contrast(84%);
+}

@@ -1,0 +1,11 @@
+{% if length(preview.template) > 0 %}
+<p class="api-template">
+  template&lt;&#8203;{%- for param in preview.template -%}
+    <span class="api-preview-nk"><span class="api-name">{{- links('param.type') }}</span>&#32;<!--
+      --><span class="api-name">{{ param.name -}}</span></span>{%- if param.default != "" -%}<!--
+      -->&#32;= <span class="api-name">{{- param.default -}}</span>
+      {%- endif -%}
+      {%- if not loop.is_last -%},{%- endif -%}
+    {%- endfor -%}&#8203;&gt;
+</p>
+{% endif %}

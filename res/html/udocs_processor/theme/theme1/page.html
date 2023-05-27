@@ -1,0 +1,350 @@
+  <!doctype html>
+<html class="no-js" lang="{{ i.language }}">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="color-scheme" content="light dark">
+
+  {%- if i.website != "" -%}
+  <link rel="author" title="About these documents" href="{{ i.website }}" />
+  {%- endif -%}
+  {%- if i.copyright_url != "" -%}
+  <link rel="copyright" title="'Copyright'" href="{{ i.copyright_url }}" />
+  {%- endif -%}
+  {%- if d.next.link != "" -%}
+  <link rel="next" title="{{ d.next.title }}" href="{{ docurl('d.next.link') }}" />
+  {%- endif -%}
+  {%- if d.prev.link != "" -%}
+  <link rel="prev" title="{{ d.prev.title }}" href="{{ docurl('d.prev.link') }}" />
+  {%- endif -%}
+
+  {%- if d.canonical != "" %}
+  <link rel="canonical" href="{{ d.canonical }}" />
+  {%- endif %}
+
+  {#- Generator banner -#}
+  <meta name="generator" content="surreal-docs-{{ d.surreal_docs_version }}"/>
+
+  {#- Site title -#}
+  {% if i.docstitle == "" %}
+  <title>{{ p.title }}</title>
+  {% else if p.docpath == i.master_doc %}
+  <title>{{ i.docstitle }}</title>
+  {% else %}
+  <title>{{ p.title }} - {{ i.docstitle }}</title>
+  {% endif %}
+
+  <link rel="stylesheet" href="{{ resource("styles/udocs_processor/theme1.css") }}"
+      type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Red+Hat+Mono:wght@300;400;500;600;700&family=Red+Hat+Text:wght@300;400;500;600;700&display=block" rel="stylesheet">
+  {% for afterhead in e.afterhead %}
+    {{ afterhead }}
+  {% endfor %}
+</head>
+<body>
+<script>
+  let currentTheme = localStorage.getItem("theme");
+  if (!currentTheme) {
+    currentTheme = "light";
+    localStorage.setItem("theme", currentTheme);
+  }
+  document.body.dataset.theme = currentTheme;
+</script>
+
+{% include "partials/icons.html" %}
+{% for prebody in e.prebody %}
+  {{ prebody }}
+{% endfor %}
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<div class="big-header" id="big-header">
+  <aside class="big-header-content">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="brand">
+      <div class="brand-container">
+        <a class="brand-link" href="{{ docurl('i.master_doc') }}">
+          <div class="logo-container">
+            <img class="logo" src="{{ docurl('i.logo_url') }}" alt="Logo"/>
+          </div>
+          <span class="brand-text">{{ i.project_name }}</span>
+          {% if i.version_tag != "" %}
+          <span class="version-tag">
+            {{ i.version_tag }}
+          </span>
+          {% endif %}
+        </a>
+        <span class="version-picker
+{% if length('d.available_versions') > 1 %}
+              hoverable
+{% endif %}
+" id="version-picker">
+          <span class="version-picker-text
+            {% if length('d.available_versions') > 1 %}
+              hoverable"
+              id="version-picker-text"
+            {% else %}
+              "
+            {% endif %}>
+            {{ i.current_version }}
+            {% if length('d.available_versions') > 1 %}
+            <span class="version-expander">
+              <i class="icon">
+                <svg><use href="#svg-arrow-right"></use></svg>
+              </i>
+            </span>
+            {% endif %}
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </aside>
+</div>
+
+{% if d.theme_announcement != "" -%}
+<div class="announcement">
+  <aside class="announcement-content">
+    {{ d.theme_announcement }}
+  </aside>
+</div>
+{%- endif %}
+
+<div class="page">
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      <div class="sidebar-sticky">
+        <div class="sidebar-tree">
+          {% for tree in d.sidebar_trees %}
+            {% if tree.title != "" %}
+              <p class="caption" role="heading">
+                <span class="caption-text">{{ tree.title }}</span>
+              </p>
+            {% endif %}
+            <ul {% if tree.is_current %}class="current"{% endif %}>
+            {{ tree.body }}
+            </ul>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          {#- Theme toggle -#}
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="main-article" class="{% if p.type == "page" %}doc-article{% else if p.type == "native_class" %}native-class-article{% endif %}">
+          {% if i.current_version != d.latest_version %}
+          <div class="admonition warning">
+            <p class="admonition-title">
+              Warning
+            </p>
+            <p>
+              You are viewing the documentation for an earlier version of {{ i.project_name }}.
+            </p>
+          </div>
+          {% endif %}
+          {% if p.type != "native_index" and p.type != "blueprint_index" %}
+          <ul class="breadcrumbs"><!--
+         -->{% for crumb in p.breadcrumbs %}<!--
+         --><li class="breadcrumb"><!--
+              --><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i><!--
+              -->{{ links('crumb') }}</li><!--
+          -->{% endfor %}<!--
+          --></ul>
+          {% endif %}
+          {# i'm so sorry for this #}
+          {% if p.type == "native_class" %}
+            {% include "types/native_class.html" %}
+          {% else if p.type == "native_function" %}
+            {% include "types/native_function.html" %}
+          {% else if p.type == "native_enum" %}
+            {% include "types/native_enum.html" %}
+          {% else if p.type == "native_module" %}
+            {% include "types/native_module.html" %}
+          {% else if p.type == "native_index" %}
+            {% include "types/native_index.html" %}
+          {% else if p.type == "native_delegate" %}
+            {% include "types/native_delegate.html" %}
+          {% else if p.type == "native_log_category" %}
+            {% include "types/native_log_category.html" %}
+          {% else if p.type == "native_variable" %}
+            {% include "types/native_variable.html" %}
+          {% else if p.type == "blueprint_class" %}
+            {% include "types/blueprint_class.html" %}
+          {% else if p.type == "blueprint_function" %}
+            {% include "types/blueprint_function.html" %}
+          {% else if p.type == "blueprint_enum" %}
+            {% include "types/blueprint_enum.html" %}
+          {% else if p.type == "blueprint_struct" %}
+            {% include "types/blueprint_struct.html" %}
+          {% else if p.type == "blueprint_module" %}
+            {% include "types/blueprint_module.html" %}
+          {% else if p.type == "blueprint_index" %}
+            {% include "types/blueprint_index.html" %}
+          {% else if p.type == "blueprint_delegate" %}
+            {% include "types/blueprint_delegate.html" %}
+          {% else if p.type == "page" %}
+            {{ markdown('p.body') }}
+          {% endif %}
+        </article>
+      </div>
+      <footer>
+        <div class="related-pages">
+          {% if d.next.link != "" -%}
+          <a class="next-page" href="{{ docurl('d.next.link') }}">
+            <div class="page-info">
+              <div class="context">
+                <span>Next</span>
+              </div>
+              <div class="title">
+                {% if d.next.title != "" -%}
+                  {{ d.next.title }}
+                {% else %}
+                  Next page
+                {% endif %}
+              </div>
+            </div>
+            <svg class="theme1-related-icon"><use href="#svg-arrow-right"></use></svg>
+          </a>
+          {%- endif %}
+          {% if d.prev.link != "" -%}
+          <a class="prev-page" href="{{ docurl('d.prev.link') }}">
+            <svg class="theme1-related-icon"><use href="#svg-arrow-right"></use></svg>
+            <div class="page-info">
+              <div class="context">
+                <span>Previous</span>
+              </div>
+              {% if d.prev.link == i.master_doc %}
+              <div class="title">Home</div>
+              {% else %}
+                {% if d.prev.title != "" -%}
+                  {{ d.prev.title }}
+                {% else %}
+                  Previous page
+                {% endif %}
+              {% endif %}
+            </div>
+          </a>
+          {%- endif %}
+        </div>
+        {%- if d.last_updated != 0 -%}
+        <div class="last-updated">
+          Last updated {{ d.last_updated }}
+        </div>
+        {%- endif %}
+        <div class="bottom-of-page">
+          <div class="left-details">
+            {% for prefooter in e.prefooter %}
+              {{ prefooter }}
+            {% endfor %}
+            <div class="copyright">
+              {%- if i.copyright_url != "" %}
+              <a href="{{ i.copyright_url }}"
+                 class="reference {% if is_internal('i.copyright_url') %}internal"{% else %}external" target="_blank"{% endif %}>
+                Copyright</a>
+              ©
+              {{ i.copyright }}
+              {% else %}
+                {{ i.copyright }}
+              {% endif %}
+            </div>
+            <div class="powered-by">
+            🗲 Powered by
+            <a href="https://surrealdocs.com" class="reference">Surreal Docs</a>
+            </div>
+          </div>
+          <div class="right-details">
+            <div class="icons">
+
+            </div>
+            {% if d.instance == "medelfor" %}
+            <a class="medelfor-logo only-light" href="https://medelfor.com" target="_blank">
+              <img alt="Medelfor logo" src="{{ resource("misc/graphics/udocs_processor/theme/MedelforDark.svg")}}"/>
+            </a>
+            <a class="medelfor-logo only-dark" href="https://medelfor.com" target="_blank">
+              <img alt="Medelfor logo" src="{{ resource("misc/graphics/udocs_processor/theme/Medelfor.svg")}}"/>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree" id="toc-tree"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+<ul class="available-versions" id="available-versions">
+  {% for version in d.available_versions %}
+  <li class="available-version {% if version == i.current_version %}
+    current-available-version{% endif %}">
+    <a href="{{ docurl_ver('p.docpath', 'version') }}">{{ version }}</a>
+  </li>
+  {% endfor %}
+</ul>
+<!-- You aren't allowed to be here -->
+<script src="{{ resource("scripts/udocs_processor/theme/theme1/theme1.bundle.js") }}"></script>
+{% for link in e.links %}
+  {{ link }}
+{% endfor %}
+{% for afterbody in e.afterbody %}
+  {{ afterbody }}
+{% endfor %}
+</body>
+</html>

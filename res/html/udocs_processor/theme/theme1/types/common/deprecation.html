@@ -1,0 +1,13 @@
+{% if p.is_deprecated %}
+<div class="admonition attention">
+    <p class="admonition-title">
+        Deprecated
+        {% if p.deprecation_version != "" %}
+            since version {{ p.deprecation_version }}
+        {% endif %}
+    </p>
+    {% if p.deprecation_message != "" %}
+        {{ markdown('p.deprecation_message') }}
+    {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,448 @@
+body {
+    /*url("../../../misc/graphics/udocs_processor/functions/Grid.svg") repeat 80px 80px;
+    */padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+    overflow: hidden;
+    color: #dedede;
+    display: inline-block;
+}
+
+.no-background {
+    background: none;
+}
+
+.header {
+    position: relative;
+}
+
+.function {
+    background: #282828/*#131416*//*#262626*/;
+    /*border: 2px solid #141414;*/
+    border-radius: 8px;
+    /*margin: 16px 16px;*/
+}
+
+.no-background .function {
+    margin: 0;
+}
+
+/* for control */
+.function-event {
+
+}
+
+.function-event .icon-column {
+    background: url("../../../misc/graphics/udocs_processor/functions/EventIcon.svg") no-repeat;
+}
+
+.function-event .background-grad {
+    background: linear-gradient(104.12deg, #40667F 71.75%, rgba(64, 102, 127, 0.4) 90.79%);
+}
+
+.function-event .exec-left {
+    visibility: visible;
+}
+
+.function-delegate .icon-column {
+    background: url("../../../misc/graphics/udocs_processor/functions/EventIcon.svg") no-repeat;
+}
+
+.function-delegate .background-grad {
+    background: linear-gradient(104.12deg, #890F0E 71.75%, rgba(137, 15, 14, 0.4) 90.79%);
+}
+
+.function-delegate .delegate-column {
+    display: flex;
+    margin-left: auto;
+}
+
+/* for control */
+.function-function {
+
+}
+
+.function-function .icon-column {
+    background: url("../../../misc/graphics/udocs_processor/functions/FunctionIcon.svg") no-repeat;
+}
+
+.function-function .background-grad {
+    background: linear-gradient(104.12deg, #40667F 71.75%, rgba(64, 102, 127, 0.4) 90.79%);
+}
+
+.function-function .exec-left {
+    visibility: visible;
+}
+
+/* for control */
+.function-ctor {
+
+}
+
+.function-ctor .icon-column {
+    background: url("../../../misc/graphics/udocs_processor/functions/ConScriptIcon.svg") no-repeat;
+}
+
+.function-ctor .background-grad {
+    background: linear-gradient(104.12deg, #6E1386 71.75%, rgba(110, 19, 134, 0.4) 90.79%);
+}
+
+/* for control */
+.function-pure {
+
+}
+
+.function-pure .icon-column {
+    background: url("../../../misc/graphics/udocs_processor/functions/PureFunctionIcon.svg") no-repeat;
+}
+
+.function-pure .background-grad {
+    background: linear-gradient(104.12deg, #5D7F58 71.75%, rgba(93, 127, 88, 0.4) 90.79%);
+}
+
+.function-pure .exec {
+    display: none;
+}
+
+.function-pure .pin-wrapper:first-child {
+    margin-top: 13px;
+}
+
+/* for control */
+.function-compact {
+    position: relative;
+}
+
+.function-compact .header {
+    display: none;
+}
+
+.function-compact .exec {
+    padding-top: 20px;
+}
+
+.function-compact .compact-node-title {
+    display: flex;
+}
+
+.function-compact .pins {
+    background-color: #141414b3;
+}
+
+.function-compact .pin-text {
+    display: none;
+}
+
+.compact-node-title-text-stretcher {
+    height: 0px;
+    visibility: hidden;
+    padding: 0 70px;
+    display: none;
+}
+
+.function-compact .compact-node-title-text-stretcher {
+    display: block;
+}
+
+.compact-node-title-text {
+    font-size: 36px;
+    opacity: 50%;
+    font-weight: 600;
+}
+
+.compact-node-title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-column {
+    margin-right: 34px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.column {
+    display: inline-block;
+}
+
+.delegate-column {
+    align-items: center;
+    justify-content: center;
+    display: none;
+    padding: 0 5px;
+}
+
+.row {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 0.027em;
+    color: #ffffbc80;
+    margin-bottom: -1px;
+}
+
+.data {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    padding: 2px;
+}
+
+.pins {
+    background-color: #141414cc;
+    border-radius: 0 0 8px 8px;
+    padding: 2px;
+}
+
+.black-grad {
+    z-index: 4;
+    background: radial-gradient(110.54% 75.76% at 23.21% 50%, rgba(17, 17, 17, 0.427) 0%, rgba(0, 0, 0, 0) 63.54%);
+}
+
+.white-grad {
+    z-index: 2;
+    background: linear-gradient(270deg, rgba(65, 65, 65, 0.43) 0%, rgba(151, 151, 151, 0) 100%);
+}
+
+.background-grad {
+    z-index: 1;
+}
+
+.icon-column {
+    margin: 4px 5px 4px 11px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 20px;
+    height: 20px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 4px;
+    font-size: 17px;
+    letter-spacing: 0.015em;
+    line-height: 20px;
+}
+
+.row:first-child {
+    margin-top: 1px;
+}
+
+.row:last-child {
+    margin-bottom: 4px;
+}
+
+.exec {
+    display: flex;
+    padding: 13px 0;
+}
+
+.exec-pin {
+    display: flex;
+    flex: 1;
+    margin: 0 14px;
+}
+
+.exec-left {
+    justify-content: flex-start;
+    visibility: hidden;
+}
+
+.exec-right {
+    justify-content: flex-end;
+}
+
+.trial {
+    display: none;
+    background: url("../../../misc/graphics/udocs_processor/functions/TrialWatermark.svg") repeat;
+    background-size: 300px;
+    position: absolute;
+    width: 200%;
+    height: 300%;
+    top: -150%;
+    left: -50%;
+    z-index: 100;
+    transform: rotate(-45deg);
+    opacity: 0.1;
+    border-radius: 8px;
+}
+
+.pin-image {
+    position: absolute;
+}
+
+.pin-wrapper:first-child {
+    margin-top: 0;
+}
+
+.pin-wrapper {
+    margin-top: 13px;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0.005em;
+    margin-bottom: 10px;
+}
+
+.pin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input {
+    margin-left: 14px;
+}
+
+.output {
+    margin-right: 14px;
+}
+
+.input .pin {
+    margin-right: 6px;
+}
+
+.output .pin {
+    margin-left: 6px;
+}
+
+.data-pins {
+    display: flex;
+}
+
+.input-pins {
+    flex: 1;
+    margin-right: 25px;
+}
+
+.output-pins {
+    flex: 1;
+}
+
+.output-pins .pin-wrapper {
+    justify-content: flex-end;
+}
+
+.pin-text {
+    white-space: nowrap;
+    display: flex;
+}
+
+.function-class {
+    display: none;
+    z-index: 10;
+    position: absolute;
+    right: -16px;
+    top: -17px;
+}
+
+.cosmetic-active {
+    display: flex;
+}
+
+.authority-only-active {
+    display: flex;
+}
+
+.pin-line {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.checkbox {
+    position: relative;
+    margin-left: 6px;
+    display: none; /*flex*/
+}
+
+.checked-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.checked-checkbox-active {
+    visibility: visible;
+}
+
+.textfield {
+    display: none; /*flex*/
+    min-width: 12px;
+    height: 20px;
+    border: 1px solid #dedede;
+    margin-left: 6px;
+    border-radius: 2px;
+    justify-content: center;
+    padding: 0 4px;
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+.enumfield, .classfield {
+    background-color: #242424;
+    min-height: 30px;
+    border-radius: 4px;
+    line-height: 30px;
+    display: none; /*flex*/
+    min-width: 60px;
+    font-size: 12px;
+    padding-left: 5px;
+    margin-left: 7px;
+    padding-right: 20px;
+    white-space: nowrap;
+}
+
+.enumfield {
+    background-color: #0F0F0F;
+    border: 1px solid #323232;
+    min-width: 180px;
+}
+
+.xyz {
+    display: none; /*flex*/
+    align-items: center;
+    margin-left: 12px;
+    margin-top: 2px;
+}
+
+.xyz-letter {
+    color: #656665;
+}
+
+.xyz .textfield {
+    margin-left: 4px;
+    margin-right: 8px;
+}
+
+/* for control */
+.trial-active {
+    display: block;
+}

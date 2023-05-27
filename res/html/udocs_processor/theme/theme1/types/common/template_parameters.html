@@ -1,0 +1,20 @@
+{% if length(p.template) > 0 %}
+<section class="api-template-param-index" id="template">
+    <h2>Template parameters<a class="headerlink" href="#template"
+                              title="Permalink to this heading">#</a></h2>
+    {% for param in p.template %}
+    <div class="api-native-parameter">
+        <span class="api-native-container"><!--
+        --><span class="api-native-parameter-type"><!--
+        --><span class="api-name">{{ links('param.type') }}</span></span>
+        <span class="api-name api-native-parameter-name">{{ param.name }}</span>
+            <span class="api-native-parameter-default api-spaces">{% if param.default != "" %}<!--
+           --> = <span class="api-name">{{ links('param.default') }}</span><!--
+        --></span>{% endif %}</span>
+        <div class="api-index-element-description">
+        {{ markdown('param.description') }}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endif %}

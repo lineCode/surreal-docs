@@ -1,0 +1,105 @@
+<section id="function" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+    <p class="api-enity-type"><!--
+    -->{% if p.is_native %}Native-defined {% endif %}blueprint function</p>
+    {% include "common/native_counterpart.html" %}
+    </div>
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}
+    <span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+    {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink" href="#function"
+        title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options"><!--
+      -->{% include "common/definition_path.html" %}<!--
+      --><li class="api-definition-option api-access-definition-option">{{ p.access }}</li><!--
+      -->{% if p.is_overridable %}<li class="api-definition-option">Overridable</li>{% endif %}<!--
+      -->{% if p.rpc != "not_replicated" %}<li class="api-definition-option"><!--
+      -->{% if p.is_reliable %}Reliable{% else %}Unreliable{% endif %}<!--
+      -->{% if p.rpc == "net_multicast" %}
+        multicast RPC<!--
+      -->{% else if p.rpc == "server" %}
+        server RPC{% else %}
+        client RPC{% endif %}<!--
+      --></li>{% endif %}
+      {% if p.is_call_in_editor %}<li class="api-definition-option">Call in editor</li>{% endif%}
+      {% if p.is_static %}<li class="api-definition-option">Static</li>{% endif %}
+      {% if p.is_const %}<li class="api-definition-option">Const</li>{% endif %}<!--
+      -->{% if p.has_super %}<li class="api-definition-option"><!--
+      -->{% if p.is_int_implementation %}Implements{% else %}Overrides{% endif %}
+          {{ links('p.super') }} from {{ links('p.super_class') }}<!--
+      -->{% endif %}<!--
+    --></ul>
+    {% if p.image != "" %}
+    <div class="api-blueprint-function-image-wrapper">
+        <img alt="{{ p.title }}" srcset="{{ docurl('p.image') }} 2.4x"
+             class="api-blueprint-function-image"/>
+    </div>
+    {% endif %}
+    {% if p.short_desc != "" %}
+    {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+    {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% set ret_desc="" %}
+    {% if p.has_params %}
+    <section class="api-template-param-index" id="parameters">
+        <h2>{% if p.is_ret_single or not p.has_ret %}Parameters{% else %}In parameters{% endif %}<!--
+        --><a class="headerlink" href="#parameters"
+              title="Permalink to this heading">#</a></h2>
+        <ul class="api-index">
+        {% for preview in p.params %}
+            {% if not preview.is_out %}
+            <li class="api-index-element">
+                <div class="api-blueprint-parameter">
+                <span class="api-blueprint-definition"><!--
+                    --><span class="api-blueprint-parameter-type"><!--
+                    -->{% include "common/blueprint_type.html" %}--></span>
+                    <span class="api-blueprint-parameter-name"><!--
+                    --><span class="api-name">{{ preview.name }}</span></span><!--
+                    -->{% if preview.default != "" %}<!--
+                    --><span class="api-blueprint-parameter-default api-spaces"><!--
+                        --> = <span class="api-name">{{ links('preview.default') }}</span><!--
+                    --></span>{% endif %}<!--
+                    -->
+                </span>
+                    <div class="api-index-element-description">
+                    {{ markdown('preview.description') }}
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if p.has_ret %}
+    <section class="api-template-param-index" id="return">
+        <h2>{% if p.is_ret_single %}Return value{% else %}Out parameters{% endif %}<!--
+        --><a class="headerlink" href="#return"
+              title="Permalink to this heading">#</a></h2>
+        <ul class="api-index">
+        {% for preview in p.params %}
+            {% if preview.is_out %}
+            <li class="api-index-element">
+                <div class="api-blueprint-parameter">
+                    <span class="api-blueprint-definition"><!--
+                        --><div class="api-blueprint-parameter-type"><!--
+                        -->{% include "common/blueprint_type.html" %}--></div><!--
+                        -->{% if not p.is_ret_single %}<!--
+                        --><span class="api-name api-blueprint-parameter-name">{{ preview.name }}</span><!--
+                        -->{% endif %}<!--
+                    --></span>
+                    <div class="api-index-element-description">
+                    {{ markdown('preview.description') }}
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% include "common/see.html" %}
+</section>

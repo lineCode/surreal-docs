@@ -1,0 +1,32 @@
+#
+#  Copyright © 2022, Medelfor, Limited. All rights reserved.
+#  For any additional information refer to https://medelfor.com
+#
+
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    secretEnv: ['BMS_BUILDBOT_SSH_KEY']
+    entrypoint: 'bash'
+    args: ['scripts/cicd/git/fetch_bms.sh', 'develop']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    secretEnv: ['BUILDBOT_PAT', 'AWS_EC2_INSTANCE_SSH_KEY', 'GCLOUD_KEY', 'ARTIFACTORY_PASSWORD']
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['bash', 'linux/git/filter.sh', '../../../filter.json',
+        'medelfor/udocs-processor', 'medelfor/surreal-docs', '${BRANCH_NAME}']
+
+timeout: 3600s
+options:
+  env: ['STAGES_RESULTS_DIR=stages_results']
+availableSecrets:
+  secretManager:
+    - versionName: projects/avtomatikka/secrets/buildmasterset-buildbot-github-key/versions/latest
+      env: 'BMS_BUILDBOT_SSH_KEY'
+    - versionName: projects/avtomatikka/secrets/win64-build-machine-key/versions/latest
+      env: 'AWS_EC2_INSTANCE_SSH_KEY'
+    - versionName: projects/avtomatikka/secrets/artifacts-bucket-pusher/versions/latest
+      env: 'GCLOUD_KEY'
+    - versionName: projects/avtomatikka/secrets/artifactory-password/versions/latest
+      env: 'ARTIFACTORY_PASSWORD'
+    - versionName: projects/avtomatikka/secrets/buildbot-personal-access-token/versions/latest
+      env: 'BUILDBOT_PAT'

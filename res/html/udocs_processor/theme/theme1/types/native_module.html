@@ -1,0 +1,318 @@
+<section id="module" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+        <p class="api-enity-type">Native Module</p>
+        {% include "common/bp_counterpart.html" %}
+    </div>
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}<!--
+        --><span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+        {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink" href="#module" title="Permalink to this heading">#</a>
+    </h1>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% if length(p.class_previews) > 0 %}
+    <section id="classes">
+        <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.class_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></li><!--
+                    -->{%- include "common/preview_since.html" %}<!--
+                    -->{% include "common/preview_bp_counterpart.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% if preview.is_uentity %}
+                    <p class="api-umacro">
+                        UCLASS(…)
+                    </p>
+                    {% endif %}
+                    {% include "common/preview_template.html" %}
+                    {% if preview.namespace != "" %}
+                        {{- preview.namespace -}}::&#8203;
+                    {%- endif %}<a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                     --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.struct_previews) > 0 %}
+    <section id="structs">
+        <h2>Structs<a class="headerlink" href="#structs" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.struct_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></li><!--
+                    -->{%- include "common/preview_since.html" %}<!--
+                    -->{% include "common/preview_bp_counterpart.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% if preview.is_uentity %}
+                    <p class="api-umacro">
+                        USTRUCT(…)
+                    </p>
+                    {% endif %}
+                    {% include "common/preview_template.html" %}
+                    {% if preview.namespace != "" %}
+                        {{- preview.namespace -}}::&#8203;
+                    {%- endif %}<a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                     --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.interface_previews) > 0 %}
+    <section id="interfaces">
+        <h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.interface_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></li><!--
+                    -->{%- include "common/preview_since.html" %}<!--
+                    -->{% include "common/preview_bp_counterpart.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% if preview.namespace != "" %}
+                        {{- preview.namespace -}}::&#8203;
+                    {%- endif %}<a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                     --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.enum_previews) > 0 %}
+    <section id="enums">
+        <h2>Enums<a class="headerlink" href="#enums" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.enum_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></li><!--
+                    -->{%- include "common/preview_since.html" %}<!--
+                    -->{% include "common/preview_bp_counterpart.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% if preview.is_uentity %}
+                    <p class="api-umacro">
+                        UENUM(…)
+                    </p>
+                    {% endif %}
+                    {% if preview.namespace != "" %}
+                        {{- preview.namespace -}}::&#8203;
+                    {%- endif %}<a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                     --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.delegate_previews) > 0 %}
+    <section id="delegates">
+        <h2>Delegates<a class="headerlink" href="#delegates" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.delegate_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></li><!--
+                    -->{%- include "common/preview_since.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                    {% if preview.is_uentity %}
+                    <p class="api-umacro">
+                        UDELEGATE(…)
+                    </p>
+                    {% endif %}
+                    {% if preview.namespace != "" %}
+                        {{- preview.namespace -}}::&#8203;
+                    {%- endif %}<a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                     --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.function_previews) > 0 %}
+    <section id="functions">
+        <h2>Global functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.function_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></li><!--
+                    -->{%- include "common/preview_since.html" %}
+                </ul>
+                <div class="api-native-function">
+                    <div class="api-preview-definition">
+                        {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                        {% include "common/preview_template.html" %}<!--
+                        --><span class="api-native-pre-func">{% if preview.is_static %}&#32;static{% endif %}
+                        {% if preview.is_inline %}&#32;inline{% endif %}
+                        {% if preview.api != "" %}&#32;{{ preview.api }}{% endif %}
+                            <span class="api-preview-nk api-name">{{ links('preview.return') }}</span></span>
+                        <div class="api-mc">
+                            <div class="api-tab2"></div>
+                            <div>
+                        {% if preview.namespace != "" %}
+                        {{- preview.namespace -}}::&#8203;
+                        {%- endif %}<a class="api-index-link api-index-link-native"
+                                       href="{{ docurl('preview.docpath') }}"><!--
+                        --><span class="api-name">{{- preview.name -}}</span></a>(&#8203;{%- if length('preview.params') > 0 -%}
+                        <div class="api-mc">
+                            <div class="api-tab4"></div>
+                            <div>
+                        {%- endif -%}<!--
+                                --><span class="api-params">{%- for param in preview.params -%}<!--
+                                  --><span class="api-preview-nk"><!--
+                                  --><span class="api-name">{{- links('param.type') -}}</span><!--
+                                -->&#32;<span class="api-name">{{- param.name -}}</span></span>{%- if param.default != "" -%}<!--
+                                -->&#32; = <span class="api-name">{{- param.default -}}</span><!--
+                                  -->{%- endif -%}
+                                  {%- if not loop.is_last -%},<br>{% endif -%}
+                                {%- endfor -%}</span><!--
+                                -->{% if length('preview.params') > 0 %}</div></div>{% endif %})
+                        {% if length('preview.params') > 0 %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if preview.is_deprecated %}</del>{% endif %}
+                    </div>
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.variable_previews) > 0 %}
+    <section id="variables">
+        <h2>Global variables and constants<a class="headerlink" href="#variables" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.variable_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name"><span class="api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></span></li><!--
+                    -->{%- include "common/preview_since.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}<!--
+                    --><span><!--
+                    -->{% if preview.is_static %}static{% endif %}
+                    {% if preview.is_const %}const{% endif %}
+                    {% if preview.is_volatile %}volatile{% endif %}</span><!--
+                    --><span class="api-name">{{ links('preview.var_type') }}</span><!--
+                    -->{% if preview.namespace != "" %}
+                        {{- preview.namespace -}}::&#8203;
+                    {%- endif %}<a class="api-index-link api-index-link-native"
+                                   href="{{ docurl('preview.docpath') }}"><!--
+                     --><span class="api-name">{{- preview.name -}}</span>
+                        {% if preview.initializer != "" %}<span class="api-native-default">{{ preview.initializer }}</span>{% endif %}<!--
+                     --></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% if length(p.log_category_previews) > 0 %}
+    <section id="log_categories">
+        <h2>Log categories<a class="headerlink" href="#log_categories" title="Permalink to this heading">#</a></h2>
+        <ul class="api-sub-index api-sub-index-native">
+            {% for preview in p.log_category_previews %}
+            <li>
+                <ul class="api-options">
+                    <li class="api-option api-name">{{ preview.name }}<!--
+                    --><span class="api-end-select">&</span></li><!--
+                    -->{%- include "common/preview_since.html" %}
+                </ul>
+                <div class="api-preview-definition">
+                    {% if preview.is_deprecated %}<del class="api-native-deprecated">{% endif %}
+                        {% if preview.namespace != "" %}
+                            {{- preview.namespace -}}::&#8203;
+                        {%- endif %}<a class="api-index-link api-index-link-native"
+                                       href="{{ docurl('preview.docpath') }}"><!--
+                     --><span class="api-name">{{- preview.name -}}</span></a>
+                    {% if preview.is_deprecated %}</del>{% endif %}
+                </div>
+                <div class="api-sub-index-description">
+                    {% if preview.description != "" %}
+                    {{ markdown('preview.description') }}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% include "common/see.html" %}
+</section>

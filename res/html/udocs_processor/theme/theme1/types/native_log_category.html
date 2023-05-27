@@ -1,0 +1,36 @@
+<section id="log-category" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+        <p class="api-enity-type">log category</p>
+    </div>
+    {% if p.namespace != "" %}
+    <p class="api-heading-namespace">
+        {{ p.namespace }}::&#8203;
+    </p>
+    {% endif %}
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}<!--
+        --><span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+        {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink" href="#log-category"
+           title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options">
+        {% include "common/definition_include.html" %}
+    </ul>
+    <div class="api-native-definition">
+        <span class="api-keyword">
+            {% if p.log_category_type == "static" -%}
+            DECLARE_LOG_CATEGORY_STATIC
+            {%- else -%}
+            DECLARE_LOG_CATEGORY_CLASS
+            {%- endif -%}
+        </span>
+        (<span class="api-name">{{ p.name }}</span>, {{ p.runtime }}, {{ p.compile }})
+    </div>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% include "common/see.html" %}
+</section>

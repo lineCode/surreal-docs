@@ -1,0 +1,148 @@
+.type-main, .type-second, .type-main-additional {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.type-main-additional {
+    position: absolute;
+}
+
+.type-main {
+    position: absolute;
+    background: url("../../../misc/graphics/udocs_processor/functions/DataPinBackground.svg") no-repeat;
+}
+
+.type-second {
+    background: url("../../../misc/graphics/udocs_processor/functions/DataPin.svg") no-repeat;
+}
+
+.param-default {
+
+}
+
+.param-delegate .type-main {
+    background: none;
+}
+
+.param-delegate .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/DelegateInput.svg");
+}
+
+.param-delegate .type-main,
+.param-delegate .type-second,
+.param-delegate .type-main-additional {
+    width: 16px;
+}
+
+.param-ref.param-delegate .type-main {
+    background-image: none;
+}
+
+.param-ref.param-delegate .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/DelegateInput.svg");;
+}
+
+.param-array .type-main {
+    background: none;
+}
+
+.param-array .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/ArrayInput.svg");
+}
+
+.param-set .type-main {
+    background: none;
+}
+
+.param-set .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/SetInput.svg");
+}
+
+.param-map .type-main {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/MapKeyInput.svg");
+}
+
+.param-map .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/MapValueInput.svg");
+}
+
+.param-ref .type-main {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/RefInputBackground.svg");
+}
+
+.param-ref .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/RefInput.svg");
+}
+
+.param-ref.param-map .type-main-additional {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/RefInputBackground.svg");
+}
+
+.param-ref.param-map .type-main {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/RefInput.svg");
+}
+
+.param-ref.param-map .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/MapRefValueInput.svg");
+}
+
+.param-ref.param-set .type-main {
+    background-image: none;
+}
+
+.param-ref.param-set .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/SetInput.svg");;
+}
+
+.param-ref.param-array .type-main {
+    background-image: none;
+}
+
+.param-ref.param-array .type-second {
+    background-image: url("../../../misc/graphics/udocs_processor/functions/ArrayInput.svg");;
+}
+
+.param-bool .checkbox {
+    display: flex;
+}
+
+.param-class .classfield {
+    display: flex;
+}
+
+.param-enum .enumfield {
+    display: flex;
+}
+
+.param-xyz .xyz, .param-xyz .xyz .textfield {
+    display: flex;
+}
+
+.param-text .textfield {
+    display: flex;
+}
+
+.param-ref .textfield {
+    display: none;
+}
+
+.param-ref .enumfield {
+    display: none;
+}
+
+.param-ref .classfield {
+    display: none;
+}
+
+.param-ref .textfield {
+    display: none;
+}
+
+.param-ref .checkbox {
+    display: none;
+}
+
+.param-ref .xyz {
+    display: none;
+}

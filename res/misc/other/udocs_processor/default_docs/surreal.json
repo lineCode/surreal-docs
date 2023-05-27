@@ -1,0 +1,92 @@
+{
+  "logo": "SurrealDocs.png",
+  "tag": "",
+  "version": "1.0.0",
+  "name": "Documentation",
+  "url": "surrealdocs.com",
+  "organization": "My Company",
+  "copyright": "Copyright © 2023, My Company",
+  "docs_title": "Default Docs",
+  "language": "en-US",
+  "master": "docs/index",
+  "images_root": "images",
+  "contents": [
+    {
+      "title": "Getting started",
+      "pages": [
+        {
+          "page": "docs/index",
+          "is_pinned": true
+        }
+      ]
+    },
+    {
+      "title": "Documentation",
+      "pages": [
+        {
+          "api": "cpp"
+        },
+        {
+          "api": "blueprint"
+        }
+      ]
+    },
+    {
+      "title": "Medelfor",
+      "pages": [
+        {
+          "title": "Medelfor",
+          "page": "https://medelfor.com",
+          "is_external": true
+        },
+        {
+          "title": "Medelfor Store",
+          "page": "https://store.medelfor.com",
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "title": "Socials",
+      "pages": [
+        {
+          "is_external": true,
+          "page": "https://github.com/medelfor/udocs-processor",
+          "title": "Star Surreal Docs on GitHub"
+        },
+        {
+          "title": "Follow us on LinkedIn",
+          "page": "https://linkedin.com/company/medelfor",
+          "is_external": true
+        },
+        {
+          "title": "Follow us on Twitter",
+          "page": "https://twitter.com/medelfor",
+          "is_external": true
+        }
+      ]
+    }
+  ],
+  "ue": {
+    "root": "",
+    "target": "",
+    "configuration": ""
+  },
+  "filters": {
+    "do_export_private": true,
+    "content": {
+      "include": [
+        "/Game/"
+      ],
+      "exclude": []
+    },
+    "native_modules": {
+      "include": [],
+      "exclude": []
+    },
+    "cpp": {
+      "include": [],
+      "exclude": []
+    }
+  }
+}

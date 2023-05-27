@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "theme/furo/*": ["./theme/theme1/*"]
+    },
+    "rootDirs": [
+      "./theme/theme1"
+    ],
+    "strictNullChecks": true,
+    "allowJs": true
+  },
+  "files": [
+    "./theme/theme1/theme1.js",
+    "./theme/theme1/gumshoe-patched.js"
+  ]
+}

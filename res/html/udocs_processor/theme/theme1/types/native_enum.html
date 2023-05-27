@@ -1,0 +1,98 @@
+<section id="enum" class="api-article">
+    {% include "common/deprecation.html" %}
+    <div class="api-header">
+        <p class="api-enity-type">native enum</p>
+        {% include "common/bp_counterpart.html" %}
+    </div>
+    {% if p.namespace != "" %}
+    <p class="api-heading-namespace">
+        {{ p.namespace }}::&#8203;
+    </p>
+    {% endif %}
+    <h1>{% if p.is_deprecated %}<del class="api-entity-deprecated">{% endif -%}<!--
+        --><span class="api-name">{{ p.title }}</span>{% include "common/since.html" -%}
+        {% if p.is_deprecated %}</del>{% endif -%}<a class="headerlink"
+           href="#enum"
+           title="Permalink to this heading">#</a>
+    </h1>
+    <ul class="api-definition-options">
+        {% include "common/definition_include.html" %}
+    </ul>
+    <div class="api-native-definition">
+        {% include "common/definition_access.html" %}
+        {% include "common/definition_umacro.html" %}
+        <span class="api-keyword">enum {% if p.is_strong %}class{% endif %}</span>
+        <span class="api-name">{{ p.name }}</span>
+        {% if p.enum_type != "" %}: {{ p.enum_type }} {% endif %}&#32;{<br/>
+        <div class="api-mc"><div class="api-native-definition-column api-tab2"></div>
+            <div class="api-native-definition-column">
+            {% for element in p.elements %}<!--
+                --><span class="api-name">{{ element.name }}</span><!--
+                -->{% if element.default != "" %}<span class="api-native-default api-spaces"><!--
+                --> = <span class="api-name">{{ element.default }}</span></span>{% endif %}
+                {% if element.is_uentity %}<!--
+                 --><span class="api-keyword"> UMETA</span>({{- element.ue_info.normal -}}
+                    {%- if element.ue_info.meta != "" -%}
+                    {% if element.ue_info.normal != "" -%},{%- endif %} meta = ({{- element.ue_info.meta }}){% endif -%}){%- endif -%}
+                {%- if not loop.is_last -%},<br/>{% endif -%}
+            {% endfor %}
+            </div>
+        </div>
+        }
+        {% include "common/definition_access_end.html" %}
+    </div>
+    {% if p.short_desc != "" %}
+        {{ markdown('p.short_desc') }}
+    {% endif %}
+    {% if p.full_desc != "" %}
+        {{ markdown('p.full_desc') }}
+    {% endif %}
+    {% if length(p.elements) > 0 %}
+    <section class="api-template-param-index" id="elements">
+        <h2>Elements<a class="headerlink" href="#elements"
+                                  title="Permalink to this heading">#</a></h2>
+        <ul class="api-index">
+        {% for preview in p.elements %}
+        <li class="api-index-element">
+            {% if preview.is_deprecated %}
+            <div class="admonition attention api-property-deprecated">
+                <p class="admonition-title">
+                    <span class="api-native-property-deprecated"><span class="api-name"><!--
+                    -->{{ preview.name }}</span></span> is deprecated
+                    {% if preview.deprecation_version != "" %}
+                    since version {{ preview.deprecation_version }}
+                    {% endif %}
+                </p>
+                {% if preview.deprecation_message != "" %}
+                {{ markdown('preview.deprecation_message') }}
+                {% endif %}
+            </div>
+            {% endif %}
+            <ul class="api-options"><!--
+               -->{%- include "common/preview_since.html" %}<!--
+            --></ul>
+            <div class="api-native-parameter">
+                <span class="api-native-container"><span class="api-native-parameter-type"><!--
+                --><span class="api-native-container"><!--
+                --><span class="api-name">{{ preview.name }}</span></span></span><!--
+                -->{% if preview.default != "" %}<span class="api-native-parameter-default api-spaces"><!--
+                --> = <span class="api-name">{{ preview.default }}</span></span>{% endif %}<!--
+             --><span class="api-native-meta api-spaces"><!--
+                -->{% if preview.is_uentity %}<!--
+                    --> UMETA({{- preview.ue_info.normal -}}
+                    {%- if preview.ue_info.meta != "" -%}
+                    {% if preview.ue_info.normal != "" -%},{% endif %}&#32; meta = (
+                        {{- preview.ue_info.meta }}){% endif -%})
+                {% endif %}</span>
+            </span>
+                <div class="api-index-element-description">
+                {{ markdown('preview.description') }}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    {% include "common/see.html" %}
+</section>
