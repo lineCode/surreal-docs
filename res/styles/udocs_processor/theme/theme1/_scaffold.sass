@@ -108,6 +108,20 @@ article
   // These next two lines took me two days to figure out.
   width: calc((100% - #{$full-width}) / 2 + #{$sidebar-width})
   min-width: $sidebar-width
+  overflow-y: auto
+  // Override Firefox scrollbar style
+  scrollbar-width: 0.4rem
+  scrollbar-color: var(--color-guilabel-border)
+  scrollbar-track-color: var(--color-background-secondary) transparent
+
+  // Override Chrome scrollbar styles
+  &::-webkit-scrollbar
+    width: 0.4rem
+  &::-webkit-scrollbar-thumb
+    background-color: var(--color-guilabel-border)
+    border-radius: 0.125rem
+  &::-webkit-scrollbar-track
+    background-color: var(--color-background-secondary) transparent
 
 // Scroll-along sidebars
 .sidebar-container,

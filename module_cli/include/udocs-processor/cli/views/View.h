@@ -10,6 +10,8 @@ class View {
  public:
   View();
 
+  virtual void Start() {}
+
   virtual void Init() = 0;
 
   virtual void Tick() = 0;

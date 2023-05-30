@@ -52,7 +52,7 @@ static constexpr const int SUCCESS_EXIT_CODE = 0;
 static constexpr const int FAILURE_EXIT_CODE = 1;
 static constexpr const char DIR_SEPARATOR[] = "\\";
 static constexpr const char SURDOCS_RES_ENV[] = "SURDOCS_RES";
-static constexpr const char SURDOCS_BIN_ENV[] = "SURDOCS_BIN";
+static constexpr const char SURDOCS_INSTALL_ENV[] = "SURDOCS_INSTALL";
 static constexpr const char LOGGER_NAME[] = "launcher";
 static constexpr const char SURDOCS_LOGS_DEFAULT[] = "logs";
 static constexpr const char SURDOCS_LOG_NAME_PATTERN[] =
@@ -168,6 +168,12 @@ int main(int Argc, char** Argv) {
     }
   }
 
+  const char* SurdocsInstall = std::getenv(SURDOCS_INSTALL_ENV);
+  if (SurdocsInstall) {
+    InstallDir = SurdocsInstall;
+    l->info("Using `{}` as install path (env)", SurdocsInstall);
+  }
+
   std::string ClientId = DEFAULT_CLIENT_ID;
   if (Opened) {
     winreg::RegExpected<std::wstring> Val =
@@ -181,17 +187,9 @@ int main(int Argc, char** Argv) {
   std::unique_ptr<udocs_processor::UnrealInteraction> UnrealInteraction =
       std::make_unique<udocs_processor::UnrealInteraction>(LoggerSink);
 
-  // determine bin dir
-  std::string BinariesPath;
-  const char* SurdocsBin = std::getenv(SURDOCS_BIN_ENV);
-  if (SurdocsBin) {
-    BinariesPath = SurdocsBin;
-    l->info("Using `{}` as bin path (env)", BinariesPath);
-  } else {
-    BinariesPath += std::string(InstallDir.empty() ? "" : DIR_SEPARATOR) +
-        BIN_DIRECTORY;
-    l->info("Using `{}` as bin path (reg/default)", BinariesPath);
-  }
+  std::string BinariesPath = InstallDir +
+      std::string(InstallDir.empty() ? "" : DIR_SEPARATOR) + BIN_DIRECTORY;
+  l->info("Using `{}` as bin path", BinariesPath);
 
   nlohmann::json_pointer<std::string> ApiAddressPath{SETTINGS_API_PATH};
   nlohmann::json_pointer<std::string> CaCertPath{SETTINGS_CA_CERT_PATH};
@@ -200,7 +198,8 @@ int main(int Argc, char** Argv) {
 
   std::string ApiAddress = Settings.value(ApiAddressPath, SETTINGS_API_DEFAULT);
   l->info("Using `{}` as the api address", ApiAddress);
-  std::string CaCert = std::string(InstallDir.empty() ? "" : DIR_SEPARATOR) +
+  std::string CaCert = InstallDir +
+      std::string(InstallDir.empty() ? "" : DIR_SEPARATOR) +
       Settings.value(CaCertPath, SETTINGS_CA_CERT_DEFAULT);
   l->info("Using `{}` as the path to root certificates", CaCert);
   bool DoUseHttps = Settings.value(DoUseHttpsPath,
@@ -284,7 +283,7 @@ int main(int Argc, char** Argv) {
   std::unique_ptr<udocs_processor::InitCommand> InitCommand =
       std::make_unique<udocs_processor::InitCommand>(
           std::move(UnrealInteraction3), Loader);
-  InitCommand->SetBinPath(BinariesPath);
+  InitCommand->SetInstallPath(InstallDir);
   InitCommand->SetResourcesPath(ResourcesPath);
   std::unique_ptr<udocs_processor::InitCLI> InitCLI =
       std::make_unique<udocs_processor::InitCLI>(

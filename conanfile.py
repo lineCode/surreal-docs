@@ -37,6 +37,7 @@ class UDocsProcessorConan(ConanFile):
         "ftxui/4.0.0",
         "grpc/1.50.0",
         "poco/1.12.2",
+        "libexecstream/0.0.3@medelfor/stable",
         "api-proto/1.0.1+43.9cf6258d@medelfor/develop",
         ("cli11/2.0.0", "private"),
         ("base64/0.4.0", "private"),

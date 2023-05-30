@@ -1,26 +1,18 @@
 ![Surreal Docs Banner](readme/SurrealDocsBanner.png)
 
-<h3 align="center">
+<h4 align="center">
 <a href="https://docs.medelfor.com/medelfor/surreal-docs">Documentation</a> |
 <a href="https://surrealdocs.com/medelfor/showcase-1">Live-Demo</a> | 
 <a href="https://medelfor.com">Medelfor</a> |
 <a href="https://store.medelfor.com">Store</a> |
-<a href="https://issues.internal.medelfor.com/youtrack/issues?q=project:%20%7BSurreal%20Docs%7D">Known Issues</a>
-</h3>
-
-<h3 align="center">
+<a href="https://issues.internal.medelfor.com/youtrack/issues?q=project:%20%7BSurreal%20Docs%7D">Known Issues</a> |
 <a href="https://www.linkedin.com/company/medelfor/">LinkedIn</a> |
 <a href="https://twitter.com/medelfor">Twitter</a>
-</h3>
+</h4>
 
 ***
 
-Surreal Docs is the first all-encompassing docs generation system for
-Unreal Engine-powered projects. It generates C++ API reference, Blueprint API 
-reference, embeds user-provided Markdown pages and also seamlessly integrates
-with our online docs hosting - Surreal Cloud. Surreal Docs perfectly understands
-all UE-specific C++ features, Blueprints and easily interweaves corresponding 
-C++ and Blueprint entities in the resulting documentation!
+Surreal Docs is the first all-encompassing docs generation system for Unreal Engine-powered projects. It generates documentation for Unreal Engine projects, C++ and Blueprint API references in particular. It enables users to create their own custom pages using a feature-rich dialect of Markdown. Surreal Docs seamlessly integrates with our online docs hosting - Surreal Cloud, making it easy to share the docs publicly, privately with a team or within an organization. Finally, Surreal Docs perfectly understands all UE-specific C++ features, Blueprints and easily interweaves corresponding C++ and Blueprint entities in the resulting documentation!
 
 **Table of Contents**
 
@@ -41,15 +33,17 @@ C++ and Blueprint entities in the resulting documentation!
 To install Surreal Docs please download the latest installer from the Releases
 page and run it. Note, that in order to work correctly Surreal Docs 
 requires NodeJS (at least 10.18.1) to be installed with `npm` being available in PATH.
-If no NodeJS is already installed on your system, Surreal Docs Installer will
+If no NodeJS is already installed on your system, Surreal Docs installer will
 install an appropriate version (18.16.0) automatically.
 
 Note also that in order to work Surreal Docs requires Microsoft Visual Studio to
 be installed on your machine.
 
+You can find more info about the installation process on the ["Installation"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/installation "Installation process description") page of [Surreal Docs documentation](https://docs.medelfor.com/medelfor/surreal-docs "Surreal Docs documentation").
+
 ## Quickstart
 
-Surreal Docs Installer installs the Surreal Docs CLI, so you would be able
+Surreal Docs installer installs the Surreal Docs CLI, so you would be able
 to run Surreal Docs from the command line.
 
 In order to generate documentation for your Unreal Engine project, please open
@@ -61,13 +55,12 @@ When done, please run the following command in your console:
 surdocs init
 ```
 
-It will invoke an initialization screen where you can set options of your project
-and the documentation you are going to generate. Surreal Docs will set most
+It will invoke the initialization screen where you can set options of your project
+and the documentation you are going to generate. Surreal Docs will detect and set most
 settings automatically, but you should review them and update if 
 necessary.
 
-On the same screen you should choose the project modules to export in
-the resultant documentation.
+On the same screen you should choose the project modules for which you want to generate documentation.
 
 After everything's finished, please click the "Done" button and wait until
 Surreal Docs will set up your project.
@@ -87,9 +80,11 @@ It will invoke the generation screen and start generating your documentation.
 You will be able to observe the progress and will see error's details if
 something goes wrong.
 
-Note that the first time you run `surdocs generate` it can take some extra time,
-since Surreal Docs needs to compile the plugin it installs to link with Unreal 
-Engine.
+Note that the first time you run `surdocs generate` the generation will take some
+extra time, since Surreal Docs needs to compile the plugin it installs in order
+to link with Unreal Engine.
+
+You can find more info that will help you get up to speed on the ["Quickstart"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/quickstart "Quickstart") page.
 
 ***
 [1] The directory that contains the `.uproject` file.
@@ -107,6 +102,8 @@ Unreal Engine support is as follows:
 | 5.1                   | Yes            |
 | 5.2                   | On the way [2] |
 
+You can find more info about OS and Unreal Engine compatibility on the ["Supported operating systems and Unreal Engine versions"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/os-and-ue-support "Supported operating systems and Unreal Engine versions") page.
+
 ***
 [1] At the moment we do not support documenting the following UE-features:
 Animation Blueprints 
@@ -117,7 +114,9 @@ Slate C++ macros
 ([SD-1037](https://issues.internal.medelfor.com/youtrack/issue/SD-1037/Add-support-for-Slate-macros "Slate macros"))
 and Blueprint Graph Macros
 ([SD-1047](https://issues.internal.medelfor.com/youtrack/issue/SD-1047/Add-support-for-graph-macros-macros-library "Blueprint Macros")).
-If you'd like Surreal Docs to support one of these features, please let us know. 
+If you'd like Surreal Docs to support one of these features, please let us know.
+
+You can find more info about supported Unreal Engine features on the ["Support of the Unreal Engine features"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/ue-features-support "Support of the Unreal Engine features") page.
 
 [2] ETA is June 2023.
 
@@ -138,6 +137,8 @@ you help the development process a lot.
 The collection of this data is governed by Surreal Docs EULA that can be found
 in the `LICENSE` file.
 
+You can find more info about global options available in Surreal Docs CLI on the ["Global options"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/cli/global-options "Global options") page.
+
 ## Privacy
 
 Your privacy is important to us! While you can read more about your privacy when
@@ -147,9 +148,11 @@ the source code of your project nor the generated documentation.
 
 ## Build
 
-We're working on the build instructions and will publish them as soon as possible.
+We're working on the build instructions and will publish them soon.
 
 ## Issues and Support
+
+You can find more info regarding troubleshooting on the ["Troubleshooting"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/troubleshooting "Troubleshooting") page.
 
 If you believe there's something wrong with the product, please create an
 issue in this repository.
@@ -158,23 +161,22 @@ issue in this repository.
 XL" licenses include Priority Customer Care plan. If you or your
 organization own one of these licenses please contact us at
 [support@medelfor.com](mailto:support@medelfor.com "Support email") with your
-license ID and problem description, we will help you to resolve the issue
-as soon as possible.
+license ID and problem description, we will consider the issue a high-priority.
 
-You can browse list of issues being already in work in our YouTrack 
+You can browse list of issues already being in work in our YouTrack 
 [here](https://issues.internal.medelfor.com/youtrack/issues?q=project:%20%7BSurreal%20Docs%7D "Surreal Docs WIP issues").
 
 ## Pull requests
 
 Please, feel free to submit your changes to the Surreal Docs Source
-Code to this repository. We deeply appreciate any contributions made by
-our users!
+Code in pull requests for this repository. We deeply appreciate any 
+contributions made by our users!
 
 ## FAQ
 
 ### Is there a Linux version of Surreal Docs?
 No there's no Linux version of Surreal Docs, and there's no plans to implement one
-in any foreseen future.
+in the foreseen future. You can find more info about OS compatibility on the ["Supported operating systems and Unreal Engine versions"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/os-and-ue-support "Supported operating systems and Unreal Engine versions") page.
 
 ### Is Surreal Docs usage free of charge?
 
@@ -191,16 +193,22 @@ for more details.
 ### Is there support for the Verse programming language?
 
 There's no support for the Verse programming language at the moment, but it will
-be added as soon as the main-branch Unreal Engine gets Verse support.
+be added as soon as the main-branch Unreal Engine gets Verse support. You can find more info about supported Unreal Engine features on the ["Support of the Unreal Engine features"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/ue-features-support "Support of the Unreal Engine features") page.
 
 ### Can Surreal Docs be used to generate documentation for a plugin?
 
-You bet! Consult this documentation page to find out how to do it.
+You bet! Consult [this documentation page](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/generate-docs-for-plugins "Generation of documentation for a plugin") to find out how to do it.
 
 ### Can Surreal Docs be used with Blueprint-only projects?
 
 Absolutely, but note that Surreal Docs requires installed Microsoft Visual 
-Studio no matter whether the project is Blueprint-only or not.
+Studio no matter whether the project is Blueprint-only or not. You can find more details about it on the ["Generating documentation for Blueprint-only projects"](https://docs.medelfor.com/medelfor/surreal-docs/latest/en-US/docs/generate-docs-for-blueprint-only-projects "Generating documentation for Blueprint-only projects") page.
+
+### Can Surreal Docs be used without an UE-project?
+
+Currently, Surreal Docs cannot be used without an Unreal Engine project, but we
+plan to add an ability to generate documentation with no attachments to UE, BP 
+or C++ in the nearest future.
 
 ## License
 
@@ -227,7 +235,7 @@ revenue bigger than US $100,000, the entity must buy a Surreal Docs license that
 does not prohibit such usage, e.g. "Surreal Docs XL" license or
 "Surreal Docs Crypto XL".
 
-The licenses can be bought in [our store](https://store.medelfor.com "Medelfor Store").
+The licenses can be acquired in [our store](https://store.medelfor.com "Medelfor Store").
 
 Note that this is not a legal advice, please consult with your lawyer on details
 of the license agreement or contact [sales@medelfor.com](mailto:sales@medelfor.com "Sales Team")
@@ -236,7 +244,7 @@ if you have any questions about licensing of Surreal Docs.
 ## Surreal Ecosystem
 
 If you need to share your docs on the internet, or privately with the team 
-check out our Surreal Cloud product series, which makes it easy for developers
+check out our Surreal Cloud product series which makes it easy for developers
 to share their documentation with others. We've got a solution for any team,
 any use case and in every price range!
 

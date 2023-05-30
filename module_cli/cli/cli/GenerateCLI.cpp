@@ -47,6 +47,7 @@ bool udocs_processor::GenerateCLI::Generate(const Arguments &Args) const {
         Success = false;
         Telemetry->ReportFail(TELEMETRY_COMMAND_NAME, Exc.what());
         l->error("Exception in generate thread: {}", Exc.what());
+        SelectedView->SetFinished(true);
         SelectedView->SetStatus(GenerateView::Status::ERROR,
             fmt::format("Unexpected error: {}", Exc.what()));
       }
@@ -55,21 +56,27 @@ bool udocs_processor::GenerateCLI::Generate(const Arguments &Args) const {
         SelectedView->SetStatus(GenerateView::Status::CLEANING_UP, "");
         Command->CleanUp(OutDirectory);
       }
+
+      if (Success) {
+        SelectedView->SetFinished(true);
+        SelectedView->SetStatus(GenerateView::Status::FINISHED, "");
+      }
     });
 
-  std::future_status Status;
-  do {
-    Status = Future.wait_for(std::chrono::milliseconds{POLL_DURATION_MS});
-    SelectedView->Tick();
-  } while (Status != std::future_status::ready);
+  auto View = std::thread(
+    [&, this]() {
+      while (!SelectedView->DoExit()) {
+        std::this_thread::sleep_for(
+            std::chrono::milliseconds{POLL_DURATION_MS});
+        SelectedView->Tick();
+      }
+      SelectedView->Destroy();
+    });
+  SelectedView->Start();
 
-  SelectedView->SetStatus(GenerateView::Status::FINISHED, "");
-  SelectedView->SetFinished(true);
-  while (!SelectedView->DoExit()) {
-    std::this_thread::sleep_for(std::chrono::milliseconds{POLL_DURATION_MS});
-    SelectedView->Tick();
-  }
-  SelectedView->Destroy();
+  Future.wait();
+  View.join();
+
   Telemetry->ReportFinish(TELEMETRY_COMMAND_NAME);
 
   return Success;

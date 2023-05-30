@@ -13,7 +13,7 @@ title: Licensing
 Any individual or an organization that uses Surreal Docs to generate
 documentation for a project related to cryptocurrency, NFTs or 
 blockchain is obliged to buy a "Surreal Docs Crypto" license since the 
-[Surreal Docs EULA](https://medelfor.com/eula/surreal-cloud 
+[Surreal Docs EULA](https://medelfor.com/eula/surreal-docs 
     "Surreal Docs EULA") do not allow usage free of charge 
     in crypto-projects.
 
@@ -22,7 +22,7 @@ than US $100,000 is obliged to buy a "Surreal Docs XL" or "Surreal Docs Crypto X
 license since the beforementioned Terms and EULA do not allow free usage
 by such companies.
 
-You can buy a license in our [Store](https://store.medelfor.com/ 
+You can acquire a license in our [Store](https://store.medelfor.com/ 
 "Medelfor Store"). Thank you for being honest!
 ``
 

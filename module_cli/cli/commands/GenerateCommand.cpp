@@ -75,12 +75,14 @@ void udocs_processor::GenerateCommand::Generate(
     }
   });
 
-  StatusCallback(Status::EXTRACTING_FROM_CPP, "");
-  CppPreparer::PrepareRequest CppRequest;
-  CppRequest.OutDirectory = BpRequest.OutDirectory;
-  CppRequest.Inputs = Request.CppInputs;
-  CppRequest.Exclude = Request.CppExclude;
-  Cpp->Prepare(CppRequest);
+  if (!Request.CppInputs.empty()) {
+    StatusCallback(Status::EXTRACTING_FROM_CPP, "");
+    CppPreparer::PrepareRequest CppRequest;
+    CppRequest.OutDirectory = BpRequest.OutDirectory;
+    CppRequest.Inputs = Request.CppInputs;
+    CppRequest.Exclude = Request.CppExclude;
+    Cpp->Prepare(CppRequest);
+  }
 
   Generator::GenerationRequest GenRequest;
   GenRequest.DoExportPrivate = Request.DoExportPrivate;

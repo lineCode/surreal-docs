@@ -61,6 +61,8 @@ class UnrealInteraction {
 
   std::vector<Source> EnumerateSources(const std::string &ProjectDir) const;
 
+  void EnableAutoCompile(const std::string &ProjectDir) const;
+
   bool IsBlueprintProject(const std::string &ProjectDir) const;
 
   static constexpr const char PLUGINS_DIRECTORY[] = "Plugins";
@@ -83,6 +85,8 @@ class UnrealInteraction {
   static constexpr const int UAT_EXIT_CODE_PATTERN_CODE_GROUP = 1;
 
   static constexpr const int JSON_INDENT = 4;
+
+  static constexpr const char DEFAULT_TARGET[] = "Editor";
 
   static constexpr const char LOGGER_NAME[] = "unreal-interaction";
   static constexpr char DIRECTORY_SEPARATOR = '/';
@@ -136,6 +140,19 @@ class UnrealInteraction {
   static constexpr const char CONFIGURATION_DEVELOPMENT[] = "Development";
   static constexpr const char CONFIGURATION_SHIPPING[] = "Shipping";
   static constexpr const char CONFIGURATION_TEST[] = "Test";
+
+  // good enough
+  static constexpr const char COMPILE_ENABLED_PATTERN[] =
+      "bForceCompilationAtStartup\\s*=\\s*True";
+
+  static constexpr const char PER_PROJECT_EDITOR_SETTINGS_PATH[] =
+      "Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini";
+  static constexpr const char AUTO_COMPILE_ON_STARTUP[] =
+R"(
+
+[/Script/UnrealEd.EditorLoadingSavingSettings]
+bForceCompilationAtStartup=True
+)";
 
   static constexpr const char BACKUP_POSTFIX[] = ".backup";
 

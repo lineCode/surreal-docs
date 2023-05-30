@@ -10,6 +10,8 @@
 // prettier-ignore
 $admonitions: (
   // Each of these has an reST directives for it.
+  "admonition":      #651fff "abstract",
+  "topic":           #651fff "info",
   "caution":         #ff9100 "spark",
   "warning":         #ff9100 "warning",
   "danger":          #ff5252 "spark",
@@ -20,22 +22,22 @@ $admonitions: (
   "important":       #00bfa5 "flame",
   "note":            #00b0ff "pencil",
   "seealso":         #448aff "info",
-  "todo": #808080 "pencil"
+  "todo": #808080 "pencil",
 );
 
-@mixin default-admonition($color, $icon-name) {
-  --color-admonition-title: #{$color};
-  --color-admonition-title-background: #{rgba($color, 0.1)};
-
-  --icon-admonition-default: var(--icon-#{$icon-name});
-}
-
-@mixin default-topic($color, $icon-name) {
-  --color-topic-title: #{$color};
-  --color-topic-title-background: #{rgba($color, 0.1)};
-
-  --icon-topic-default: var(--icon-#{$icon-name});
-}
+//@mixin default-admonition($color, $icon-name) {
+//  --color-admonition-title: #{$color};
+//  --color-admonition-title-background: #{rgba($color, 0.1)};
+//
+//  --icon-admonition-default: var(--icon-#{$icon-name});
+//}
+//
+//@mixin default-topic($color, $icon-name) {
+//  --color-topic-title: #{$color};
+//  --color-topic-title-background: #{rgba($color, 0.1)};
+//
+//  --icon-topic-default: var(--icon-#{$icon-name});
+//}
 
 @mixin admonitions {
   @each $name, $values in $admonitions {

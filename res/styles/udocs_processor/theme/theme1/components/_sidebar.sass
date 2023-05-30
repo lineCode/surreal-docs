@@ -179,7 +179,7 @@
 .pinned
   vertical-align: middle
 
-.pinned::before
+.pinned::after
   width: 0.7em
   height: 0.7em
   display: inline-block
@@ -190,7 +190,10 @@
   -webkit-mask-size: contain
   margin-left: auto
   position: relative
-  left: -0.25rem
+  left: 0.2rem
+  top: 0.65rem
+  position: absolute
+  transform: scale(-1, 1)
   background-color: var(--color-sidebar-link-text)
 
 ////////////////////////////////////////////////////////////////////////////////

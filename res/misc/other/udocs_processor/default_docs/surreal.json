@@ -15,8 +15,7 @@
       "title": "Getting started",
       "pages": [
         {
-          "page": "docs/index",
-          "is_pinned": true
+          "page": "docs/index"
         }
       ]
     },

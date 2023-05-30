@@ -1,0 +1,5 @@
+{
+    "api_address": "api.medelfor.com",
+    "ca_cert": "certificates\\ca-cert.crt",
+    "do_use_https": true
+}

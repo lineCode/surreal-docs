@@ -55,16 +55,18 @@ bool udocs_processor::InitCLI::Init(
       InteractiveView->SetStatus(InitView::Status::STAND_BY, "");
     });
 
-  std::future_status Status;
-  do {
-    Status = Future.wait_for(std::chrono::milliseconds{POLL_DURATION_MS});
-    InteractiveView->Tick();
-  } while (Status != std::future_status::ready);
+  auto View = std::thread(
+    [this]() {
+      while (!InteractiveView->DoExit()) {
+        std::this_thread::sleep_for(
+            std::chrono::milliseconds{POLL_DURATION_MS});
+        InteractiveView->Tick();
+      }
+    });
+  InteractiveView->Start();
 
-  while (!InteractiveView->DoExit() || !IsDone) {
-    std::this_thread::sleep_for(std::chrono::milliseconds{POLL_DURATION_MS});
-    InteractiveView->Tick();
-  }
+  Future.wait();
+  View.join();
   InteractiveView->Destroy();
   Telemetry->ReportFinish(TELEMETRY_COMMAND_NAME);
 
@@ -135,6 +137,7 @@ std::filesystem::path udocs_processor::InitCLI::Absolutify(
 }
 
 void udocs_processor::InitCLI::OnDone() {
+  IsDone = false;
   std::async(std::launch::async,
     [this]() {
       try {

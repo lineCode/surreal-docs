@@ -1,0 +1,62 @@
+{
+  "project" : {
+    "repo" : "medelfor/udocs-processor",
+    "branch" : "",
+    "build_entrypoint" : "scripts/cicd/builder/build_installer.ps1",
+    "artifacts" : [
+      {
+        "stage_name": "udocs-processor_installer",
+        "path": "build_installer/installer",
+        "name" : "installer",
+        "upload_to_gs" : true,
+        "upload_to_artifactory" : false,
+        "gs_save_separate_version" : false,
+        "template" : ""
+      }
+    ],
+    "additional_ssh_keys" : [],
+    "templates" : [],
+    "name" : "udocs-processor",
+    "test_executable" : "",
+    "version_file" : "",
+    "version_module" : "",
+    "version_template" : "",
+    "conan_profile_release" : "",
+    "conan_profile_debug" : "",
+    "to_lint" : [],
+    "to_not_lint": [],
+    "lint_profile": "default",
+    "filter": {
+      "do_mirror": false,
+      "mirror": ""
+    }
+  },
+  "integration" : {
+    "gcloud_key" : "",
+    "gcloud_account_email" : "",
+    "gcp_project_id" : "",
+    "artifactory_username" : "",
+    "artifactory_password" : "",
+    "artifactory_url" : "",
+    "buildbot" : {
+      "ssh_key" : "",
+      "pat": "",
+      "username" : "",
+      "email" : ""
+    },
+    "artifacts_bucket" : ""
+  },
+  "build_machine" : {
+    "workspace_dir" : ""
+  },
+  "build" : {
+    "build_id" : "",
+    "commit_sha" : ""
+  },
+  "options" : {
+    "do_rebuild" : false,
+    "version" : "",
+    "environment" : "",
+    "do_push_version_changes": false
+  }
+}

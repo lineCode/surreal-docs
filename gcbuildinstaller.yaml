@@ -1,0 +1,46 @@
+#
+#  Copyright © 2022, Medelfor, Limited. All rights reserved.
+#  For any additional information refer to https://medelfor.com
+#
+
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    secretEnv: ['BMS_BUILDBOT_SSH_KEY']
+    entrypoint: 'bash'
+    args: ['scripts/cicd/git/fetch_bms.sh', 'develop']
+
+# win build
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    secretEnv: ['BUILDBOT_PAT', 'AWS_EC2_INSTANCE_SSH_KEY', 'GCLOUD_KEY', 'ARTIFACTORY_PASSWORD']
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['bash', 'aws/local/kickoff_build.sh', '/workspace/build_installer_win64.json', '${_DO_REBUILD}',
+           '${_VERSION}', '', 'build-machine-1', '', '${BRANCH_NAME}',
+           'C:\\workspace', 'medelfor-buildbot', 'dev.buildbot@medelfor.com',
+           '',
+           '$$STAGES_RESULTS_DIR', 'artifacts.medelfor.com', '${BUILD_ID}', '${COMMIT_SHA}',
+           'win64-build-machine-artifpush@avtomatikka.iam.gserviceaccount.com', '${PROJECT_ID}',
+           'buildbot', '', 'udocs-processor:${_GS_SAVE_SEPARATE_VERSION}', 'win64', 'true']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'aws/local/check_result.py', 'response.json', 'build']
+
+  - name: 'gcr.io/avtomatikka/buildtoolset:latest'
+    dir: 'scripts/cicd/buildmasterset'
+    args: ['python3', 'aws/local/check_result.py', 'response.json', 'push_bucket_udocs-processor_installer']
+
+timeout: 3600s
+options:
+  env: ['STAGES_RESULTS_DIR=stages_results']
+availableSecrets:
+  secretManager:
+    - versionName: projects/avtomatikka/secrets/buildmasterset-buildbot-github-key/versions/latest
+      env: 'BMS_BUILDBOT_SSH_KEY'
+    - versionName: projects/avtomatikka/secrets/win64-build-machine-key/versions/latest
+      env: 'AWS_EC2_INSTANCE_SSH_KEY'
+    - versionName: projects/avtomatikka/secrets/artifacts-bucket-pusher/versions/latest
+      env: 'GCLOUD_KEY'
+    - versionName: projects/avtomatikka/secrets/artifactory-password/versions/latest
+      env: 'ARTIFACTORY_PASSWORD'
+    - versionName: projects/avtomatikka/secrets/buildbot-personal-access-token/versions/latest
+      env: 'BUILDBOT_PAT'

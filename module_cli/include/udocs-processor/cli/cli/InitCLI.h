@@ -55,6 +55,6 @@ class InitCLI {
   std::unique_ptr<SurrealProject> Project;
 
   bool IsNewProject = false;
-  bool IsDone = false;
+  bool IsDone = true;
 };
 }  // namespace udocs_processor

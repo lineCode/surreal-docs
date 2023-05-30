@@ -65,9 +65,11 @@ std::unique_ptr<udocs_processor::SurrealProject>
 
 void udocs_processor::InitCommand::InstallPlugin(
     const std::string &ProjectDir) const {
-  std::filesystem::path PluginPath{BinPath + PLUGIN_DIRECTORY};
+  std::filesystem::path PluginPath{InstallPath + PLUGIN_DIRECTORY};
   std::filesystem::path PluginsDir{UnrealInteraction::PLUGINS_DIRECTORY +
       (DIRECTORY_SEPARATOR + std::string(TARGET_PLUGIN_DIRECTORY))};
+
+  std::filesystem::create_directories(PluginsDir);
 
   std::filesystem::copy(PluginPath, PluginsDir,
       std::filesystem::copy_options::overwrite_existing |
@@ -111,10 +113,12 @@ void udocs_processor::InitCommand::InitializeProject(
     const std::string& ProjectDir) const {
   InstallDefaultDocumentation(ProjectDir);
   InstallPlugin(ProjectDir);
+
+  Ue->EnableAutoCompile(ProjectDir);
 }
 
-void udocs_processor::InitCommand::SetBinPath(std::string BinPath) {
-  this->BinPath = StringHelper::Normalize(BinPath);
+void udocs_processor::InitCommand::SetInstallPath(std::string InstallPath) {
+  this->InstallPath = StringHelper::Normalize(InstallPath);
 }
 
 void udocs_processor::InitCommand::SetResourcesPath(std::string ResourcesPath) {

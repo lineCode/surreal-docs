@@ -158,6 +158,20 @@ function setupTheme() {
   });
 }
 
+function getContent(element) {
+  let text = "";
+  element.childNodes.forEach(function (node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      text += node.nodeValue;
+    } else if (node.nodeType === Node.ELEMENT_NODE &&
+        !node.classList.contains("headerlink")) {
+      text += getContent(node);
+    }
+  })
+
+  return text;
+}
+
 function findSectionTitle(section) {
   for (let i = 0; i < section.children.length; ++i) {
     let element = section.children[i];
@@ -165,12 +179,7 @@ function findSectionTitle(section) {
 
     for (let size = 1; size < 7; ++size) {
       if (tagName === "h" + size.toString()) {
-        let text = "";
-        element.childNodes.forEach(function (node) {
-          if (node.nodeType === Node.TEXT_NODE) {
-            text += node.nodeValue;
-          }
-        })
+        let text = getContent(element);
 
         if (text.trim() === "") {
           Array.from(element.getElementsByClassName("heading-title"))
@@ -179,7 +188,8 @@ function findSectionTitle(section) {
           });
         }
 
-        return text;
+        return text.replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
       }
     }
   }

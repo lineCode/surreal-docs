@@ -150,13 +150,15 @@ size_t udocs_processor::UnrealInteraction::DetermineVersion(
 void udocs_processor::UnrealInteraction::Build(const std::string &Target,
     const std::string& Configuration, const std::string &ProjectDir,
     const UnrealVersion &Version) const {
+  if (Target.empty()) return;
+
   std::string ProjectFile = FindProjectFile(ProjectDir);
 
   std::vector<std::string> Arguments = {
       StringHelper::Normalize(Version.EngineDir) + UNREAL_UAT_PATH,
       UNREAL_UAT_BUILD_COMMAND, UNREAL_UAT_PROJECT +
       StringHelper::Normalize(ProjectDir) + ProjectFile,
-      UNREAL_UAT_TARGET + Target,
+      UNREAL_UAT_TARGET + (Target.empty() ? DEFAULT_TARGET : Target),
       UNREAL_UAT_PLATFORM_WIN64, UNREAL_UAT_CLIENT_CONFIG + Configuration,
       UNREAL_UAT_BUILD, UNREAL_UAT_NOTOOLS};
 
@@ -231,7 +233,6 @@ void udocs_processor::UnrealInteraction::Run(const std::string &ProjectDir,
   std::vector<std::string> FinalArgs;
   FinalArgs.emplace_back(UeEditor);
   FinalArgs.emplace_back(StringHelper::Normalize(ProjectDir) + ProjectFile);
-  FinalArgs.emplace_back(UNREAL_EDITOR_SKIP_COMPILE);
   FinalArgs.insert(FinalArgs.end(), Arguments.begin(), Arguments.end());
 
   using time_point = std::chrono::steady_clock::time_point;
@@ -383,13 +384,12 @@ udocs_processor::UnrealInteraction::EnumerateTargets(
   std::string ProjectName = DetermineProjectName(ProjectDir);
 
   std::set<std::string> Targets = FindAllAvailableTargets(ProjectDir);
-
   std::filesystem::path TargetsDirectory{ProjectDir + DIRECTORY_SEPARATOR +
       WIN64_TARGETS_DIRECTORY};
-  std::filesystem::directory_iterator It{TargetsDirectory};
 
+  std::map<std::string, std::optional<std::string>> Result;
   if (std::filesystem::exists(TargetsDirectory)) {
-    std::map<std::string, std::optional<std::string>> Result;
+    std::filesystem::directory_iterator It{TargetsDirectory};
 
     for (const auto& Path : It) {
       if (!Path.is_directory()) continue;
@@ -415,16 +415,16 @@ udocs_processor::UnrealInteraction::EnumerateTargets(
 
       Result.insert(std::make_pair(Name, LastConfiguration));
     }
-
-    // insert remaining targets that weren't built at all
-    for (const auto& Target : Targets) {
-      if (Result.find(Target) == Result.end()) {
-        Result.insert(std::make_pair(Target, std::optional<std::string>{}));
-      }
-    }
-
-    return Result;
   }
+
+  // insert remaining targets that weren't built at all
+  for (const auto& Target : Targets) {
+    if (Result.find(Target) == Result.end()) {
+      Result.insert(std::make_pair(Target, std::optional<std::string>{}));
+    }
+  }
+
+  return Result;
 
   return {};
 }
@@ -486,6 +486,8 @@ std::optional<std::string>
 
   std::filesystem::path TargetsDirectory{ProjectDir + DIRECTORY_SEPARATOR +
       WIN64_TARGETS_DIRECTORY};
+  if (!std::filesystem::exists(TargetsDirectory)) return {};
+
   std::filesystem::directory_iterator It{TargetsDirectory};
 
   if (std::filesystem::exists(TargetsDirectory)) {
@@ -541,4 +543,45 @@ std::set<std::string>
   }
 
   return Result;
+}
+
+void udocs_processor::UnrealInteraction::EnableAutoCompile(
+    const std::string &ProjectDir) const {
+  std::filesystem::path PerProjectEditorSettingsPath{
+    PER_PROJECT_EDITOR_SETTINGS_PATH};
+
+  bool Exists = true;
+  if (!std::filesystem::exists(PerProjectEditorSettingsPath)) {
+    std::filesystem::create_directories(
+        PerProjectEditorSettingsPath.parent_path());
+    Exists = false;
+  }
+
+  std::string Content;
+  if (Exists) {
+    std::ifstream Input(PerProjectEditorSettingsPath.string());
+    if (!Input.good()) {
+      l->error("Couldn't create per project settings path {}",
+          PerProjectEditorSettingsPath.string());
+      return;  // do not fail or throw, just ignore
+    }
+    std::stringstream ContentStream;
+    ContentStream << Input.rdbuf();
+    Content = ContentStream.str();
+    Input.close();
+  }
+
+  std::ofstream Output(PerProjectEditorSettingsPath.string());
+  if (!Output.good()) {
+    l->error("Couldn't write per project settings path {}",
+        PerProjectEditorSettingsPath.string());
+    return;  // do not fail or throw, just ignore
+  }
+
+  Output << Content;
+
+  std::regex CompileEnabledRegex{COMPILE_ENABLED_PATTERN, std::regex::icase};
+  if (!std::regex_search(Content, CompileEnabledRegex)) {
+    Output << AUTO_COMPILE_ON_STARTUP;
+  }
 }

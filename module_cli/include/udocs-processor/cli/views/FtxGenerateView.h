@@ -30,6 +30,8 @@ class FtxGenerateView : public GenerateView, public FtxView {
 
   void Destroy() override;
 
+  void Start() override;
+
  private:
   ftxui::Elements Split(const std::string& Text) const;
 
@@ -39,9 +41,8 @@ class FtxGenerateView : public GenerateView, public FtxView {
 
   ftxui::Component ExitOnFinish;
   ftxui::Component AdsRadio;
-  std::mutex LoopProtection;
+  std::mutex SelectionsProtection;
   std::string StatusString;
-  std::unique_ptr<ftxui::Loop> Loop;
   ftxui::Component Renderer;
   ftxui::ScreenInteractive Screen;
   uint32_t FrameCount = 0;
@@ -79,9 +80,13 @@ class FtxGenerateView : public GenerateView, public FtxView {
       "at $70/month. More info at medelfor.com";
 
   static constexpr const char AD_IMAGE[] =
-R"(       ▄▄▄
-  ▄▄ ▄█████▄
-▄████████████
-▀███████████▀)";
+R"(  ▄▄▄▄▄▄
+▄████████▄
+██████████
+ ▀██████▀
+█▄      ▄█
+ ▀██████▀
+█▄      ▄█
+ ▀██████▀ )";
 };
 }  // namespace udocs_processor

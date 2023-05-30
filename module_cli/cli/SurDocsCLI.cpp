@@ -26,7 +26,7 @@ bool udocs_processor::SurDocsCLI::Start(int Argc, char** Argv) {
   GenerateCommand->add_flag<bool>(GENERATE_FLAG_DO_DEPLOY,
       DoDeploy, GENERATE_FLAG_DO_DEPLOY_DESCRIPTION);
   GenerateCommand->add_option<std::string>(GENERATE_FLAG_OUT_DIRECTORY,
-      DirectoryOut, GENERATE_FLAG_OUT_DIRECTORY_DESCRIPTION);
+      DirectoryOut, GENERATE_FLAG_OUT_DIRECTORY_DESCRIPTION)->required();
   GenerateCommand->callback(
     [&IsNonInteractive, &DoDeploy, &DirectoryOut, this](){
       GenerateCLI::Arguments Args;

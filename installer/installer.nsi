@@ -2,16 +2,23 @@
 #  Copyright © 2023, Medelfor, Limited. All rights reserved.
 #  For any additional information refer to https://medelfor.com
 #
-  Unicode True
 
-  !include "MUI2.nsh"
-  !include "WordFunc.nsh"
-  !include "Junction.nsh"
-  Name "Surreal Docs v${DIST_VERSION}"
-  OutFile "SurrealDocs-v${DIST_VERSION}-x64.exe"
+Unicode True
 
-  !define NodeJSNew "18.16.0"
-  !define NodeJSRequired "10.18.1"
+!include "MUI2.nsh"
+!include "WordFunc.nsh"
+!include "Junction.nsh"
+Name "Surreal Docs v${DIST_VERSION}"
+OutFile "installer/SurrealDocs-v${DIST_VERSION}-x64.exe"
+
+!define NodeJSNew "18.16.0"
+!define NodeJSRequired "10.18.1"
+!define CLI_EXE "surdocs.exe"
+!define CLI_DLL "M-UDocs-CLI.dll"
+
+Function CreateGUID
+  System::Call 'ole32::CoCreateGuid(g .s)'
+FunctionEnd
 
 Function .onInit
   Var /GLOBAL CACHE_DIR
@@ -30,46 +37,51 @@ Function .onInit
   Delete $TEMP\spltmp.bmp
 FunctionEnd
 
-  InstallDir "$PROGRAMFILES64\Medelfor\SurrealDocs\"
-  BrandingText "Copyright (c) 2023, Medelfor, Limited. All rights reserved"
-  InstallDirRegKey HKCU "Software\Medelfor\SurrealDocs" ""
+InstallDir "$PROGRAMFILES64\Medelfor\SurrealDocs\"
+BrandingText "Copyright (c) 2023, Medelfor, Limited. All rights reserved"
+InstallDirRegKey HKCU "Software\Medelfor\SurrealDocs" ""
 
-  RequestExecutionLevel admin
+RequestExecutionLevel admin
 
-  !define MUI_ABORTWARNING
-  !define MUI_LICENSEPAGE_CHECKBOX
-  !define MUI_ICON "Icon.ico"
-  !define MUI_UNICON "Icon.ico"
-  !define MUI_WELCOMEFINISHPAGE_BITMAP "InstallerSurrealDocsWelcomeFinish.bmp"
+!define MUI_ABORTWARNING
+!define MUI_LICENSEPAGE_CHECKBOX
+!define MUI_ICON "Icon.ico"
+!define MUI_UNICON "Icon.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "InstallerSurrealDocsWelcomeFinish.bmp"
 
-  !insertmacro MUI_PAGE_WELCOME
-  !insertmacro MUI_PAGE_LICENSE "EULA.rtf"
-  !insertmacro MUI_PAGE_COMPONENTS
-  !insertmacro MUI_PAGE_DIRECTORY
-  !insertmacro MUI_PAGE_INSTFILES
-  !insertmacro MUI_PAGE_FINISH
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_LICENSE "EULA.rtf"
+!insertmacro MUI_PAGE_COMPONENTS
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
 
-  !insertmacro MUI_UNPAGE_WELCOME
-  !insertmacro MUI_UNPAGE_CONFIRM
-  !insertmacro MUI_UNPAGE_INSTFILES
-  !insertmacro MUI_UNPAGE_FINISH
+!insertmacro MUI_UNPAGE_WELCOME
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
+!insertmacro MUI_UNPAGE_FINISH
 
-  !insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_LANGUAGE "English"
 
-Section "!Surreal Docs CLI" SecCore
+Section "!Surreal Docs Core" SecCore
   SectionInstType RO
+
+  SetOutPath "$CACHE_DIR"
+
+  File ${DIST_PATH}\res\misc\other\udocs_processor\settings.json
 
   SetOutPath "$INSTDIR"
 
-  File /r "${DIST_PATH}"
+  File /r /x "${CLI_DLL}" /x "${CLI_EXE}" "${DIST_PATH}\"
 
-  EnVar::Check "Path" "$BIN_DIR"
+  EnVar::Check "Path" "$INSTDIR"
   Pop $0
   ${If} $0 != 0
-    EnVar::AddValue "Path" "$BIN_DIR"
+    EnVar::AddValue "Path" "$INSTDIR"
     Pop $0
     ${If} $0 != 0
-      MessageBox MB_OK|MB_ICONEXCLAMATION "Unable to add $BIN_DIR to Path. Please add it manually" /SD IDOK
+      MessageBox MB_OK|MB_ICONEXCLAMATION \
+         "Unable to add $INSTDIR to Path. Please add it manually" /SD IDOK
     ${EndIf}
   ${EndIf}
 
@@ -77,8 +89,18 @@ Section "!Surreal Docs CLI" SecCore
   WriteRegStr HKCU "Software\Medelfor\SurrealDocs" "WasInstalled" "1"
   WriteRegStr HKCU "Software\Medelfor\SurrealDocs" "Version" "${DIST_VERSION}"
   WriteRegStr HKCU "Software\Medelfor\SurrealDocs" "Cache" "$CACHE_DIR"
+  Call CreateGUID
+  Pop $0
+  WriteRegStr HKCU "Software\Medelfor\SurrealDocs" "ClientId" "$0"
 
   WriteUninstaller "$INSTDIR\uninst.exe"
+SectionEnd
+
+Section "Surreal Docs CLI" SecCLI
+  SetOutPath "$INSTDIR"
+
+  File ${DIST_PATH}\${CLI_EXE}
+  File ${DIST_PATH}\${CLI_DLL}
 SectionEnd
 
 Section "NodeJS" SecNodeJS
@@ -98,12 +120,14 @@ Section "NodeJS" SecNodeJS
     ${If} $R0 == 2 ; installed nodejs is older than required
       StrCpy $do_install "yes"
     ${Else}
-      MessageBox MB_OK|MB_ICONINFORMATION "NodeJS requirement is already satisfied. No new NodeJS version will be installed" /SD IDOK
+      MessageBox MB_OK|MB_ICONINFORMATION \
+            "NodeJS requirement is already satisfied. No new NodeJS version will be installed" /SD IDOK
     ${EndIf}
   ${EndIf}
 
   ${If} $do_install == "yes"
-    inetc::get "https://nodejs.org/dist/v${NodeJSNew}/node-v${NodeJSNew}-x64.msi" "$INSTDIR\node-v${NodeJSNew}-x64.msi"
+    inetc::get "https://nodejs.org/dist/v${NodeJSNew}/node-v${NodeJSNew}-x64.msi"\
+        "$INSTDIR\node-v${NodeJSNew}-x64.msi"
     Pop $0
       StrCmp $0 "OK" dlok
       MessageBox MB_OK|MB_ICONEXCLAMATION "Unable to download NodeJS. Please download and install NodeJS \
@@ -151,22 +175,23 @@ Section "-Puppeteer" SecPup
   ${EndIf}
 SectionEnd
 
-  LangString DESC_SecCore ${LANG_ENGLISH} "Core of Surreal Docs"
-  LangString DESC_SecNodeJS ${LANG_ENGLISH} "NodeJS v${NodeJSNew}. Do not select it \
+LangString DESC_SecCore ${LANG_ENGLISH} "Core of Surreal Docs"
+LangString DESC_SecCLI ${LANG_ENGLISH} "CLI to access Surreal Docs from commandline"
+LangString DESC_SecNodeJS ${LANG_ENGLISH} "NodeJS v${NodeJSNew}. Do not select it \
     if you already have Node version higher than ${NodeJSRequired}. At least \
     NodeJS ${NodeJSRequired} is required for Surreal Docs to work"
 
-  !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-    !insertmacro MUI_DESCRIPTION_TEXT ${SecCore} $(DESC_SecCore)
-    !insertmacro MUI_DESCRIPTION_TEXT ${SecNodeJS} $(DESC_SecNodeJS)
-  !insertmacro MUI_FUNCTION_DESCRIPTION_END
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+!insertmacro MUI_DESCRIPTION_TEXT ${SecCore} $(DESC_SecCore)
+!insertmacro MUI_DESCRIPTION_TEXT ${SecCLI} $(DESC_SecCLI)
+!insertmacro MUI_DESCRIPTION_TEXT ${SecNodeJS} $(DESC_SecNodeJS)
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Section "Uninstall"
 
   Delete "$INSTDIR\uninst.exe"
 
-  RMDir "$INSTDIR"
+  RMDir /R "$INSTDIR"
 
-  DeleteRegKey /ifempty HKCU "Software\Medelfor\SurrealDocs"
-
+  Delete "$INSTDIR\*.*"
 SectionEnd

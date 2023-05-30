@@ -10,6 +10,8 @@
 
 void udocs_processor::FtxGenerateView::SetStatus(
     GenerateView::Status Status_, const std::string &Message) {
+  std::lock_guard<std::mutex> Lock{SelectionsProtection};
+
   if (Status_ == GenerateView::Status::ERROR) {
     StatusString = GetStatusString(Status_);
     this->Status_ = Status_;
@@ -28,14 +30,15 @@ void udocs_processor::FtxGenerateView::Destroy() {
 }
 
 void udocs_processor::FtxGenerateView::Tick() {
+  std::lock_guard<std::mutex> Lock{SelectionsProtection};
+
   ++FrameCount;
   if (AdFrames == AD_FRAMES) {
     Ad = (Ad + 1) % AdTexts.size();
     AdFrames = 0;
   }
   ++AdFrames;
-  Loop->RunOnce();
-  Screen.RequestAnimationFrame();
+  Screen.PostEvent(ftxui::Event::Custom);
 }
 
 ftxui::Elements udocs_processor::FtxGenerateView::Split(
@@ -123,12 +126,12 @@ void udocs_processor::FtxGenerateView::Init() {
   Renderer |= CatchEvent([&](Event Event_) {
     if (HasFinished && Event_ == Event::Return) {
       DoExit_ = true;
+      this->Screen.Exit();
       return true;
     }
     return false;
   });
 
-  Loop = std::make_unique<ftxui::Loop>(&Screen, Renderer);
   CLISignalHandler::OverrideHandler();
 }
 
@@ -152,9 +155,15 @@ udocs_processor::FtxGenerateView::FtxGenerateView()
 }
 
 bool udocs_processor::FtxGenerateView::DoExit() const {
-  return DoExit_;
+  return DoExit_ && HasFinished;
 }
 
 void udocs_processor::FtxGenerateView::SetFinished(bool HasFinished) {
+  std::lock_guard<std::mutex> Lock{SelectionsProtection};
+
   this->HasFinished = HasFinished;
+}
+
+void udocs_processor::FtxGenerateView::Start() {
+  Screen.Loop(Renderer);
 }

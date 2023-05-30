@@ -53,6 +53,8 @@ class FtxInitView : public InitView, public FtxView {
 
   void SetFinished(bool IsFinished) override;
 
+  void Start() override;
+
   const std::string &GetSelectedName() const override;
 
   const std::string &GetSelectedOrganization() const override;
@@ -77,7 +79,8 @@ class FtxInitView : public InitView, public FtxView {
 
   std::string GetStatusString(Status Status_) const;
 
-  static constexpr const char PRESS_TO_EXIT[] = ". Press ENTER to exit";
+  static constexpr const char PRESS_TO_EXIT[] = "Press ENTER to exit";
+  static constexpr const char PRESS_TO_EXIT_PREFIX[] = ". ";
   static constexpr const char TOGGLE_ON[] = "On";
   static constexpr const char TOGGLE_OFF[] = "Off";
 
@@ -118,6 +121,7 @@ class FtxInitView : public InitView, public FtxView {
 
   int SelectedEngineVersion = 0;
   int SelectedTarget = 0;
+  int LastSelectedTarget = -1;
   int SelectedConfiguration = 0;
   std::vector<char> SelectedSources;
 
@@ -130,7 +134,6 @@ class FtxInitView : public InitView, public FtxView {
   ftxui::Component OrganizationInput;
   ftxui::Component DoExportPrivateCheckbox;
   ftxui::Component StartButton;
-  std::unique_ptr<ftxui::Loop> Loop;
   ftxui::Component Renderer;
   ftxui::ScreenInteractive Screen;
   uint32_t FrameCount = 0;

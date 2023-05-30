@@ -27,7 +27,7 @@ class InitCommand {
 
   void InitializeProject(const std::string& ProjectDir) const;
 
-  void SetBinPath(std::string BinPath);
+  void SetInstallPath(std::string InstallPath);
 
   void SetResourcesPath(std::string ResourcesPath);
 
@@ -46,7 +46,7 @@ class InitCommand {
   static constexpr const char SURREAL_JSON[] = "surreal.json";
   static constexpr char DIRECTORY_SEPARATOR = '/';
 
-  std::string BinPath;
+  std::string InstallPath;
   std::string ResourcesPath;
 
   std::unique_ptr<UnrealInteraction> Ue;

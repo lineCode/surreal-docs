@@ -25,8 +25,8 @@ void udocs_processor::FtxInitView::SetTargets(
   std::lock_guard<std::mutex> Lock{SelectionsProtection};
 
   this->Targets.clear();
-  for (const auto& Target : Targets) {
-    this->Targets.emplace_back(Target.first);
+  for (auto& Target : Targets) {
+    this->Targets.emplace_back(std::move(Target.first));
   }
   TargetsAgainstConfigurations = std::move(Targets);
 }
@@ -210,7 +210,9 @@ void udocs_processor::FtxInitView::Init() {
                       spinner(18, FrameCount) | SuccessColor()
                           | HHide(CurrentStatus != Status::PROCESSING),
                       separatorEmpty(),
-                      text(StatusString + (HasFinished() ? PRESS_TO_EXIT : ""))
+                      text(StatusString + (HasFinished()
+                          ? PRESS_TO_EXIT_PREFIX + std::string(PRESS_TO_EXIT)
+                          : ""))
                           | ForegroundColor1()
                           | size(ftxui::WIDTH, ftxui::EQUAL, 40),
                     }) | flex_grow,
@@ -238,19 +240,24 @@ void udocs_processor::FtxInitView::Init() {
             }),
             filler()
           }) | VHide(CurrentStatus != Status::GATHERING),
+          vbox({
+            text(PRESS_TO_EXIT) | ForegroundColor1(),
+            filler()
+          }) | VHide(CurrentStatus != Status::FAILED),
           WrapError(ErrorMessage, CurrentStatus == Status::FAILED)
         }, "Initialization");
       });
 
-  Renderer |= CatchEvent([&](Event Event_) {
-    if (IsFinished && Event_ == Event::Return) {
+  Renderer |= CatchEvent([&, this](Event Event_) {
+    if ((IsFinished || CurrentStatus == Status::FAILED) &&
+         Event_ == Event::Return) {
       DoExit_ = true;
+      this->Screen.Exit();
       return true;
     }
     return false;
   });
 
-  Loop = std::make_unique<ftxui::Loop>(&Screen, Renderer);
   CLISignalHandler::OverrideHandler();
 }
 
@@ -258,16 +265,16 @@ void udocs_processor::FtxInitView::Tick() {
   std::lock_guard<std::mutex> Lock{SelectionsProtection};
 
   ++FrameCount;
-  Loop->RunOnce();
-  Screen.RequestAnimationFrame();
+  Screen.PostEvent(ftxui::Event::Custom);
 
   // bad
-  if (SelectedTarget < Targets.size()) {
+  if (SelectedTarget < Targets.size() && SelectedTarget != LastSelectedTarget) {
     auto It = TargetsAgainstConfigurations.find(Targets[SelectedTarget]);
     if (It != TargetsAgainstConfigurations.end()) {
       for (size_t i = 0; i < Configurations.size(); ++i) {
         if (Configurations[i] == It->second) {
           SelectedConfiguration = i;
+          LastSelectedTarget = SelectedTarget;
           break;
         }
       }
@@ -275,9 +282,7 @@ void udocs_processor::FtxInitView::Tick() {
   }
 }
 
-void udocs_processor::FtxInitView::Destroy() {
-  Screen.Exit();
-}
+void udocs_processor::FtxInitView::Destroy() {}
 
 udocs_processor::FtxInitView::FtxInitView(InitCLI &Cli)
     : Screen(ftxui::ScreenInteractive::Fullscreen()), Cli(Cli) {
@@ -298,6 +303,8 @@ bool udocs_processor::FtxInitView::HasFinished() const {
 
 void udocs_processor::FtxInitView::SetStatus(InitView::Status CurrentStatus,
     const std::string &Message) {
+  std::lock_guard<std::mutex> Lock{SelectionsProtection};
+
   if (CurrentStatus == InitView::Status::FAILED) {
     StatusString = GetStatusString(CurrentStatus);
     this->CurrentStatus = CurrentStatus;
@@ -327,6 +334,8 @@ std::string udocs_processor::FtxInitView::GetStatusString(
 }
 
 void udocs_processor::FtxInitView::SetOrganization(std::string Organization) {
+  std::lock_guard<std::mutex> Lock{SelectionsProtection};
+
   this->Organization = std::move(Organization);
 }
 
@@ -384,5 +393,11 @@ bool udocs_processor::FtxInitView::DoExportPrivate() const {
 }
 
 void udocs_processor::FtxInitView::SetDoExportPrivate(bool DoExport) {
+  std::lock_guard<std::mutex> Lock{SelectionsProtection};
+
   this->DoExportPrivate_ = DoExport;
+}
+
+void udocs_processor::FtxInitView::Start() {
+  Screen.Loop(Renderer);
 }

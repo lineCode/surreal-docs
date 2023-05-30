@@ -13,7 +13,7 @@ This Agreement together with all referenced documents is an open license as gove
 This Agreement is an unilateral treaty and can be ended by Medelfor anytime without your consent. In case you want to accept this Agreement Medelfor is not obliged to provide you with a signed physical copy of this Agreement and you are not obliged to provide Medelfor with one.
 
 
-This Agreement is a legal document detailing your rights and obligations related to using Medelfor’s proprietary computer software program known as Surreal Cloud Pro and any updates or upgrades to the program made available by Medelfor (the “Licensed Technology”). By downloading the Licensed Technology, using the Licensed Technology or accepting this Agreement via ticking the checkbox on a checkout page in the Medelfor’s Store (available by the address store.medelfor.com), you are agreeing to be bound by the terms of this Agreement, and this Agreement will be effective upon the first of those events to occur. If you do not or cannot agree to the terms of this Agreement, do not use the Licensed Technology. When we say, “you,” “your” or “yourself”, we mean you as an individual or the legal entity exercising rights under this Agreement through you. When we say “Medelfor”, “we” or “us,” we are referring to the Medelfor entity responsible for providing the Licensed Technology in your region detailed in Section 9.
+This Agreement is a legal document detailing your rights and obligations related to using Medelfor’s proprietary computer software program known as Surreal Docs and any updates or upgrades to the program made available by Medelfor (the “Licensed Technology”). By downloading the Licensed Technology, using the Licensed Technology or accepting this Agreement via ticking the checkbox on a checkout page in the Medelfor’s Store (available by the address store.medelfor.com), you are agreeing to be bound by the terms of this Agreement, and this Agreement will be effective upon the first of those events to occur. If you do not or cannot agree to the terms of this Agreement, do not use the Licensed Technology. When we say, “you,” “your” or “yourself”, we mean you as an individual or the legal entity exercising rights under this Agreement through you. When we say “Medelfor”, “we” or “us,” we are referring to the Medelfor entity responsible for providing the Licensed Technology in your region detailed in Section 9.
 
 
 PLEASE READ THIS AGREEMENT CAREFULLY. IT CONTAINS A CLASS-ACTION WAIVER PROVISION. IF YOU ACCEPT THIS AGREEMENT, YOU AND MEDELFOR AGREE TO RESOLVE DISPUTES ONLY IN YOUR INDIVIDUAL CAPACITIES AND NOT AS PART OF A CLASS ACTION (SEE SECTION 15). YOU HAVE A TIME-LIMITED RIGHT TO OPT OUT OF THIS WAIVER. BY AGREEING TO THE TERMS OF THIS AGREEMENT, YOU ARE ALSO AGREEING TO CONTRACTUAL TERMS THAT WILL LIMIT SOME OF YOUR LEGAL RIGHTS, INCLUDING A DISCLAIMER OF WARRANTY, AN EXCLUSION OF CERTAIN KINDS OF DAMAGES, AND A LIMITATION OF LIABILITY.
@@ -88,7 +88,7 @@ If you develop products, services, or any other projects that (i) are made using
 “This product uses Surreal Docs - a development of Medelfor. Surreal Docs © 2022-2023 - Medelfor, Limited. All rights reserved.”
 
 
-This Agreement does not govern in any way the product or source code for which the documentation was generated, with the only exception when the product is bundled with the Licensed Technology. In other words the source code (or Input as described below) is outside of scope of this Agreement.
+This Agreement does not govern in any way the product or source code for which the documentation is generated, with the only exception when the product is bundled with the Licensed Technology. In other words the source code (or Input as described below) is outside of scope of this Agreement.
 
 
 “Distribute” means, with respect to a Product, to provide or otherwise make a copy of the Product available publicly or to any other person or entity or make the Product’s functionality available on a network.
@@ -128,7 +128,7 @@ You must ensure that your activities with the Licensed Technology do not:
 c. Distribution of the Licensed Technology modified by you that harm our business
 
 
-Medelfor keeps the right to request a takedown of any modified version of the Licensed Technology that may harm or does harm our business, including but not limited to sales volume or appeal of the Licensed Technology to potential customers.
+Medelfor keeps the right to request a takedown of any modified version of the Licensed Technology that in Medelfor’s opinion may harm or does harm our business, including but not limited to possible or actual reduction in sales volume or negative effect on the appeal of the Licensed Technology to potential customers.
 
 
 6. Who Owns What
@@ -354,7 +354,7 @@ These restrictions (section 20.b) do not apply while you have one of the followi
 You can not use the Licensed Technology if the Last Year (as defined below) revenue of the legal entity exercising rights under this Agreement through you, is more than US $100,000 (one hundred thousand United States Dollars) including any payment in any currency made to the legal entity. In case of payments being made in different currencies the revenue amount is the sum of all payments converted to the US dollars using the exchange rate on the day of the payment, set by the bank the receiving account of the legal entity is opened in.
 
 
-“The Last Year” means the period of 365 (three hundred sixty five) days counting from  the day three hundred sixty five days before you accept the terms of this Agreement to the day you accept the terms of this Agreement. 
+“The Last Year” means the last 365 (three hundred sixty-five) days.
 
 
 In case, when during the licensing period granted by this Agreement, the Last Year (as defined above) revenue exceeded US $100,000 (as defined above), then this Agreement will be considered terminated immediately after the current Licensing Period ends.
