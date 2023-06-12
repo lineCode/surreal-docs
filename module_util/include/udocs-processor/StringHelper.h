@@ -67,6 +67,8 @@ class StringHelper {
   static std::string ConvertImagePathToLocalRepresentation(
       const std::string& Image);
 
+  static std::string Embrace(const std::string& String);
+
   constexpr static char REPLACEMENT_HTML_CODE[] = "&#xfffd;";
   constexpr static char SPACE_CH = ' ';
 
@@ -113,6 +115,7 @@ class StringHelper {
   constexpr static char DESCRIPTION_CONCAT_GLUE[] = "\n\n";
   constexpr static char SPACE = ' ';
   constexpr static char SPACE_STR[] = " ";
+  constexpr static char SPACE_ESCAPED[] = "` ";
   constexpr static char UNDERSCORE = '_';
 
   constexpr static int AVERAGE_WORD_IN_NAME = 6;

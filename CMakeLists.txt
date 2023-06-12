@@ -55,18 +55,20 @@ endif()
 #see https://issues.internal.medelfor.com/youtrack/articles/KG-A-2
 
 #LIBRARY PART
+if (PLATFORM_WIN64)
+    add_subdirectory(module_cli)
+endif ()
 add_subdirectory(module_processor)
 add_subdirectory(module_serializer)
 add_subdirectory(module_base)
 add_subdirectory(module_report)
 add_subdirectory(module_telemetry)
 add_subdirectory(module_util)
-add_subdirectory(module_cli)
 
 install(DIRECTORY ${CMAKE_BINARY_DIR}/deps/
         DESTINATION ${CMAKE_INSTALL_PREFIX})
 
-if(DO_BUILD_EXECUTABLE)
+if(DO_BUILD_EXECUTABLE AND PLATFORM_WIN64)
     add_subdirectory(exec)
 endif()
 

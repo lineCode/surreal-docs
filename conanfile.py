@@ -72,4 +72,4 @@ class UDocsProcessorConan(ConanFile):
     def package_info(self):
         self.cpp_info.libs = ["M-UDocs-Processor", "M-UDocs-Report",
             "M-UDocs-Serializer", "M-UDocs-Base", "M-UDocs-Util",
-            "M-UDocs-CLI", "M-UDocs-Telemetry"]
+            "M-UDocs-Telemetry"]

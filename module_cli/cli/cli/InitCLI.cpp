@@ -94,6 +94,7 @@ void udocs_processor::InitCLI::InitializeView(
 
   InteractiveView->SetName(Project.Name);
   InteractiveView->SetOrganization(Project.Organization);
+  InteractiveView->SetContactMeAt(Project.ContactMeAt);
   InteractiveView->SetVersion(Project.Version);
   InteractiveView->SelectTarget(Project.Target);
   InteractiveView->SetDoExportPrivate(Project.DoExportPrivate);
@@ -151,6 +152,7 @@ void udocs_processor::InitCLI::OnDone() {
         Project->Name = InteractiveView->GetSelectedName();
         Project->Organization = InteractiveView->GetSelectedOrganization();
         Project->Version = InteractiveView->GetSelectedVersion();
+        Project->ContactMeAt = InteractiveView->GetContactMeAt();
         if (auto EngineVersion = InteractiveView->GetSelectedEngineVersion()) {
           Project->EngineRoot = EngineVersion->EngineDir;
         }

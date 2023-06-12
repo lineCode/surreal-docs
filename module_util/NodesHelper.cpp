@@ -64,14 +64,22 @@ std::string udocs_processor::NodesHelper::FormatNumber(double Value) {
   return Formatted;
 }
 
+float SafeStof(const std::string& Value) {
+  try {
+    return std::stof(Value);
+  } catch (const std::exception& Exc) {
+    return 0;
+  }
+}
+
 bool udocs_processor::NodesHelper::ParseRotatorInitializer(
     const std::string& Rotator, double& X, double& Y, double& Z) {
   static std::regex Pattern(ROTATOR_FORMAT, std::regex::icase);
   std::smatch Match;
   if (std::regex_match(Rotator, Match, Pattern)) {
-    Y = std::stof(Match[1].str());  // pitch is Y
-    Z = std::stof(Match[2].str());  // yaw is Z
-    X = std::stof(Match[3].str());  // roll is X
+    Y = SafeStof(Match[1].str());  // pitch is Y
+    Z = SafeStof(Match[2].str());  // yaw is Z
+    X = SafeStof(Match[3].str());  // roll is X
 
     return true;
   }
@@ -84,9 +92,9 @@ bool udocs_processor::NodesHelper::ParseVectorInitializer(
   std::regex Pattern(VECTOR_FORMAT, std::regex::icase);
   std::smatch Match;
   if (std::regex_match(Vector, Match, Pattern)) {
-    X = std::stof(Match[1].str());
-    Y = std::stof(Match[2].str());
-    Z = std::stof(Match[3].str());
+    X = SafeStof(Match[1].str());
+    Y = SafeStof(Match[2].str());
+    Z = SafeStof(Match[3].str());
 
     return true;
   }
@@ -99,9 +107,9 @@ bool udocs_processor::NodesHelper::ParseParameterXYZInitializer(
   std::regex Pattern(XYZ_PARAMETER_FORMAT, std::regex::icase);
   std::smatch Match;
   if (std::regex_match(Initializer, Match, Pattern)) {
-    X = std::stof(Match[1].str());
-    Y = std::stof(Match[2].str());
-    Z = std::stof(Match[3].str());
+    X = SafeStof(Match[1].str());
+    Y = SafeStof(Match[2].str());
+    Z = SafeStof(Match[3].str());
 
     return true;
   }
