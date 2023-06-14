@@ -64,6 +64,8 @@ and the documentation you are going to generate. Surreal Docs will detect and se
 settings automatically, but you should review them and update if 
 necessary.
 
+**IMPORTANT**: you have to choose an \*Editor target, since Surreal Docs cannot be run without UE editor.
+
 On the same screen you should choose the project modules for which you want to generate documentation.
 
 After everything's finished, please click the "Done" button and wait until
