@@ -14,7 +14,7 @@
 
 Surreal Docs is the first all-encompassing docs generation system for Unreal Engine-powered projects. It generates documentation for Unreal Engine projects, C++ and Blueprint API references in particular. It enables users to create their own custom pages using a feature-rich dialect of Markdown. Surreal Docs seamlessly integrates with our online docs hosting - Surreal Cloud, making it easy to share the docs publicly, privately with a team or within an organization. Finally, Surreal Docs perfectly understands all UE-specific C++ features, Blueprints and easily interweaves corresponding C++ and Blueprint entities in the resulting documentation!
 
-The latest version of Surreal Docs is `1.0.2`
+The latest version of Surreal Docs is `1.0.4`
 
 **Table of Contents**
 
@@ -63,6 +63,8 @@ It will invoke the initialization screen where you can set options of your proje
 and the documentation you are going to generate. Surreal Docs will detect and set most
 settings automatically, but you should review them and update if 
 necessary.
+
+**IMPORTANT**: you have to choose an \*Editor target, since Surreal Docs cannot be run without UE editor.
 
 On the same screen you should choose the project modules for which you want to generate documentation.
 
