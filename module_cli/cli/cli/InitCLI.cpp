@@ -144,9 +144,7 @@ void udocs_processor::InitCLI::OnDone() {
       try {
         InteractiveView->SetStatus(InitView::Status::PROCESSING, "");
 
-        if (IsNewProject) {
-          Command->InitializeProject(CURRENT_DIRECTORY);
-        }
+        Command->InitializeProject(CURRENT_DIRECTORY, IsNewProject);
 
         Project->DoExportPrivate = InteractiveView->DoExportPrivate();
         Project->Name = InteractiveView->GetSelectedName();

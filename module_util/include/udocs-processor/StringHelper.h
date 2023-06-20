@@ -69,6 +69,38 @@ class StringHelper {
 
   static std::string Embrace(const std::string& String);
 
+  static float SafeStof(const std::string& Value) {
+    try {
+      return std::stof(Value);
+    } catch (const std::exception& Exc) {
+      return 0;
+    }
+  }
+
+  static uint64_t SafeStoull(const std::string& Value) {
+    try {
+      return std::stoull(Value);
+    } catch (const std::exception& Exc) {
+      return 0;
+    }
+  }
+
+  static int64_t SafeStoll(const std::string& Value) {
+    try {
+      return std::stoll(Value);
+    } catch (const std::exception& Exc) {
+      return 0;
+    }
+  }
+
+  static double SafeStod(const std::string& Value) {
+    try {
+      return std::stod(Value);
+    } catch (const std::exception& Exc) {
+      return 0;
+    }
+  }
+
   constexpr static char REPLACEMENT_HTML_CODE[] = "&#xfffd;";
   constexpr static char SPACE_CH = ' ';
 

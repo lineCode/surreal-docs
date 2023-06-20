@@ -26,7 +26,6 @@ find_package(stringtoolbox REQUIRED)
 find_package(inja REQUIRED)
 find_package(md4c REQUIRED)
 find_package(base64 REQUIRED)
-find_package(libexecstream REQUIRED)
 find_package(Crc32c REQUIRED)
 find_package(Poco REQUIRED)
 find_package(ftxui REQUIRED)
@@ -55,7 +54,7 @@ endif()
 #see https://issues.internal.medelfor.com/youtrack/articles/KG-A-2
 
 #LIBRARY PART
-if (PLATFORM_WIN64)
+if (PLATFORM_WIN64 AND NOT SKIP_CLI)
     add_subdirectory(module_cli)
 endif ()
 add_subdirectory(module_processor)

@@ -188,7 +188,7 @@ uint64_t udocs_processor::UnrealInteraction::ParseUATExitCode(
   static std::regex Pattern{UAT_EXIT_CODE_PATTERN, std::regex::icase};
   std::smatch Match;
   if (std::regex_search(UATOutput, Match, Pattern)) {
-    uint64_t ExitCode = std::stoull(
+    uint64_t ExitCode = StringHelper::SafeStoull(
         Match[UAT_EXIT_CODE_PATTERN_CODE_GROUP].str());
     return ExitCode;
   }

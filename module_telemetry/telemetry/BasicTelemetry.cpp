@@ -53,5 +53,5 @@ udocs_processor::BasicTelemetry::ReportLog(std::string Command, std::string Log,
     Payload[PAYLOAD_CONTACT_ME_BACK_AT] = *ContactMeBackAt;
   }
 
-  Reporter->ReportTelemetryEvent(EVENT_LOG, Payload);
+  Reporter->ReportTelemetryEvent(EVENT_LOG, Payload, true);
 }

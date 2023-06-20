@@ -5,26 +5,13 @@ Remove-Item dist_conan -Recurse -ErrorAction Ignore
 # build dist, tests, conan package
 cmake -DCMAKE_BUILD_TYPE=Debug ../ -DCMAKE_INSTALL_PREFIX=dist -DDO_BUILD_TESTS=OFF `
       -DDO_BUILD_EXECUTABLE=OFF -DDO_INSTALL_AS_CONAN_PACKAGE=ON -DCONAN_PACKAGE_INSTALL_POSTFIX=_conan `
-      -DTESTS_INSTALL_POSTFIX=_tests -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON
+      -DTESTS_INSTALL_POSTFIX=_tests -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DSKIP_CLI=ON
 
-cmake --build . --config Debug
+cmake --build . --config RelWithDebInfo
 
-cmake --install . --config Debug
+cmake --install . --config RelWithDebInfo
 
-# package the conan package
-
-gulp mails -f ../gulpfile.js --destination build_release/dist --auto_res_prefix build_release
-gulp process-html -f ../gulpfile.js --destination build_release/dist --auto_res_prefix build_release
-
-mkdir -Force dist/res/html/site/emails
-mkdir -Force dist/res/html/site/dashboard/common
-
-# copy bundled resources to dist_conan
-Copy-Item dist/res/html/site/emails -Destination `
-      dist_conan/res/bundled/html/site/emails -Recurse -Force
-
-Copy-Item dist/res/html/site/dashboard/common -Destination `
-      dist_conan/res/bundled/html/site/dashboard/common -Recurse -Force
+mkdir -Force dist_conan
 
 cd dist_conan
 
